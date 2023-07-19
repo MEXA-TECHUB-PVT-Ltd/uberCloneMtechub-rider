@@ -60,7 +60,7 @@ const Profile = ({navigation}) => {
             paddingHorizontal: wp(6),
             marginTop:hp(1)
           }}
-          //onPress={() => {navigation.navigate('MyProfile')}}
+          onPress={() => {navigation.navigate('MyProfile')}}
           >
           <View style={{flexDirection: 'row', alignItems: 'center'}}>
             <View
