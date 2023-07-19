@@ -17,7 +17,7 @@ import ProfileNav from '../ProfileNav/ProfileNav';
 import OnGoingTrip from '../../screens/StackScreens/Dashboard/OnGoingTrip';
 
 //////////////////profile//////////////////////
-// import MyProfile from '../../screens/StackScreens/Profile/MyProfile';
+import MyProfile from '../../screens/StackScreens/Profile/MyProfile';
 
 import Drawerroute from '../Drawer/Drawer';
 
@@ -102,13 +102,13 @@ function AuthNav() {
           headerShown: false,
         }}
       />
-      {/* <Stack.Screen
+      <Stack.Screen
         name="MyProfile"
         component={MyProfile}
         options={{
           headerShown: false,
         }}
-      /> */}
+      />
     </Stack.Navigator>
   );
 }
