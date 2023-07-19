@@ -77,9 +77,8 @@ const HistoryRidesCard = ({
             </Text>
           </View>
         </View>
-        {type != "detail"?
-        <View style={styles.line} />:null}
-        {type != "detail"?
+        <View style={styles.line} />
+
                 <View
                 style={{
                   flexDirection: 'row',
@@ -87,6 +86,7 @@ const HistoryRidesCard = ({
                   alignItems: 'center',
                   marginHorizontal: wp(4.5),
                 }}>
+                          {type != "detail"?
                 <View
                   style={{
                     flexDirection: 'row',
@@ -109,12 +109,17 @@ const HistoryRidesCard = ({
                     <Text style={styles.notisubtext}>{notisubtext}</Text>
                   </View>
                 </View>
+                :
+                <View style={{marginLeft: wp(3), justifyContent: 'center'}}>
+                <Text style={styles.notimaintext}>Time & Date</Text>
+                <Text style={styles.notisubtext}>03:00 PM, 12/06/2023</Text>
+              </View>
+              }
                 <View>
                   <Text style={[styles.pricetext]}>{notitime}</Text>
                   <Text style={[styles.kmtext]}>{km}</Text>
                 </View>
-              </View>:null
-        }
+              </View>
 
 
       </TouchableOpacity>

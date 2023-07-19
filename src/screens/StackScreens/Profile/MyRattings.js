@@ -11,15 +11,8 @@ import {
   Image,
 } from 'react-native';
 
-///////paper////////////
-import {RadioButton} from 'react-native-paper';
-
-///////iocns///////
-import Icon from 'react-native-vector-icons/Ionicons';
-
 //////////////////////app components///////////////
 import CustomHeader from '../../../components/Header/CustomHeader';
-import SearchTextInput from '../../../components/TextInput/SearchInput';
 
 ////////////////////app pakages////////////////////////
 import {Rating} from 'react-native-ratings';
@@ -29,12 +22,6 @@ import {
   heightPercentageToDP as hp,
   widthPercentageToDP as wp,
 } from 'react-native-responsive-screen';
-
-/////////////////colors/////////////
-import Colors from '../../../utils/Colors';
-
-///////////////////svgs//////////////
-import Search from '../../../assets/svgs/LanguageSearch.svg';
 
 ///////app fonts//////////////
 import {fontFamily} from '../../../constants/fonts';
@@ -68,43 +55,37 @@ const DATA = [
 const progress = [
   {
     id: '5',
-    barcolor:'#76DC99',
-    barpercent:'75',
-    value:'982' 
+    barcolor: '#76DC99',
+    barpercent: '75',
+    value: '982',
   },
   {
     id: '4',
-    barcolor:'#B7EA83',
-    barpercent:'16',
-    value:'205' 
+    barcolor: '#B7EA83',
+    barpercent: '16',
+    value: '205',
   },
   {
     id: '3',
-    barcolor:'#F6D757',
-    barpercent:' 5',
-    value:' 65' 
+    barcolor: '#F6D757',
+    barpercent: ' 5',
+    value: ' 65',
   },
   {
     id: '2',
-    barcolor:'#FBB851',
-    barpercent:' 1',
-    value:' 17' 
+    barcolor: '#FBB851',
+    barpercent: ' 1',
+    value: ' 17',
   },
   {
     id: '1',
-    barcolor:'#F17A56',
-    barpercent:' 3',
-    value:' 46' 
+    barcolor: '#F17A56',
+    barpercent: ' 3',
+    value: ' 46',
   },
 ];
 
 const MyRattings = ({navigation}) => {
-  //////////////prgress percentage////////////
-  const [green, setGreen] = useState('75');
-
-  /////////////Get Notification/////////////
-  const [Notifications, setNotifications] = useState('');
-
   ///////////total rattings/////
   const [total_ratting, setTotal_Ratting] = useState('');
 
@@ -150,22 +131,21 @@ const MyRattings = ({navigation}) => {
   const progressrenderItem = ({item}) => {
     return (
       <View>
-     <View
-        style={styles.progressview}>
-        <Text style={styles.progresstext}>{item.id}</Text>
-        <View>
-          <Progress.Bar
-            progress={item.barpercent / 100}
-            width={wp(65)}
-            height={hp(1.8)}
-            color={item.barcolor}
-            unfilledColor="#F3F2FA"
-            borderWidth={0}
-          />
+        <View style={styles.progressview}>
+          <Text style={styles.progresstext}>{item.id}</Text>
+          <View>
+            <Progress.Bar
+              progress={item.barpercent / 100}
+              width={wp(65)}
+              height={hp(1.8)}
+              color={item.barcolor}
+              unfilledColor="#F3F2FA"
+              borderWidth={0}
+            />
+          </View>
+          <Text style={styles.progresspercentagetext}>{item.barpercent}%</Text>
+          <Text style={styles.progresstext}>{item.value}</Text>
         </View>
-        <Text style={styles.progresspercentagetext}>{item.barpercent}%</Text>
-        <Text style={styles.progresstext}>{item.value}</Text>
-      </View>
       </View>
     );
   };
@@ -255,7 +235,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     paddingHorizontal: wp(5),
     justifyContent: 'space-between',
-    marginVertical:hp(1)
+    marginVertical: hp(1),
   },
   progresstext: {
     color: '#707070',

@@ -19,6 +19,9 @@ import OnGoingTrip from '../../screens/StackScreens/Dashboard/OnGoingTrip';
 //////////////////profile//////////////////////
 import MyProfile from '../../screens/StackScreens/Profile/MyProfile';
 
+//////////////////RIDES//////////
+import RidesDetail from '../../screens/DrawerScreens/RidesDetail';
+
 import Drawerroute from '../Drawer/Drawer';
 
 const Stack = createNativeStackNavigator();
@@ -105,6 +108,13 @@ function AuthNav() {
       <Stack.Screen
         name="MyProfile"
         component={MyProfile}
+        options={{
+          headerShown: false,
+        }}
+      />
+      <Stack.Screen
+        name="RidesDetail"
+        component={RidesDetail}
         options={{
           headerShown: false,
         }}
