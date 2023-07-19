@@ -28,7 +28,7 @@ const CustomHeader = ({
   return (
     <View style={[styles.headerView]}>
       <View style={styles.lefticonview}>
-        <Icon name={icon} size={25} color={'black'} onPress={iconPress} />
+        <Icon name={icon} size={hp(3.5)} color={'black'} onPress={iconPress} />
       </View>
       <View
         style={[

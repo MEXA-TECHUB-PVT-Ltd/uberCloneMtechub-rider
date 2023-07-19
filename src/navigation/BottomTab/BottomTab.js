@@ -32,6 +32,7 @@ import HomeIcon from '../../assets/svgs/BottomTab/Home.svg';
 import ClockIcon from '../../assets/svgs/BottomTab/Clock.svg';
 import UserIcon from '../../assets/svgs/BottomTab/User.svg';
 import ActiveIcon from '../../assets/svgs/BottomTab/activedot.svg';
+
 function BottomTab() {
   ///////////redux variable/////////////
   const dispatch = useDispatch();
@@ -61,8 +62,8 @@ function BottomTab() {
         },
       }}>
       <Tab.Screen
-        name="DashboardNav"
-        component={DashboardNav}
+        name="Home"
+        component={Home}
         options={{
           headerShown: false,
 
@@ -99,8 +100,8 @@ function BottomTab() {
         }}
       />
       <Tab.Screen
-        name="ProfileNav"
-        component={ProfileNav}
+        name="Profile"
+        component={Profile}
         options={{
           headerShown: false,
           tabBarIcon: ({color, focused}) => (

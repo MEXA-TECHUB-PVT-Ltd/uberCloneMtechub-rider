@@ -5,7 +5,6 @@ import {createDrawerNavigator} from '@react-navigation/drawer';
 import {DrawerContent} from './CustomDrawer';
 
 /////////////drawer screens////////
-import DashboardNav from '../DashboardNav/DashboardNav';
 import MyWallet from '../../screens/DrawerScreens/MyWallet';
 import History from '../HistoryNav/HistoryNav';
 import UpdateProfile from '../../screens/DrawerScreens/UpdateProfile';
@@ -70,7 +69,7 @@ export default function Drawerroute() {
         name="ChatList"
         component={ChatList}
       />
-            {/* <Drawer.Screen
+      {/* <Drawer.Screen
         options={{
           headerShown: false,
         }}

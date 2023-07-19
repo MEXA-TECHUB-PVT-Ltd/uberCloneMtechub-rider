@@ -6,6 +6,7 @@ import {
   ScrollView,
   View,
   Text,
+  TouchableOpacity
 } from 'react-native';
 
 //////////////////////app components///////////////
@@ -51,21 +52,24 @@ const Profile = ({navigation}) => {
           icon={'menu'}
         />
 
-        <View
+        <TouchableOpacity
           style={{
             flexDirection: 'row',
             alignItems: 'center',
             justifyContent: 'space-between',
             paddingHorizontal: wp(6),
-          }}>
+            marginTop:hp(1)
+          }}
+          //onPress={() => {navigation.navigate('MyProfile')}}
+          >
           <View style={{flexDirection: 'row', alignItems: 'center'}}>
             <View
               style={{
-                width: wp(23),
-                height: hp(11),
+                width: wp(21.2),
+                height: hp(10),
                 borderColor: '#DADADA',
                 borderWidth: wp(0.5),
-                borderRadius: wp(3),
+                borderRadius: wp(4),
                 marginLeft: wp(0),
                 alignItems: 'center',
                 justifyContent: 'center',
@@ -74,7 +78,7 @@ const Profile = ({navigation}) => {
                 name={'person'}
                 size={hp(4)}
                 color={'#DADADA'}
-                onPress={() => {}}
+                onPress={() => {navigation.navigate('MyProfile')}}
               />
             </View>
             <View style={{marginLeft: wp(5)}}>
@@ -104,9 +108,9 @@ const Profile = ({navigation}) => {
             size={hp(3)}
             onPress={() => {}}
           />
-        </View>
+        </TouchableOpacity>
         <View
-          style={{marginLeft: wp(6),  marginTop: hp(5)}}>
+          style={{marginLeft: wp(6),  marginTop: hp(4)}}>
           <Text
             style={{
               color: 'black',

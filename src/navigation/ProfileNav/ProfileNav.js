@@ -12,6 +12,7 @@ import TermsCondition from '../../screens/StackScreens/Profile/Terms&Conditions'
 import PolicyPrivacy from '../../screens/StackScreens/Profile/PolicyPrivacy';
 import InviteFriends from '../../screens/StackScreens/Profile/InviteFriend';
 import MyRattings from '../../screens/StackScreens/Profile/MyRattings';
+import MyProfile from '../../screens/StackScreens/Profile/MyProfile';
 
 function ProfileNav() {
   return (

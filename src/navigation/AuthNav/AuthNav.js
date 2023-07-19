@@ -13,7 +13,11 @@ import ResetPassword from '../../screens/AuthScreens/Resetpassword';
 import Verification from '../../screens/AuthScreens/Verification';
 import EnableLocation from '../../screens/AuthScreens/EnableLocation';
 import RegistrationRequest from '../../screens/AuthScreens/RegisterationRequest';
-import DashboardNav from '../DashboardNav/DashboardNav';
+import ProfileNav from '../ProfileNav/ProfileNav';
+import OnGoingTrip from '../../screens/StackScreens/Dashboard/OnGoingTrip';
+
+//////////////////profile//////////////////////
+// import MyProfile from '../../screens/StackScreens/Profile/MyProfile';
 
 import Drawerroute from '../Drawer/Drawer';
 
@@ -84,9 +88,9 @@ function AuthNav() {
           headerShown: false,
         }}
       />
-                  <Stack.Screen
-        name="DashboardNav"
-        component={DashboardNav}
+      <Stack.Screen
+        name="OnGoingTrip"
+        component={OnGoingTrip}
         options={{
           headerShown: false,
         }}
@@ -98,7 +102,13 @@ function AuthNav() {
           headerShown: false,
         }}
       />
-
+      {/* <Stack.Screen
+        name="MyProfile"
+        component={MyProfile}
+        options={{
+          headerShown: false,
+        }}
+      /> */}
     </Stack.Navigator>
   );
 }
