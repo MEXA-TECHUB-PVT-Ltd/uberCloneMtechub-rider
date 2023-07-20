@@ -2,32 +2,20 @@ import React, {useState, useEffect} from 'react';
 import {
   SafeAreaView,
   StyleSheet,
-  StatusBar,
   View,
   Text,
-  Image,
   TouchableOpacity,
 } from 'react-native';
-
-//////////paper components//////////////////
-import {Checkbox} from 'react-native-paper';
 
 /////////////components//////////
 import CustomButtonhere from '../../components/Button/CustomButton';
 import CustomTextInput from '../../components/TextInput/CustomTextInput';
-import IconButton from '../../components/Button/IconButton';
 
 ////////////height and width///////////
 import {
   heightPercentageToDP as hp,
   widthPercentageToDP as wp,
 } from 'react-native-responsive-screen';
-
-/////////colors////////////
-import Colors from '../../utils/Colors';
-
-///app images////////////
-import {appImages} from '../../constants/images';
 
 /////////////app icons/////////////////////
 import Ionicons from 'react-native-vector-icons/Ionicons';
@@ -97,7 +85,6 @@ const Login = ({navigation}) => {
         textinput_widthset={75}
         placeholder="exampl..."
         onTermChange={newPassword => setPassword(newPassword)}
-        // mode={'password'}
         secureTextEntry={data.secureTextEntry ? true : false}
         onclick={() => updateSecureTextEntry()}
         PlaceholderText={'Driver Id*'}
@@ -107,7 +94,6 @@ const Login = ({navigation}) => {
         term={password}
         view_widthset={85}
         textinput_widthset={67}
-        //placeholder="Password"
         onTermChange={newPassword => setPassword(newPassword)}
         mode={'password'}
         secureTextEntry={data.secureTextEntry ? true : false}
@@ -128,20 +114,6 @@ const Login = ({navigation}) => {
               justifyContent: 'space-between',
               alignItems: 'center',
             }}>
-            {/* <Checkbox
-              status={checked ? 'checked' : 'unchecked'}
-              onPress={() => {
-                setChecked(!checked);
-              }}
-              color={Colors.Appthemecolor}
-              uncheckedColor='#A7A9AC'
-            />
-            <Text
-              style={styles.remembermetext}
-              //onPress={() => navigation.navigate("ForgetPassword")}
-            >
-              Remember me
-            </Text> */}
           </View>
           <TouchableOpacity
             activeOpacity={0.4}
@@ -166,59 +138,12 @@ const Login = ({navigation}) => {
           navigation.navigate('Drawerroute');
         }}
       />
-      {/* <View
-        style={{
-          flexDirection: 'row',
-          alignItems: 'center',
-          marginHorizontal: wp(0),
-          marginBottom: hp(5),
-          marginTop: hp(8),
-          width: wp(80),
-        }}>
-        <View
-          style={{
-            width: wp(27),
-            borderWidth: wp(0.1),
-            borderColor: '#93959857',
-            // height: hp(0.3),
-            // backgroundColor: Colors.inactivetextinput,
-          }}
-        />
-        <View>
-          <Text
-            style={{
-              width: wp(30),
-              textAlign: 'center',
-              color:'#939598',
-              fontFamily: fontFamily.Nunito_SemiBold,
-            }}>
-            Or continue with
-          </Text>
-        </View>
-        <View
-          style={{
-            width: wp(27),
-            borderWidth: wp(0.1),
-            borderColor: '#93959857',
-          }}
-        />
-      </View>
-
-      <IconButton
-        title={'Continue with Google Account'}
-        icon={appImages.GoogleLogo}
-        widthset={80}
-        topDistance={0}
-        // loading={loading}
-        // disabled={disable}
-        onPressbtn={() => {
-          //navigation.navigate('WelcomeScreen');
-        }}
-      /> */}
       <TouchableOpacity
         style={{alignSelf: 'center', marginTop: hp(28)}}
-        onPress={() => navigation.navigate('RegistrationRequest')}>
-        {/* Your other screen content */}
+        onPress={() =>
+          {}
+        }
+         >
         <Text style={Authstyles.blacktext}>
           Don’t have an account?{' '}
           <Text style={Authstyles.themecolortext}>Send Request</Text>

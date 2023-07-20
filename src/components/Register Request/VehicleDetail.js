@@ -1,9 +1,6 @@
 import React, {useEffect, useState, useRef} from 'react';
 import {
   SafeAreaView,
-  FlatList,
-  StatusBar,
-  ScrollView,
   View,
   Text,
   TouchableOpacity,
@@ -16,9 +13,6 @@ import {useNavigation} from '@react-navigation/native';
 import CustomTextInput from '../TextInput/CustomTextInput';
 import CustomButtonhere from '../Button/CustomButton';
 
-//////////////////ICONS/////////////////
-import Icon from 'react-native-vector-icons/Ionicons';
-
 //////////////////height and width/////////////////////
 import {
   heightPercentageToDP as hp,
@@ -27,9 +21,6 @@ import {
 
 /////////////////////app styles////////////
 import styles from './styles';
-
-/////////////////colors/////////////
-import Colors from '../../utils/Colors';
 
 ////////////redux states//////////
 import {useSelector, useDispatch} from 'react-redux';
@@ -77,7 +68,6 @@ const VehicleDetail = () => {
         // disabled={disable}
         onPress={() => {
         dispatch(setVehicleMenu(false)),dispatch(setCNICMenu(true))
-            //navigation.navigate('Verification', {navplace: 'CreateAccount'});
         }}
       />
     </SafeAreaView>

@@ -87,7 +87,7 @@ const RidesHistory = ({navigation}) => {
       <CustomHeader
         headerlabel={'History of Rides'}
         iconPress={() => {
-          navigation.goBack();
+          navigation.toggleDrawer()
         }}
         icon={'menu'}
       />

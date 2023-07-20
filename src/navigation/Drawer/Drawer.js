@@ -6,14 +6,14 @@ import {DrawerContent} from './CustomDrawer';
 
 /////////////drawer screens////////
 import MyWallet from '../../screens/DrawerScreens/MyWallet';
-import History from '../HistoryNav/HistoryNav';
 import UpdateProfile from '../../screens/DrawerScreens/UpdateProfile';
 import UpdatePassword from '../../screens/DrawerScreens/UpdatePassword';
-import ProfileNav from '../ProfileNav/ProfileNav';
 import ChatList from '../../screens/DrawerScreens/ChatList/ChatList';
-
-import BottomTab from '../BottomTab/BottomTab';
+import AccountInforamtion from '../../screens/DrawerScreens/AcountInformation';
 //rimport ChatScreen from '../../screens/DrawerScreens/Chat/ChatScreen';
+
+/////////stack navigations///////////
+import StackNav from '../StackNav/StackNav';
 
 const Drawer = createDrawerNavigator();
 
@@ -24,8 +24,8 @@ export default function Drawerroute() {
         options={{
           headerShown: false,
         }}
-        name="BottomTab"
-        component={BottomTab}
+        name="StackNav"
+        component={StackNav}
       />
       <Drawer.Screen
         options={{
@@ -33,13 +33,6 @@ export default function Drawerroute() {
         }}
         name="MyWallet"
         component={MyWallet}
-      />
-      <Drawer.Screen
-        options={{
-          headerShown: false,
-        }}
-        name="History"
-        component={History}
       />
       <Drawer.Screen
         options={{
@@ -59,15 +52,15 @@ export default function Drawerroute() {
         options={{
           headerShown: false,
         }}
-        name="Profile"
-        component={ProfileNav}
+        name="ChatList"
+        component={ChatList}
       />
       <Drawer.Screen
         options={{
           headerShown: false,
         }}
-        name="ChatList"
-        component={ChatList}
+        name="AccountInforamtion"
+        component={AccountInforamtion}
       />
       {/* <Drawer.Screen
         options={{

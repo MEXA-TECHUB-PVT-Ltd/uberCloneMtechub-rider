@@ -1,8 +1,6 @@
 import React, {useEffect, useState, useRef} from 'react';
 import {
   SafeAreaView,
-  FlatList,
-  StatusBar,
   ScrollView,
   View,
   Text,
@@ -33,10 +31,8 @@ import Star from '../../assets/svgs/Profile/star.svg';
 import Request from '../../assets/svgs/Profile/Requests.svg';
 import Theme from '../../assets/svgs/Profile/theme.svg';
 import Language from '../../assets/svgs/Profile/Language_icon.svg';
-import Notification from '../../assets/svgs/Profile/notification.svg';
 import Privacy from '../../assets/svgs/Profile/Shield_icon.svg';
 import Terms from '../../assets/svgs/Profile/Document_icon.svg';
-import Friends from '../../assets/svgs/Profile/MultipleUser_icon.svg';
 import Logout from '../../assets/svgs/Profile/logout_icon.svg';
 
 const Profile = ({navigation}) => {
@@ -48,7 +44,7 @@ const Profile = ({navigation}) => {
         <CustomHeader
           headerlabel={'Account'}
           iconPress={() => {
-            navigation.goBack();
+            navigation.toggleDrawer()
           }}
           icon={'menu'}
         />
@@ -164,11 +160,7 @@ const Profile = ({navigation}) => {
             label={'Terms & Conditions'}
             labelPress={() => navigation.navigate('TermsCondition')}
           />
-          <SettingsMenu
-            icon={<Friends width={wp(5)} height={hp(3)} />}
-            label={'Invite Friends'}
-            labelPress={() => navigation.navigate('InviteFriends')}
-          />
+
           <SettingsMenu
             icon={<Logout width={wp(5)} height={hp(3)} />}
             label={'Logout'}

@@ -39,18 +39,18 @@ const styles = StyleSheet.create({
     elevation: 5,
   },
   modaltext: {
-    fontSize: hp(2),
-    color: '#303030',
-    fontFamily: fontFamily.Poppins_Regular,
+    fontSize: hp(2.3),
+    color: '#000000',
+    fontFamily: fontFamily.Nunito_Bold,
     textAlign: 'center',
     width: wp(70),
   },
   modalsubtext: {
-    fontSize: hp(2),
-    fontWeight: '400',
-    color: '#535353',
-    fontFamily: 'Poppins',
+    fontSize: hp(1.6),
+    color: '#A7A9AC',
+    fontFamily: fontFamily.Nunito_SemiBold,
     textAlign: 'center',
+    width:wp(70)
   },
   ApprovedView: {
     height: hp(6),

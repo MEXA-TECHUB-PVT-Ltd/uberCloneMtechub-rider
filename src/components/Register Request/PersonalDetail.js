@@ -10,7 +10,7 @@ import {
 } from 'react-native';
 
 ///navigation variable
-import { useNavigation } from '@react-navigation/native';
+import {useNavigation} from '@react-navigation/native';
 
 //////////////////////app components///////////////
 import CustomTextInput from '../TextInput/CustomTextInput';
@@ -33,7 +33,7 @@ import Colors from '../../utils/Colors';
 
 ////////////redux states//////////
 import {useSelector, useDispatch} from 'react-redux';
-import {setPersonalMenu,setVehicleMenu} from '../../redux/CreateProfileSlice';
+import {setPersonalMenu, setVehicleMenu} from '../../redux/CreateProfileSlice';
 
 const PersonalDetail = () => {
   ////////////////redux/////////////////
@@ -83,9 +83,8 @@ const PersonalDetail = () => {
         //placeholder="Password"
         onTermChange={text => setUsername(text)}
         PlaceholderText={'First Name*'}
-        focus={'true'}
       />
-            <CustomTextInput
+      <CustomTextInput
         type={'withouticoninput'}
         term={username}
         view_widthset={85}
@@ -93,7 +92,6 @@ const PersonalDetail = () => {
         //placeholder="Password"
         onTermChange={text => setUsername(text)}
         PlaceholderText={'Last Name*'}
-        focus={'true'}
       />
       <CustomTextInput
         type={'withouticoninput'}
@@ -103,7 +101,6 @@ const PersonalDetail = () => {
         //placeholder="Password"
         onTermChange={text => setEmail(text)}
         PlaceholderText={'Email Address*'}
-        focus={'true'}
       />
       <CustomTextInput
         type={'withouticoninput'}
@@ -113,7 +110,6 @@ const PersonalDetail = () => {
         //placeholder="Password"
         onTermChange={text => setPhoneNo(text)}
         PlaceholderText={'Phone Number*'}
-        focus={'true'}
       />
 
       <CustomButtonhere
@@ -123,8 +119,10 @@ const PersonalDetail = () => {
         // loading={loading}
         // disabled={disable}
         onPress={() => {
-          dispatch(setPersonalMenu(false)),dispatch(setVehicleMenu(true))
-            navigation.navigate('Verification', {navplace: 'RegistrationRequest'});
+          dispatch(setPersonalMenu(false)), dispatch(setVehicleMenu(true));
+          navigation.navigate('Verification', {
+            navplace: 'RegistrationRequest',
+          });
         }}
       />
     </SafeAreaView>

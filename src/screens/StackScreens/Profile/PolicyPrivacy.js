@@ -28,12 +28,12 @@ const PolicyPrivacy = ({navigation, route}) => {
         />
 
         <View
-          style={{marginTop: hp(3), marginLeft: wp(5), marginBottom: hp(2)}}>
+          style={{marginTop: hp(3), marginLeft: wp(5), marginBottom: hp(2),paddingHorizontal:wp(2)}}>
 
 <Text style={[styles.heading_text, {width: wp(90)}]}>
 1. Type of Data we Collect..?
     </Text>
-          <Text style={[styles.sub_text, {width: wp(92)}]}>
+          <Text style={[styles.sub_text, {width: wp(87)}]}>
             The customer is very important, the customer will be followed by the
             customer. I ask him what he should say, who places the highest good
             in pleasure. But let us grant this of course. He gives intervals and
@@ -45,7 +45,7 @@ const PolicyPrivacy = ({navigation, route}) => {
             <Text style={[styles.heading_text, {width: wp(92)}]}>
 2. Disclosure of your personal Data
     </Text>
-    <Text style={[styles.sub_text, {width: wp(92)}]}>
+    <Text style={[styles.sub_text, {width: wp(87)}]}>
             The customer is very important, the customer will be followed by the
             customer. I ask him what he should say, who places the highest good
             in pleasure. But let us grant this of course. He gives intervals and
@@ -59,10 +59,10 @@ const PolicyPrivacy = ({navigation, route}) => {
             Pyrrhus; Thus gravely and severely he separated pleasure from good.
             Certainly{'\n'}{'\n'}
             </Text>
-            <Text style={[styles.heading_text, {width: wp(92)}]}>
+            <Text style={[styles.heading_text, {width: wp(87)}]}>
 3. Use of your Personal Data
     </Text>
-    <Text style={[styles.sub_text, {width: wp(92)}]}>
+    <Text style={[styles.sub_text, {width: wp(87)}]}>
             For it is a consequence and arises after, as I said.
             Two Kings: The Construction of the Internet. For from the town, I
             believe, and: If I had known you were there, I would have come to

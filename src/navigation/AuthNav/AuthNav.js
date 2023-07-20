@@ -3,7 +3,7 @@ import * as React from 'react';
 ///////////////////navigation prop///////////////
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
-//Screens
+//Screens///////////////
 import OnboardingScreen from '../../screens/OnboardingScreen/Onboarding';
 import WelcomeScreen from '../../screens/AuthScreens/Welcome';
 import Login from '../../screens/AuthScreens/Login';
@@ -13,15 +13,8 @@ import ResetPassword from '../../screens/AuthScreens/Resetpassword';
 import Verification from '../../screens/AuthScreens/Verification';
 import EnableLocation from '../../screens/AuthScreens/EnableLocation';
 import RegistrationRequest from '../../screens/AuthScreens/RegisterationRequest';
-import ProfileNav from '../ProfileNav/ProfileNav';
-import OnGoingTrip from '../../screens/StackScreens/Dashboard/OnGoingTrip';
 
-//////////////////profile//////////////////////
-import MyProfile from '../../screens/StackScreens/Profile/MyProfile';
-
-//////////////////RIDES//////////
-import RidesDetail from '../../screens/DrawerScreens/RidesDetail';
-
+////////drawer/////////////
 import Drawerroute from '../Drawer/Drawer';
 
 const Stack = createNativeStackNavigator();
@@ -92,29 +85,8 @@ function AuthNav() {
         }}
       />
       <Stack.Screen
-        name="OnGoingTrip"
-        component={OnGoingTrip}
-        options={{
-          headerShown: false,
-        }}
-      />
-      <Stack.Screen
         name="Drawerroute"
         component={Drawerroute}
-        options={{
-          headerShown: false,
-        }}
-      />
-      <Stack.Screen
-        name="MyProfile"
-        component={MyProfile}
-        options={{
-          headerShown: false,
-        }}
-      />
-      <Stack.Screen
-        name="RidesDetail"
-        component={RidesDetail}
         options={{
           headerShown: false,
         }}

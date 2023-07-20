@@ -33,7 +33,7 @@ import Colors from '../../utils/Colors';
 
 ////////////redux states//////////
 import {useSelector, useDispatch} from 'react-redux';
-import {setVehicleMenu} from '../../redux/CreateProfileSlice';
+import {setCNICMenu,setPersonalDocMenu} from '../../redux/CreateProfileSlice';
 
 ////////////////svgs////////////
 import UploadIcon from '../../assets/svgs/CreateProfile/documentupload.svg';
@@ -83,8 +83,7 @@ const CNICDetail = () => {
         // loading={loading}
         // disabled={disable}
         onPress={() => {
-          dispatch(setVehicleMenu(true)),
-            navigation.navigate('Verification', {navplace: 'CreateAccount'});
+          dispatch(setCNICMenu(false)), dispatch(setPersonalDocMenu(true))
         }}
       />
     </SafeAreaView>

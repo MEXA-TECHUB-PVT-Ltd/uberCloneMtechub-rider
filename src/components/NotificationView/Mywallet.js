@@ -25,40 +25,40 @@ import { Avatar } from 'react-native-paper';
 import { fontFamily } from '../../constants/fonts';
 
 const MyWalletCard = ({
-  navigation,
-  notitext,
-  notitime,
+  username,
   labelPress,
-  icon,
-  notiicon,
-  notisubtext,
+  total_amount,
+  after_deduction,
+  date,
 }) => {
-    console.log("here props",notitext)
   return (
     <View>
-      <TouchableOpacity onPress={labelPress} style={[styles.mainview,{alignItems:'center'}]}>
+      <TouchableOpacity onPress={labelPress} style={[styles.mainview]}>
         <View
           style={{
             flexDirection: 'row',
             marginTop: hp(0),
-            width: wp(70),
+            width: wp(65),
             alignItems:'center'
           }}>
-          {/* <Image
-            source={appImages.GoogleLogo}
-            style={styles.logo}
-            resizeMode="contain"
-          /> */}
-            <Avatar.Icon size={hp(7)} style={{backgroundColor:"#E7E7E7"}} 
+            <Avatar.Icon size={hp(8)} style={{backgroundColor:"#E7E7E7"}} 
              //source={appImages.GoogleLogo}
              />
           <View style={{marginLeft: wp(3), justifyContent: 'center'}}>
-            <Text style={styles.notimaintext}>{notitext}</Text>
-            <Text style={styles.notisubtext}>{notisubtext}</Text>
+          <Text style={styles.notimaintext}>{username}</Text>
+            <View style={{flexDirection:"row"}}>
+            <Text style={styles.notisubtext}>Total Amount:</Text>
+            <Text style={styles.notimaintext}>{total_amount}</Text>
+            </View>
+            <View style={{flexDirection:"row"}}>
+            <Text style={styles.notisubtext}>After Deduction:</Text>
+            <Text style={styles.notimaintext}>{after_deduction}</Text>
+            </View>
           </View>
         </View>
-        <Text style={[styles.notimaintext,{fontFamily:fontFamily.Nunito_SemiBold}]}>{notitime}</Text>
+        <Text style={styles.datetext}>{date}</Text>
       </TouchableOpacity>
+
     </View>
   );
 };

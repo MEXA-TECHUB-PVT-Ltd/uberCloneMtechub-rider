@@ -5,7 +5,7 @@ import {
   View,
   Text,
   Image,
-  TouchableOpacity
+  TouchableOpacity,
 } from 'react-native';
 
 /////////////components//////////
@@ -68,24 +68,6 @@ const WelcomeScreen = ({navigation}) => {
           navigation.navigate('RegistrationRequest');
         }}
       />
-      {/* <CustomButtonhere
-        title={'Sign Up With Google Account'}
-        widthset={80}
-        topDistance={14}
-        // loading={loading}
-        // disabled={disable}
-        onPress={() => {
-          navigation.navigate('WelcomeScreen');
-        }}
-      /> */}
-      {/* <TouchableOpacity
-        style={{alignSelf: 'center', marginTop: hp(35)}}
-        onPress={() => navigation.navigate('Login')}>
-        <Text style={Authstyles.blacktext}>
-          Already have an account?{' '}
-          <Text style={Authstyles.themecolortext}>Sign In</Text>
-        </Text>
-      </TouchableOpacity> */}
     </SafeAreaView>
   );
 };
