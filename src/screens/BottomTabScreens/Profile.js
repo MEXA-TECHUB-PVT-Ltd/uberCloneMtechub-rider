@@ -6,7 +6,7 @@ import {
   ScrollView,
   View,
   Text,
-  TouchableOpacity
+  TouchableOpacity,
 } from 'react-native';
 
 //////////////////////app components///////////////
@@ -37,6 +37,7 @@ import Notification from '../../assets/svgs/Profile/notification.svg';
 import Privacy from '../../assets/svgs/Profile/Shield_icon.svg';
 import Terms from '../../assets/svgs/Profile/Document_icon.svg';
 import Friends from '../../assets/svgs/Profile/MultipleUser_icon.svg';
+import Logout from '../../assets/svgs/Profile/logout_icon.svg';
 
 const Profile = ({navigation}) => {
   return (
@@ -58,10 +59,11 @@ const Profile = ({navigation}) => {
             alignItems: 'center',
             justifyContent: 'space-between',
             paddingHorizontal: wp(6),
-            marginTop:hp(1)
+            marginTop: hp(1),
           }}
-          onPress={() => {navigation.navigate('MyProfile')}}
-          >
+          onPress={() => {
+            navigation.navigate('MyProfile');
+          }}>
           <View style={{flexDirection: 'row', alignItems: 'center'}}>
             <View
               style={{
@@ -78,7 +80,9 @@ const Profile = ({navigation}) => {
                 name={'person'}
                 size={hp(4)}
                 color={'#DADADA'}
-                onPress={() => {navigation.navigate('MyProfile')}}
+                onPress={() => {
+                  navigation.navigate('MyProfile');
+                }}
               />
             </View>
             <View style={{marginLeft: wp(5)}}>
@@ -109,8 +113,7 @@ const Profile = ({navigation}) => {
             onPress={() => {}}
           />
         </TouchableOpacity>
-        <View
-          style={{marginLeft: wp(6),  marginTop: hp(4)}}>
+        <View style={{marginLeft: wp(6), marginTop: hp(4)}}>
           <Text
             style={{
               color: 'black',
@@ -121,7 +124,12 @@ const Profile = ({navigation}) => {
             Settings
           </Text>
         </View>
-        <View style={{marginTop: hp(3), marginBottom: hp(2),marginHorizontal:wp(4)}}>
+        <View
+          style={{
+            marginTop: hp(3),
+            marginBottom: hp(2),
+            marginHorizontal: wp(4),
+          }}>
           <SettingsMenu
             icon={<Star width={wp(5)} height={hp(3)} />}
             label={'My Rattings'}
@@ -160,6 +168,11 @@ const Profile = ({navigation}) => {
             icon={<Friends width={wp(5)} height={hp(3)} />}
             label={'Invite Friends'}
             labelPress={() => navigation.navigate('InviteFriends')}
+          />
+          <SettingsMenu
+            icon={<Logout width={wp(5)} height={hp(3)} />}
+            label={'Logout'}
+            labelPress={() => navigation.navigate('Login')}
           />
         </View>
       </ScrollView>

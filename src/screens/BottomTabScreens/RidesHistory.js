@@ -89,7 +89,7 @@ const RidesHistory = ({navigation}) => {
         iconPress={() => {
           navigation.goBack();
         }}
-        icon={'chevron-back'}
+        icon={'menu'}
       />
 
       <View
