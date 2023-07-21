@@ -11,10 +11,8 @@ import {
 import CustomHeader from '../../components/Header/CustomHeader';
 import UpdatePersonalDetail from '../../components/UpdateProfile/UpdatePersonalDetail';
 import UpdateVehicleDetail from '../../components/UpdateProfile/UpdateVehicleDetail';
-import PersonalDetail from '../../components/Register Request/PersonalDetail';
-import VehicleDetail from '../../components/Register Request/VehicleDetail';
-import CNICDetail from '../../components/Register Request/CNICDetail';
-import VehicleDocs from '../../components/Register Request/VehicleDocs';
+import UpdateCNICDetail from '../../components/UpdateProfile/UpdateCNIC';
+import UpdateVehicleDocs from '../../components/UpdateProfile/UpdateVehicleDocs';
 
 //////////////////height and width/////////////////////
 import {
@@ -126,9 +124,9 @@ const UpdateProfile = ({navigation}) => {
       ) : update_vehicle === true ? (
         <UpdateVehicleDetail />
       ) : update_CNIC == true ? (
-        <CNICDetail />
+        <UpdateCNICDetail />
       ) : update_personalDoc === true ? (
-        <VehicleDocs />
+        <UpdateVehicleDocs />
       ) : null}
     </SafeAreaView>
   );
