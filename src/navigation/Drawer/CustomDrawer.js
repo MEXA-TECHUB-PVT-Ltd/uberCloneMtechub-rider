@@ -60,10 +60,10 @@ export const DrawerContent = props => {
 
   const onToggleSwitch = () => setIsSwitchOn(!isSwitchOn);
 
-    ///////switch/////
-    const [isOnlineSwitchOn, setIsOnlineSwitchOn] = React.useState(false);
+  ///////switch/////
+  const [isOnlineSwitchOn, setIsOnlineSwitchOn] = React.useState(false);
 
-    const onOnlineToggleSwitch = () => setIsOnlineSwitchOn(!isOnlineSwitchOn);
+  const onOnlineToggleSwitch = () => setIsOnlineSwitchOn(!isOnlineSwitchOn);
 
   return (
     <View style={{flex: 1, backgroundColor: Colors.AppBckGround_color}}>
@@ -74,40 +74,44 @@ export const DrawerContent = props => {
         <View style={styles.drawerContent}>
           <View style={styles.userInfoSection}>
             <View
-             //onPress={()=> navigation.navigate('Profile')}
-             >
-            <View
-              style={{
-                alignSelf: 'center',
-                alignItems: 'center',
-                justifyContent: 'center',
-                width: wp(59),
-                height: hp(25),
-              }}>
-              <Image
-                source={appImages.DrawerBG}
-                style={{width: wp(82), height: hp(30)}}
-                resizeMode="contain"
-              />
-              <View style={{position: 'absolute', left: wp(-2), top: hp(6)}}>
-                <Avatar.Image
-                  size={hp(10)}
-                  style={{backgroundColor: '#E7E7E7'}}
-                  source={require('../../assets/images/DrawerUser.png')}
+            //onPress={()=> navigation.navigate('Profile')}
+            >
+              <View
+                style={{
+                  alignSelf: 'center',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  width: wp(59),
+                  height: hp(25),
+                }}>
+                <Image
+                  source={appImages.DrawerBG}
+                  style={{width: wp(82), height: hp(30)}}
+                  resizeMode="contain"
                 />
-                <Text style={styles.username}>John Doe</Text>
-                <View style={{flexDirection:'row',alignItems:'center',paddingTop:hp(0.5)}}>
-                <Text style={styles.onlinestatus}>Online</Text>
-                <Switch
-                value={isOnlineSwitchOn}
-                onValueChange={onOnlineToggleSwitch}
-                color={'black'}
-                style={{marginLeft:wp(0)}}
-              />
+                <View style={{position: 'absolute', left: wp(-2), top: hp(6)}}>
+                  <Avatar.Image
+                    size={hp(10)}
+                    style={{backgroundColor: '#E7E7E7'}}
+                    source={require('../../assets/images/DrawerUser.png')}
+                  />
+                  <Text style={styles.username}>John Doe</Text>
+                  <View
+                    style={{
+                      flexDirection: 'row',
+                      alignItems: 'center',
+                      paddingTop: hp(0.5),
+                    }}>
+                    <Text style={styles.onlinestatus}>Online</Text>
+                    <Switch
+                      value={isOnlineSwitchOn}
+                      onValueChange={onOnlineToggleSwitch}
+                      color={'black'}
+                      style={{marginLeft: wp(0)}}
+                    />
+                  </View>
                 </View>
-              
               </View>
-            </View>
             </View>
           </View>
           <View
@@ -135,7 +139,7 @@ export const DrawerContent = props => {
                 props.navigation.navigate('ChatList');
               }}
             />
-     
+
             <DrawerItem
               label="Update Profile"
               icon={({color, size}) => <Update width={wp(5)} height={hp(3)} />}
@@ -152,14 +156,6 @@ export const DrawerContent = props => {
               labelStyle={styles.subtitle}
               onPress={() => {
                 props.navigation.navigate('UpdatePassword');
-              }}
-            />
-            <DrawerItem
-              label="Account Inforamtion"
-              icon={({color, size}) => <Theme width={wp(5)} height={hp(3)} />}
-              labelStyle={styles.subtitle}
-              onPress={() => {
-                props.navigation.navigate('AccountInforamtion');
               }}
             />
             <View style={styles.drawerItemContainer}>

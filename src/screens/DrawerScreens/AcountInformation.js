@@ -54,6 +54,7 @@ const AccountInforamtion = ({navigation}) => {
         term={phoneNo}
         view_widthset={85}
         textinput_widthset={67}
+        keyboard_type={'numeric'}
         onTermChange={text => setPhoneNo(text)}
         PlaceholderText={'Account Number'}
       />
@@ -69,6 +70,7 @@ const AccountInforamtion = ({navigation}) => {
           term={email}
           view_widthset={40}
           textinput_widthset={35}
+          keyboard_type={'numeric'}
           onTermChange={text => setEmail(text)}
           PlaceholderText={'CVV/CVC'}
         />

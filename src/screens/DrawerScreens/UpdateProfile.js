@@ -1,21 +1,20 @@
 import React, {useEffect, useState, useRef} from 'react';
 import {
   SafeAreaView,
-  FlatList,
-  StatusBar,
-  ScrollView,
   View,
   Text,
   TouchableOpacity,
+  StyleSheet,
 } from 'react-native';
 
 //////////////////////app components///////////////
 import CustomHeader from '../../components/Header/CustomHeader';
-import CustomTextInput from '../../components/TextInput/CustomTextInput';
-import CustomButtonhere from '../../components/Button/CustomButton';
-
-//////////////////ICONS/////////////////
-import Icon from 'react-native-vector-icons/Ionicons';
+import UpdatePersonalDetail from '../../components/UpdateProfile/UpdatePersonalDetail';
+import UpdateVehicleDetail from '../../components/UpdateProfile/UpdateVehicleDetail';
+import PersonalDetail from '../../components/Register Request/PersonalDetail';
+import VehicleDetail from '../../components/Register Request/VehicleDetail';
+import CNICDetail from '../../components/Register Request/CNICDetail';
+import VehicleDocs from '../../components/Register Request/VehicleDocs';
 
 //////////////////height and width/////////////////////
 import {
@@ -23,18 +22,20 @@ import {
   widthPercentageToDP as wp,
 } from 'react-native-responsive-screen';
 
-/////////////////////app styles////////////
-import styles from './styles';
-
 /////////////////colors/////////////
 import Colors from '../../utils/Colors';
 
-const UpdateProfile = ({navigation}) => {
-  /////////////data states/////////////
-  const [username, setUsername] = useState('John Doe');
-  const [phoneNo, setPhoneNo] = useState('0000-0000000');
-  const [email, setEmail] = useState('JohnDoe@gmail.com');
+//////////app fonts///////
+import {fontFamily} from '../../constants/fonts';
 
+////////////////////redux////////////
+import {useSelector, useDispatch} from 'react-redux';
+
+const UpdateProfile = ({navigation}) => {
+  ////////////////redux/////////////////
+  const dispatch = useDispatch();
+  const {update_personal, update_vehicle, update_CNIC, update_personalDoc} =
+    useSelector(state => state.updateProfile);
   return (
     <SafeAreaView style={[styles.container, {paddingHorizontal: wp(8)}]}>
       <CustomHeader
@@ -44,68 +45,127 @@ const UpdateProfile = ({navigation}) => {
         }}
         icon={'chevron-back'}
       />
-
+      <View style={{flexDirection: 'row', alignItems: 'center'}}>
         <View
-          style={{
-            width: wp(24),
-            height: hp(11),
-            borderColor: '#E2E9EC',
-            borderWidth: wp(0.5),
-            borderRadius: wp(3),
-            alignItems: 'center',
-            justifyContent: 'center',
-            alignSelf:'center'
-          }}>
-          <Icon name={'person'} size={30} color={'#E2E9EC'} onPress={() => {}} />
-    
-        </View>
-        <View style={{backgroundColor:Colors.Appthemecolor,alignItems:'center',justifyContent:'center',width:wp(30),alignSelf:'center',height:hp(4),borderRadius:wp(2),marginTop:hp(2)}}>
+          style={[
+            styles.circleview,
+            {
+              backgroundColor:
+                update_personal === true ||
+                update_vehicle === true ||
+                update_CNIC === true ||
+                update_personalDoc === true
+                  ? Colors.Appthemecolor
+                  : '#EFEFF4',
+            },
+          ]}></View>
+        <View
+          style={[
+            styles.lineview,
+            {
+              backgroundColor:
+                update_vehicle === true ||
+                update_CNIC === true ||
+                update_personalDoc === true
+                  ? Colors.Appthemecolor
+                  : '#EFEFF4',
+            },
+          ]}></View>
+        <View
+          style={[
+            styles.circleview,
+            {
+              backgroundColor:
+                update_vehicle === true ||
+                update_CNIC === true ||
+                update_personalDoc === true
+                  ? Colors.Appthemecolor
+                  : '#EFEFF4',
+            },
+          ]}></View>
+        <View
+          style={[
+            styles.lineview,
+            {
+              backgroundColor:
+                update_CNIC === true || update_personalDoc === true
+                  ? Colors.Appthemecolor
+                  : '#EFEFF4',
+            },
+          ]}></View>
+        <View
+          style={[
+            styles.circleview,
+            {
+              backgroundColor:
+                update_CNIC === true || update_personalDoc === true
+                  ? Colors.Appthemecolor
+                  : '#EFEFF4',
+            },
+          ]}></View>
+        <View
+          style={[
+            styles.lineview,
+            {
+              backgroundColor:
+                update_personalDoc === true ? Colors.Appthemecolor : '#EFEFF4',
+            },
+          ]}></View>
+        <View
+          style={[
+            styles.circleview,
+            {
+              backgroundColor:
+                update_personalDoc === true ? Colors.Appthemecolor : '#EFEFF4',
+            },
+          ]}></View>
+      </View>
 
-            <Text style={{color:'black'}}>Add Image</Text>
-        </View>
-      <CustomTextInput
-        type={'withouticoninput'}
-        term={username}
-        view_widthset={85}
-        textinput_widthset={67}
-        placeholder="Password"
-        onTermChange={text => setUsername(text)}
-        PlaceholderText={'Username'}
-        focus={"true"}
-      />
-
-      <CustomTextInput
-        type={'withouticoninput'}
-        term={phoneNo}
-        view_widthset={85}
-        textinput_widthset={67}
-        placeholder="Password"
-        onTermChange={text => setPhoneNo(text)}
-        PlaceholderText={'Phone Number'}
-        focus={"true"}
-      />
-      <CustomTextInput
-        type={'withouticoninput'}
-        term={email}
-        view_widthset={85}
-        textinput_widthset={67}
-        placeholder="Password"
-        onTermChange={text => setEmail(text)}
-        PlaceholderText={'Email Address'}
-        focus={"true"}
-      />
-            <CustomButtonhere
-        title={'Update'}
-        widthset={80}
-        topDistance={23}
-        // loading={loading}
-        // disabled={disable}
-        onPress={() => {
-          navigation.navigate('WelcomeScreen');
-        }}
-      />
+      {update_personal === true ? (
+        <UpdatePersonalDetail />
+      ) : update_vehicle === true ? (
+        <UpdateVehicleDetail />
+      ) : update_CNIC == true ? (
+        <CNICDetail />
+      ) : update_personalDoc === true ? (
+        <VehicleDocs />
+      ) : null}
     </SafeAreaView>
   );
 };
 
 export default UpdateProfile;
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: 'white',
+    paddingHorizontal: wp(8),
+  },
+  //////////////////signin//////////////////
+  forgettextview: {
+    alignItems: 'flex-end',
+    width: wp(40),
+  },
+  forgettext: {
+    color: '#000',
+    fontSize: hp(1.5),
+    fontFamily: fontFamily.Nunito_Bold,
+  },
+  remembermetext: {
+    color: '#979797',
+    fontSize: hp(1.4),
+    fontFamily: fontFamily.Nunito_SemiBold,
+  },
+  circleview: {
+    width: wp(5.5),
+    height: hp(2.6),
+    borderRadius: wp(20),
+    backgroundColor: Colors.Appthemecolor,
+  },
+  lineview: {
+    width: wp(20.8),
+    height: hp(0.5),
+    backgroundColor: Colors.Appthemecolor,
+  },
+});
