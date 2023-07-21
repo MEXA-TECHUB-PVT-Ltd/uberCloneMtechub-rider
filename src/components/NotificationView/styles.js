@@ -38,6 +38,12 @@ const styles = StyleSheet.create({
     fontSize: hp(1.8),
     //fontWeight: '700',
   },
+  datetext: {
+    color: '#7A7C87',
+    fontFamily: fontFamily.Nunito_SemiBold,
+    fontSize: hp(1.5),
+    textAlign:'right'
+  },
   notisubtext: {
     color: '#7A7C87',
     fontFamily: fontFamily.Nunito_Regular,

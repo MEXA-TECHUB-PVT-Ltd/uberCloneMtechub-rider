@@ -14,10 +14,10 @@ import {Avatar} from 'react-native-paper';
 import {Rating} from 'react-native-ratings';
 
 //////////////////////app components///////////////
-import CustomHeader from '../../components/Header/CustomHeader';
-import HistoryRidesCard from '../../components/CustomCards/HistoryRidesCard';
-import DescriptionBottomSheet from '../../components/CustomBottomSheet/DescriptionBTS';
-import RattingModal from '../../components/Modal/RattingModal';
+import CustomHeader from '../../../components/Header/CustomHeader';
+import HistoryRidesCard from '../../../components/CustomCards/HistoryRidesCard';
+import DescriptionBottomSheet from '../../../components/CustomBottomSheet/DescriptionBTS';
+import RattingModal from '../../../components/Modal/RattingModal';
 
 //////////////////height and width/////////////////////
 import {
@@ -26,10 +26,10 @@ import {
 } from 'react-native-responsive-screen';
 
 /////////////////colors/////////////
-import Colors from '../../utils/Colors';
+import Colors from '../../../utils/Colors';
 
 //////app fonts//////////
-import {fontFamily} from '../../constants/fonts';
+import {fontFamily} from '../../../constants/fonts';
 
 const RidesDetail = ({navigation, route}) => {
   //////////previous data/////////

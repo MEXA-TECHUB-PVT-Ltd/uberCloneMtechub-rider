@@ -60,6 +60,11 @@ export const DrawerContent = props => {
 
   const onToggleSwitch = () => setIsSwitchOn(!isSwitchOn);
 
+    ///////switch/////
+    const [isOnlineSwitchOn, setIsOnlineSwitchOn] = React.useState(false);
+
+    const onOnlineToggleSwitch = () => setIsOnlineSwitchOn(!isOnlineSwitchOn);
+
   return (
     <View style={{flex: 1, backgroundColor: Colors.AppBckGround_color}}>
       <DrawerContentScrollView
@@ -68,7 +73,9 @@ export const DrawerContent = props => {
         showsHorizontalScrollIndicator={false}>
         <View style={styles.drawerContent}>
           <View style={styles.userInfoSection}>
-            <TouchableOpacity onPress={()=> navigation.navigate('Profile')}>
+            <View
+             //onPress={()=> navigation.navigate('Profile')}
+             >
             <View
               style={{
                 alignSelf: 'center',
@@ -89,10 +96,19 @@ export const DrawerContent = props => {
                   source={require('../../assets/images/DrawerUser.png')}
                 />
                 <Text style={styles.username}>John Doe</Text>
-                <Text style={styles.useremail}>example@gmail.com</Text>
+                <View style={{flexDirection:'row',alignItems:'center',paddingTop:hp(0.5)}}>
+                <Text style={styles.onlinestatus}>Online</Text>
+                <Switch
+                value={isOnlineSwitchOn}
+                onValueChange={onOnlineToggleSwitch}
+                color={'black'}
+                style={{marginLeft:wp(0)}}
+              />
+                </View>
+              
               </View>
             </View>
-            </TouchableOpacity>
+            </View>
           </View>
           <View
             style={{
@@ -119,14 +135,7 @@ export const DrawerContent = props => {
                 props.navigation.navigate('ChatList');
               }}
             />
-            <DrawerItem
-              label="History of Rides"
-              icon={({color, size}) => <History width={wp(5)} height={hp(3)} />}
-              labelStyle={styles.subtitle}
-              onPress={() => {
-                props.navigation.navigate('History');
-              }}
-            />
+     
             <DrawerItem
               label="Update Profile"
               icon={({color, size}) => <Update width={wp(5)} height={hp(3)} />}
@@ -145,14 +154,14 @@ export const DrawerContent = props => {
                 props.navigation.navigate('UpdatePassword');
               }}
             />
-            {/* <DrawerItem
-              label="Light Theme"
+            <DrawerItem
+              label="Account Inforamtion"
               icon={({color, size}) => <Theme width={wp(5)} height={hp(3)} />}
               labelStyle={styles.subtitle}
               onPress={() => {
-                props.navigation.navigate('LikedItems');
+                props.navigation.navigate('AccountInforamtion');
               }}
-            /> */}
+            />
             <View style={styles.drawerItemContainer}>
               <View style={styles.iconContainer}>
                 <Theme width={wp(5)} height={hp(3)} />
@@ -220,6 +229,10 @@ const styles = StyleSheet.create({
     marginTop: hp(1.5),
     fontFamily: fontFamily.Nunito_SemiBold,
   },
+  onlinestatus: {
+    fontSize: hp(1.6),
+    fontFamily: fontFamily.Nunito_SemiBold,
+  },
   useremail: {
     fontSize: hp(1.6),
     // /marginTop: hp(5),
@@ -238,7 +251,7 @@ const styles = StyleSheet.create({
   },
   bottomDrawerSection: {
     height: hp(35),
-    paddingTop: hp(18),
+    paddingTop: hp(23),
     backgroundColor: Colors.AppBckGround_color,
   },
   btntext: {

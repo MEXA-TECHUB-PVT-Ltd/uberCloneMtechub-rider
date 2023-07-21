@@ -17,9 +17,6 @@ import {fontFamily} from '../../constants/fonts';
 const Tab = createBottomTabNavigator();
 
 //screeens
-import DashboardNav from '../DashboardNav/DashboardNav';
-import ProfileNav from '../ProfileNav/ProfileNav';
-
 import Home from '../../screens/BottomTabScreens/Home';
 import RidesHistory from '../../screens/BottomTabScreens/RidesHistory';
 import Profile from '../../screens/BottomTabScreens/Profile';

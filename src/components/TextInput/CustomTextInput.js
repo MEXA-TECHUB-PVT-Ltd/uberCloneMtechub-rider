@@ -53,7 +53,6 @@ const CustomTextInput = ({
   focus
 }) => {
   const [isfocused, setisFocused] = useState(false);
-  console.log('hree props,',  autoFocushere)
   return (
     <View>
       <View>
@@ -138,7 +137,7 @@ const CustomTextInput = ({
         ) : type === 'dropdowniconinput' ? (
           <MaterialCommunityIcons
             name={dopdownicon}
-            color={Colors.App_icon_color}
+            color={"#A7A9AC"}
             size={25}
             style={{marginRight: wp(4)}}
           />

@@ -1,10 +1,10 @@
 const IMAGES_DIR = '../../assets/images/';
 
 const appImages = {
-  //////////////app dashboard////////
+  //////////////app onboarding////////
   BookRide: require(IMAGES_DIR + 'RideBook.png'),
   DestinationRide: require(IMAGES_DIR + 'destination.png'),
-  NearByRide: require(IMAGES_DIR + 'NearByRide.png'),
+  EarnMoney: require(IMAGES_DIR + 'EarnMoney.png'),
 
   //////logo///////////
   Logo: require(IMAGES_DIR + 'logo.png'),

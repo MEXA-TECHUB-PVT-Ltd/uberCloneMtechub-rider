@@ -1,9 +1,6 @@
 import React, {useEffect, useState, useRef} from 'react';
 import {
   SafeAreaView,
-  FlatList,
-  StatusBar,
-  ScrollView,
   View,
   Text,
   TouchableOpacity,
@@ -14,9 +11,8 @@ import {
 import CustomHeader from '../../components/Header/CustomHeader';
 import PersonalDetail from '../../components/Register Request/PersonalDetail';
 import VehicleDetail from '../../components/Register Request/VehicleDetail';
-
-//////////////////ICONS/////////////////
-import Icon from 'react-native-vector-icons/Ionicons';
+import CNICDetail from '../../components/Register Request/CNICDetail';
+import VehicleDocs from '../../components/Register Request/VehicleDocs';
 
 //////////////////height and width/////////////////////
 import {
@@ -36,7 +32,7 @@ import {useSelector, useDispatch} from 'react-redux';
 const RegistrationRequest = ({navigation}) => {
   ////////////////redux/////////////////
   const dispatch = useDispatch();
-  const {personal, vehicle, links, profile_Image, cover_Image} = useSelector(
+  const {personal, vehicle, CNIC, personalDoc} = useSelector(
     state => state.createProfile,
   );
   return (
@@ -54,7 +50,12 @@ const RegistrationRequest = ({navigation}) => {
             styles.circleview,
             {
               backgroundColor:
-                personal === true  || vehicle === true ? Colors.Appthemecolor : '#EFEFF4',
+                personal === true ||
+                vehicle === true ||
+                CNIC === true ||
+                personalDoc === true
+                  ? Colors.Appthemecolor
+                  : '#EFEFF4',
             },
           ]}></View>
         <View
@@ -62,7 +63,9 @@ const RegistrationRequest = ({navigation}) => {
             styles.lineview,
             {
               backgroundColor:
-              vehicle === true ? Colors.Appthemecolor : '#EFEFF4',
+                vehicle === true || CNIC === true || personalDoc === true
+                  ? Colors.Appthemecolor
+                  : '#EFEFF4',
             },
           ]}></View>
         <View
@@ -70,7 +73,9 @@ const RegistrationRequest = ({navigation}) => {
             styles.circleview,
             {
               backgroundColor:
-              vehicle === true ? Colors.Appthemecolor : '#EFEFF4',
+                vehicle === true || CNIC === true || personalDoc === true
+                  ? Colors.Appthemecolor
+                  : '#EFEFF4',
             },
           ]}></View>
         <View
@@ -78,7 +83,9 @@ const RegistrationRequest = ({navigation}) => {
             styles.lineview,
             {
               backgroundColor:
-                links === true ? Colors.Appthemecolor : '#EFEFF4',
+                CNIC === true || personalDoc === true
+                  ? Colors.Appthemecolor
+                  : '#EFEFF4',
             },
           ]}></View>
         <View
@@ -86,7 +93,9 @@ const RegistrationRequest = ({navigation}) => {
             styles.circleview,
             {
               backgroundColor:
-                links === true ? Colors.Appthemecolor : '#EFEFF4',
+                CNIC === true || personalDoc === true
+                  ? Colors.Appthemecolor
+                  : '#EFEFF4',
             },
           ]}></View>
         <View
@@ -94,7 +103,7 @@ const RegistrationRequest = ({navigation}) => {
             styles.lineview,
             {
               backgroundColor:
-                links === true ? Colors.Appthemecolor : '#EFEFF4',
+                personalDoc === true ? Colors.Appthemecolor : '#EFEFF4',
             },
           ]}></View>
         <View
@@ -102,15 +111,19 @@ const RegistrationRequest = ({navigation}) => {
             styles.circleview,
             {
               backgroundColor:
-                links === true ? Colors.Appthemecolor : '#EFEFF4',
+                personalDoc === true ? Colors.Appthemecolor : '#EFEFF4',
             },
           ]}></View>
       </View>
 
-      {personal === true? (
+      {personal === true ? (
         <PersonalDetail />
       ) : vehicle === true ? (
         <VehicleDetail />
+      ) : CNIC == true ? (
+        <CNICDetail />
+      ) : personalDoc === true ? (
+        <VehicleDocs />
       ) : null}
     </SafeAreaView>
   );

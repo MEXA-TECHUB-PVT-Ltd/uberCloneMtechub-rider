@@ -26,14 +26,12 @@ backgroundColor:'white'
   balancetext:{
     color:'#7A7C87',
     fontFamily:fontFamily.Nunito_Medium,
-    fontSize:hp(1.8),
-    textAlign:'center'
+    fontSize:hp(1.8)
   },
   pricetext:{
     color:'#000',
     fontFamily:fontFamily.Nunito_SemiBold,
-    fontSize:hp(2.5),
-    textAlign:'center'
+    fontSize:hp(2)
   },
 
 

@@ -1,65 +1,56 @@
 import React from 'react';
-import {View,Text,TouchableOpacity,Modal,Image} from 'react-native';
+import {View, Text, TouchableOpacity, Modal, Image} from 'react-native';
 
 import styles from './styles';
-import {widthPercentageToDP as wp, heightPercentageToDP as hp} 
-from 'react-native-responsive-screen';
-import Logostyles from '../../styles/GlobalStyles/Logostyles';
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp,
+} from 'react-native-responsive-screen';
+import Colors from '../../utils/Colors';
 
-/////////////////app images/////////////////////
-import { appImages } from '../../constant/images';
+const CustomModal = props => {
+  return (
+    <Modal
+      animationType="slide"
+      transparent={true}
+      visible={props.modalVisible}
+      onRequestClose={props.CloseModal}>
+      <View style={styles.centeredView}>
+        <View style={[styles.modalView, {alignItems: 'center',width:wp(80)}]}>
 
-const CustomModal = (props) => {
-
-    return(
-  
-        <Modal
-          animationType="slide"
-          transparent={true}
-          visible={props.modalVisible}
-          onRequestClose={props.CloseModal}
-        >
-          <View style={styles.centeredView}>
-            <View style={[styles.modalView,{alignItems:'center'}]}>
-            <Image
-                  source={props.Icon}
-                  style={styles.iconstyle}
-                  resizeMode='contain'
-                />
-  
-              <View style={{justifyContent:'center', 
-              alignItems:'center',marginBottom:hp(2),marginTop:hp(3),
-              alignSelf:'center'}}>
-                       <Text style={styles.modaltext}
-                       numberOfLines={3}
-                       >
-                            {props.text}</Text>
-              </View>
-              <View style={{justifyContent:'center', 
-              alignItems:'center',marginBottom:hp(2),
-              alignSelf:'center'}}>
-                       <Text style={styles.modalsubtext}
-                       numberOfLines={3}
-                       >
-                            {props.subtext}</Text>
-              </View>
-
-    <View  style={styles.ApprovedView}>
-        <TouchableOpacity 
-        onPress={props.CloseModal}>
-        <Text style={styles.leftbtntext}>{props.leftbuttontext}</Text>
-        </TouchableOpacity>
-        <TouchableOpacity 
-        onPress={props.onPress}>
-        <Text style={styles.rightbtntext}>{props.rightbuttontext}</Text>
-        </TouchableOpacity>
-    </View>
-
-            </View>
+          <View
+            style={{
+              justifyContent: 'center',
+              alignItems: 'center',
+              marginBottom: hp(2),
+              marginTop: hp(2),
+              alignSelf: 'center',
+            }}>
+            <Text style={styles.modaltext} >
+              {props.text}
+            </Text>
           </View>
-        </Modal>
-
-    )
+          <View
+            style={{
+              justifyContent: 'center',
+              alignItems: 'center',
+              marginBottom: hp(2),
+              alignSelf: 'center',
+            }}>
+            <Text style={styles.modalsubtext}>
+              {props.subtext}
+            </Text>
+          </View>
+          <TouchableOpacity 
+          style={{backgroundColor:Colors.Appthemecolor,width:wp(60),height:hp(6),borderRadius:wp(3),marginTop:hp(2),marginBottom:hp(4),alignItems:'center',justifyContent:'center'}}
+          onPress={props.onPress}>
+              <Text style={styles.leftbtntext}>{props.btn_text}</Text>
+            </TouchableOpacity>
+    
+        </View>
+      </View>
+    </Modal>
+  );
 };
 
 export default CustomModal;

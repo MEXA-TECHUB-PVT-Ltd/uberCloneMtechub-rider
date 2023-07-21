@@ -77,7 +77,7 @@ const Home = ({navigation}) => {
       <CustomHeader
         headerlabel={'Home'}
         iconPress={() => {
-          navigation.goBack();
+          navigation.toggleDrawer()
         }}
         icon={'menu'}
         searchicon={ 
