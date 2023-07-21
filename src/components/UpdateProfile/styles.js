@@ -46,13 +46,26 @@ const styles = StyleSheet.create({
     borderRadius: wp(3),
   },
   uploadviewtext: {
-    color: '#A7A9AC',
-    width: wp(50),
+    color: '#000000',
+    width: wp(55),
     textAlign: 'center',
-    fontFamily: fontFamily.Nunito_Medium,
+    fontFamily: fontFamily.Nunito_SemiBold,
     fontSize: hp(1.6),
     marginTop: hp(1),
   },
+  imageview: {
+    height: hp(19),
+    width: wp(84),
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  imagestyle: {
+    height: hp(21.5),
+    width: wp(84.6),
+    borderRadius:wp(2),
+    alignItems: 'center',
+  },
+  textview: {alignItems: 'center', justifyContent: 'center', marginTop: hp(1)},
   changebtntext: {
     color: '#000000',
     textAlign: 'center',
@@ -63,12 +76,12 @@ const styles = StyleSheet.create({
     position: 'absolute',
     backgroundColor: Colors.Appthemecolor,
     right: wp(1),
-    top: hp(1),
+    top: hp(0.1),
     width: wp(27),
     height: hp(4),
-    borderRadius: wp(2),
-    alignItems:'center',
-    justifyContent:'center'
+    borderRadius: wp(2.5),
+    alignItems: 'center',
+    justifyContent: 'center',
   },
 });
 export default styles;
