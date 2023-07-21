@@ -50,7 +50,8 @@ const CustomTextInput = ({
   from,
   mutilenght,
   autoFocushere,
-  focus
+  focus,
+  errortext
 }) => {
   const [isfocused, setisFocused] = useState(false);
   return (
@@ -143,6 +144,10 @@ const CustomTextInput = ({
           />
         ) : null}
       </View>
+      {errortext ?      <Text style={[styles.ErrorText]}>
+          {errortext}
+        </Text> :null}
+ 
     </View>
   );
 };
@@ -186,6 +191,11 @@ const styles = StyleSheet.create({
     fontFamily: fontFamily.Nunito_SemiBold,
     marginTop:hp(2.2),
     marginBottom:hp(1)
+  },
+  ErrorText: {
+    fontSize: hp(1.6),
+    fontFamily: fontFamily.Nunito_SemiBold,
+    color:'red'
   },
 });
 

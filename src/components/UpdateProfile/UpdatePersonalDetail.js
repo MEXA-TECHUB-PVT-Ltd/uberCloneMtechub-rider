@@ -33,19 +33,19 @@ import Colors from '../../utils/Colors';
 
 ////////////redux states//////////
 import {useSelector, useDispatch} from 'react-redux';
-import {setPersonalMenu, setVehicleMenu} from '../../redux/CreateProfileSlice';
+import {setUpdatePersonalMenu, setUpdateVehicleMenu} from '../../redux/UpdateProfileSlice';
 
-const PersonalDetail = () => {
+const UpdatePersonalDetail = () => {
   ////////////////redux/////////////////
   const dispatch = useDispatch();
 
   ////////////////navigation state////////////
   const navigation = useNavigation();
 
-  /////////////data states/////////////
-  const [username, setUsername] = useState('');
-  const [phoneNo, setPhoneNo] = useState('');
-  const [email, setEmail] = useState('');
+ /////////////data states/////////////
+ const [username, setUsername] = useState('John');
+ const [phoneNo, setPhoneNo] = useState('0000-0000000');
+ const [email, setEmail] = useState('johndoe@gmail.com');
 
   return (
     <SafeAreaView style={[styles.container, {paddingHorizontal: wp(0)}]}>
@@ -82,7 +82,8 @@ const PersonalDetail = () => {
         textinput_widthset={67}
         //placeholder="Password"
         onTermChange={text => setUsername(text)}
-        PlaceholderText={'First Name*'}
+        PlaceholderText={'First Name'}
+        focus={"true"}
       />
       <CustomTextInput
         type={'withouticoninput'}
@@ -91,16 +92,20 @@ const PersonalDetail = () => {
         textinput_widthset={67}
         //placeholder="Password"
         onTermChange={text => setUsername(text)}
-        PlaceholderText={'Last Name*'}
+        PlaceholderText={'Last Name'}
+        focus={"true"}
       />
       <CustomTextInput
         type={'withouticoninput'}
         term={email}
         view_widthset={85}
         textinput_widthset={67}
-        //placeholder="Password"
+        editable={false}
+        disable={false}
         onTermChange={text => setEmail(text)}
-        PlaceholderText={'Email Address*'}
+        PlaceholderText={'Email Address'}
+        focus={"true"}
+        errortext={"You can’t update your email address"}
       />
       <CustomTextInput
         type={'withouticoninput'}
@@ -109,7 +114,8 @@ const PersonalDetail = () => {
         textinput_widthset={67}
         keyboard_type={'numeric'}
         onTermChange={text => setPhoneNo(text)}
-        PlaceholderText={'Phone Number*'}
+        PlaceholderText={'Phone Number'}
+        focus={"true"}
       />
 
       <CustomButtonhere
@@ -119,14 +125,14 @@ const PersonalDetail = () => {
         // loading={loading}
         // disabled={disable}
         onPress={() => {
-          dispatch(setPersonalMenu(false)), dispatch(setVehicleMenu(true));
-          navigation.navigate('Verification', {
-            navplace: 'RegistrationRequest',
-          });
+          dispatch(setUpdatePersonalMenu(false)), dispatch(setUpdateVehicleMenu(true));
+        //   navigation.navigate('Verification', {
+        //     navplace: 'RegistrationRequest',
+        //   });
         }}
       />
     </SafeAreaView>
   );
 };
 
-export default PersonalDetail;
+export default UpdatePersonalDetail;
