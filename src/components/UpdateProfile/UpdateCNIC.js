@@ -1,5 +1,5 @@
 import React, {useEffect, useState, useRef} from 'react';
-import {SafeAreaView, Text, TouchableOpacity,View,Image} from 'react-native';
+import {SafeAreaView, Text, TouchableOpacity, View, Image} from 'react-native';
 
 ///navigation variable
 import {useNavigation} from '@react-navigation/native';
@@ -7,6 +7,7 @@ import {useNavigation} from '@react-navigation/native';
 //////////////////////app components///////////////
 import CustomTextInput from '../TextInput/CustomTextInput';
 import CustomButtonhere from '../Button/CustomButton';
+import CamerBottomSheet from '../CameraBottomSheet/CameraBottomSheet';
 
 //////////////////height and width/////////////////////
 import {
@@ -24,9 +25,6 @@ import {
   setUpdatePersonalDocMenu,
 } from '../../redux/UpdateProfileSlice';
 
-////////////////svgs////////////
-import UploadIcon from '../../assets/svgs/CreateProfile/documentupload.svg';
-
 const UpdateCNICDetail = () => {
   ////////////////redux/////////////////
   const dispatch = useDispatch();
@@ -36,6 +34,21 @@ const UpdateCNICDetail = () => {
 
   /////////////data states/////////////
   const [cnic_number, setCnic_Number] = useState('0000-0000000-0');
+
+  //camera and imagepicker
+  const refRBSheet = useRef();
+
+  const [image, setImage] = useState(null);
+  const [image1, setImage1] = useState(null);
+
+  const handleImageSelected = uri => {
+    console.log('here image', uri);
+    if (image === null) {
+      setImage(uri);
+    } else {
+      setImage1(uri);
+    }
+  };
 
   return (
     <SafeAreaView style={[styles.container, {paddingHorizontal: wp(0)}]}>
@@ -51,27 +64,45 @@ const UpdateCNICDetail = () => {
       />
       <View style={styles.uploadiew}>
         <View style={styles.imageview}>
-          <Image
-            source={require("../../assets/images/UpdateProfile/CNIC(front).png")}
-            style={styles.imagestyle}
-            resizeMode="contain"
-          />
+          {image === null ? (
+            <Image
+              source={require('../../assets/images/UpdateProfile/CNIC(front).png')}
+              style={styles.imagestyle}
+              resizeMode="contain"
+            />
+          ) : (
+            <Image
+              source={{uri: image}}
+              style={styles.imagestyle}
+              resizeMode="cover"
+            />
+          )}
         </View>
 
-        <View style={styles.changebtn}>
+        <TouchableOpacity
+          style={styles.changebtn}
+          onPress={() => refRBSheet.current.open()}>
           <Text style={styles.changebtntext}>Change</Text>
-        </View>
+        </TouchableOpacity>
       </View>
       <View style={styles.textview}>
         <Text style={styles.uploadviewtext}>CNIC Image (Front Side)</Text>
       </View>
       <View style={styles.uploadiew}>
         <View style={styles.imageview}>
-          <Image
-            source={require("../../assets/images/UpdateProfile/CNIC(Back).png")}
-            style={styles.imagestyle}
-            resizeMode="contain"
-          />
+          {image1 === null ? (
+            <Image
+              source={require('../../assets/images/UpdateProfile/CNIC(Back).png')}
+              style={styles.imagestyle}
+              resizeMode="contain"
+            />
+          ) : (
+            <Image
+              source={{uri: image1}}
+              style={styles.imagestyle}
+              resizeMode="cover"
+            />
+          )}
         </View>
 
         {/* <View style={styles.changebtn}>
@@ -91,6 +122,14 @@ const UpdateCNICDetail = () => {
           dispatch(setUpdateCNICMenu(false)),
             dispatch(setUpdatePersonalDocMenu(true));
         }}
+      />
+
+      <CamerBottomSheet
+        refRBSheet={refRBSheet}
+        onClose={() => refRBSheet.current.close()}
+        title={'From Gallery'}
+        type={'onepic'}
+        onImageSelected={handleImageSelected}
       />
     </SafeAreaView>
   );

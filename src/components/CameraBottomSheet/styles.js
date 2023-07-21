@@ -1,44 +1,44 @@
 import React from 'react';
-import {StyleSheet,
-Dimensions
-} from 'react-native';
-import Colors from '../../utills/Colors';
-import {widthPercentageToDP as wp, heightPercentageToDP as hp} 
-from 'react-native-responsive-screen';
+import {StyleSheet, Dimensions} from 'react-native';
+
+////////app color///////////
+import Colors from '../../utils/Colors';
+
+///////height ad width/.///////////////
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp,
+} from 'react-native-responsive-screen';
 
 ///////////////////app fonts//////////////////
-import { fontFamily } from '../../constant/fonts';
+import {fontFamily} from '../../constants/fonts';
 
 const styles = StyleSheet.create({
-    bottomtext:
-    {
-        color:'black',
-        textAlign:'center',
-         fontFamily:"Poppins",
-         fontSize:hp(3),
-      },
-      optiontext:
-      {
-          fontSize:hp(1.7),
-          color:'white',
-          fontFamily: fontFamily.Poppins_Regular,
-          marginLeft:wp(4)
-      },
-      maintext:{
-        fontSize:hp(2),
-        color:'white',
-        fontFamily: fontFamily.Poppins_Medium,
-      },
-        modaltextview:
-  {
-    flexDirection:'row',
-    justifyContent:'flex-start',
-    alignItems:"center",
-        width:wp(90),
-        borderRadius:25,
-        backgroundColor:Colors.AppBckGround_color,
-        paddingHorizontal:wp(15)
+  bottomtext: {
+    color: 'black',
+    textAlign: 'center',
+    fontFamily: 'Poppins',
+    fontSize: hp(3),
   },
-  });
-  export default styles;
-  
+  optiontext: {
+    fontSize: hp(1.7),
+    color: 'black',
+    fontFamily: fontFamily.Nunito_SemiBold,
+    marginLeft: wp(4),
+  },
+  maintext: {
+    fontSize: hp(2),
+    color: 'black',
+    fontFamily: fontFamily.Nunito_Bold,
+  },
+  modaltextview: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    width: wp(70),
+    height:hp(6),
+    borderRadius: wp(3),
+    backgroundColor: Colors.Appthemecolor,
+    paddingHorizontal: wp(15),
+  },
+});
+export default styles;

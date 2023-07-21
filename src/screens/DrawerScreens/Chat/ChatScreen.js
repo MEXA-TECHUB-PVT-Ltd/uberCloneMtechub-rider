@@ -9,7 +9,7 @@ import {
 
 ///////////////import app components/////////////
 import CamerBottomSheet from '../../../components/CameraBottomSheet/CameraBottomSheet';
-import Header from '../../../components/Header/Header';
+import ChatHeader from '../../../components/Chat/ChatHeader';
 import EmojiSelector from '../../../components/Chat/EmojiModal';
 
 //////////////////app icons////////////////
@@ -36,34 +36,29 @@ import {
 import firestore from '@react-native-firebase/firestore';
 
 //////////////////////////app api/////////////////////////
-import axios from 'axios';
-import {BASE_URL, IMAGE_URL} from '../../../utills/ApiRootUrl';
-import AsyncStorage from '@react-native-async-storage/async-storage';
+//import axios from 'axios';
+//import {BASE_URL, IMAGE_URL} from '../../../utills/ApiRootUrl';
+i//mport AsyncStorage from '@react-native-async-storage/async-storage';
 
-/////////////////app images///////////////
-import Colors from '../../../utills/Colors';
+/////////////////app images//////////////
+import Colors from '../../../utils/Colors';
 
 ////////////////////navigation//////////////////
 import {useIsFocused} from '@react-navigation/native';
 
 //////////////sens button svg////////////
-import SendBtn from '../../../assets/svgs/send.svg';
+import SendBtn from '../../../assets/svgs/Send_icon.svg';
 
 ////////////app fonts////////
-import {fontFamily} from '../../../constant/fonts';
+import {fontFamily} from '../../../constants/fonts';
 
 /////////app redux///////
 import {useSelector} from 'react-redux';
 
 const ChatScreen = ({route, navigation}) => {
-  ////////////////redux/////////////////
-  const {path} = useSelector(state => state.image);
 
   //////////navigation//////////
   const isFocused = useIsFocused();
-
-  /////////////redux/////////////
-  const {emoji_name} = useSelector(state => state.emoji)
 
   ////////////previos data//////////
   const [emoji_visible, setEmojivisible] = useState(false);
@@ -86,30 +81,30 @@ const ChatScreen = ({route, navigation}) => {
   const [profileImage, setProfileImage] = useState('');
   const [username, setUsername] = useState('');
 
-  const GetProfileData = async () => {
-    var user_id = await AsyncStorage.getItem('User_id');
-    axios({
-      method: 'GET',
-      url: BASE_URL + 'auth/specific_user/' + user_id,
-    })
-      .then(async function (response) {
-        console.log('list data here ', response.data.result);
-        setProfileImage(response.data.result[0].image);
-        setUsername(response.data.result[0].username);
-      })
-      .catch(function (error) {
-        console.log('error', error);
-      });
-  };
-  useEffect(() => {
-    GetProfileData();
-  }, []);
+  // const GetProfileData = async () => {
+  //   var user_id = await AsyncStorage.getItem('User_id');
+  //   axios({
+  //     method: 'GET',
+  //     url: BASE_URL + 'auth/specific_user/' + user_id,
+  //   })
+  //     .then(async function (response) {
+  //       console.log('list data here ', response.data.result);
+  //       setProfileImage(response.data.result[0].image);
+  //       setUsername(response.data.result[0].username);
+  //     })
+  //     .catch(function (error) {
+  //       console.log('error', error);
+  //     });
+  // };
+  // useEffect(() => {
+  //   GetProfileData();
+  // }, []);
 
   /////////get login user//////////
-  const getUserMessages = async () => {
-    var user = await AsyncStorage.getItem('Userid');
-    setLoginUser(user);
-  };
+  // const getUserMessages = async () => {
+  //   var user = await AsyncStorage.getItem('Userid');
+  //   setLoginUser(user);
+  // };
   const requestCameraPermission = async () => {
     try {
       const granted = await PermissionsAndroid.request(
@@ -183,7 +178,7 @@ const ChatScreen = ({route, navigation}) => {
     console.log('here chat message value', msg);
     myMsg = {
       ...msg,
-      text:emoji_name,
+      text: emoji_name,
       //type: "image_text",
       //image: path,
       senderId: '2',
@@ -244,7 +239,7 @@ const ChatScreen = ({route, navigation}) => {
           width: wp(100),
           alignItems: 'center',
           justifyContent: 'center',
-           position: 'absolute',
+          position: 'absolute',
           //bottom: hp(1),
         }}>
         <InputToolbar
@@ -307,22 +302,22 @@ const ChatScreen = ({route, navigation}) => {
         {props.currentMessage.image ? (
           <Image source={{uri: props.currentMessage.image}} />
         ) : (
-        <Text
-          style={{
-            color: 'black',
-            paddingHorizontal: wp(1),
-            paddingVertical: 0,
-            //fontWeight: "bold",
-          }}>
-          {props.currentMessage.text}
-        </Text>
+          <Text
+            style={{
+              color: 'black',
+              paddingHorizontal: wp(1),
+              paddingVertical: 0,
+              //fontWeight: "bold",
+            }}>
+            {props.currentMessage.text}
+          </Text>
         )}
       </View>
     );
   };
   return (
     <SafeAreaView style={styles.container}>
-      <Header
+      <ChatHeader
         title={'Chat'}
         left_icon={'chevron-back-sharp'}
         type={'withoutlogo'}
@@ -332,13 +327,13 @@ const ChatScreen = ({route, navigation}) => {
         username={username}
         userimage={profileImage}
       />
-{/* <View style={{height:hp(79.6),marginTop:hp(4.5)}}>
+      {/* <View style={{height:hp(79.6),marginTop:hp(4.5)}}>
 </View> */}
-<GiftedChat
+      <GiftedChat
         alwaysShowSend
         isTyping={true}
         renderAvatar={() => null}
-        bottomOffset ={8}
+        bottomOffset={8}
         // /inverted={true}
         multiline={true}
         //minInputToolbarHeight={hp(80)}
@@ -347,7 +342,7 @@ const ChatScreen = ({route, navigation}) => {
           fontSize: hp(1.8),
           color: 'black',
           backgroundColor: '#E6E6E6',
-         // height: hp(3),
+          // height: hp(3),
         }}
         textInputProps={{
           placeholder: 'Type Something',
@@ -358,8 +353,8 @@ const ChatScreen = ({route, navigation}) => {
             backgroundColor: '#E6E6E6',
             width: wp(60),
             height: hp(6),
-            color:'black'
-           // bottom: 0,
+            color: 'black',
+            // bottom: 0,
           },
         }}
         renderInputToolbar={props => {
@@ -412,14 +407,16 @@ const ChatScreen = ({route, navigation}) => {
         }}
       />
 
-
       <CamerBottomSheet
         refRBSheet={refRBSheet}
         onClose={() => refRBSheet.current.close()}
         title={'From Gallery'}
         type={'Chat_image'}
       />
-      <EmojiSelector modal_open={emoji_visible} modal_close={()=>setEmojivisible(false)} />
+      <EmojiSelector
+        modal_open={emoji_visible}
+        modal_close={() => setEmojivisible(false)}
+      />
     </SafeAreaView>
   );
 };
