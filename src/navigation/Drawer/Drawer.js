@@ -10,7 +10,7 @@ import UpdateProfile from '../../screens/DrawerScreens/UpdateProfile';
 import UpdatePassword from '../../screens/DrawerScreens/UpdatePassword';
 import ChatList from '../../screens/DrawerScreens/ChatList/ChatList';
 import AccountInforamtion from '../../screens/DrawerScreens/AcountInformation';
-//rimport ChatScreen from '../../screens/DrawerScreens/Chat/ChatScreen';
+//import ChatScreen from '../../screens/DrawerScreens/Chat/ChatScreen';
 
 /////////stack navigations///////////
 import StackNav from '../StackNav/StackNav';

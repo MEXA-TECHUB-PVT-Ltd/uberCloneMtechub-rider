@@ -1,5 +1,5 @@
 import React, {useEffect, useState, useRef} from 'react';
-import {View, Text, TouchableOpacity, Image} from 'react-native';
+import {View, Text, TouchableOpacity, Image, PermissionsAndroid,} from 'react-native';
 
 ///////navigation////
 import {useNavigation} from '@react-navigation/native';
@@ -18,132 +18,89 @@ import {
 ////////////////////redux////////////
 import {useSelector, useDispatch} from 'react-redux';
 import {updateImagePath} from '../../redux/ImagePathSlice';
-import {updateImagesArrayPath} from '../../redux/ImagesArray';
 
 //////////////app pakages//////////////////
 import ImagePicker from 'react-native-image-crop-picker';
 
 ///////colors///////
-import Colors from '../../utills/Colors';
+import Colors from '../../utils/Colors';
 
 const CamerBottomSheet = props => {
   const navigation = useNavigation();
 
   /////////////redux states///////
   const dispatch = useDispatch();
-  const imagearray = useSelector(state => state.imagesArray.item_images_array);
 
+  const requestPermission = async () => {
+    try {
+      console.log('asking for permission')
+      const granted = await PermissionsAndroid.requestMultiple(
+        [PermissionsAndroid.PERMISSIONS.CAMERA,
+        PermissionsAndroid.PERMISSIONS.WRITE_EXTERNAL_STORAGE,
+        PermissionsAndroid.PERMISSIONS.READ_EXTERNAL_STORAGE,
+      ]
+      )
+      if (granted['android.permission.CAMERA'] && granted['android.permission.WRITE_EXTERNAL_STORAGE'] && granted['android.permission.READ_EXTERNAL_STORAGE']) {
+        console.log("You can use the camera");
+      } else {
+        console.log("Camera permission denied");
+      }
+    } catch (error) {
+      console.log('permission error', error)
+    }
+  }
+  
   //////////////////////cameraimage//////////////////
   const takePhotoFromCamera = () => {
+    requestPermission()
     ImagePicker.openCamera({
       compressImageMaxWidth: 300,
       compressImageMaxHeight: 300,
       //cropping: true,
       compressImageQuality: 0.7,
       multiple: props.type === 'multiplepic' ? true : false,
-      maxFiles: 5 - imagearray.length,
     }).then(image => {
-      {
-        props.type === 'multiplepic'
-          ? dispatch(updateImagesArrayPath([...imagearray, image.path]))
-          : props.type === 'onepic' && props.from === 'profile'
-          ? dispatch(
-              updateImagePath({
-                path: '',
-                Profilepath: image.path,
-              }),
-            )
-          : props.type === 'onepic' && props.from === 'cover'
-          ? dispatch(
-              updateImagePath({
-                path: '',
-                Coverpath: image.path,
-              }),
-            )
-          : dispatch(
-              updateImagePath({
-                path: image.path,
-                Profilepath: image.path,
-                Coverpath: image.path,
-              }),
-            );
-      }
-
-      {
-        props.type === 'onepic' && props.from === 'profile'
-          ? props.onpress()
-          : props.type === 'onepic' && props.from === 'cover'
-          ? props.onpress()
-          : props.refRBSheet.current.close();
-      }
+      props.onImageSelected(image.path);
+      props.refRBSheet.current.close();
     });
   };
   ////////////////////library image//////////////////
   const choosePhotoFromLibrary = () => {
+    requestPermission()
     ImagePicker.openPicker({
       compressImageMaxWidth: 300,
       compressImageMaxHeight: 300,
       //cropping: true,
       compressImageQuality: 0.7,
     }).then(image => {
-      {
-        props.type === 'multiplepic'
-          ? dispatch(updateImagesArrayPath([...imagearray, image.path]))
-          : props.type === 'onepic' && props.from === 'profile'
-          ? dispatch(
-              updateImagePath({
-                path: '',
-                Profilepath: image.path,
-                Coverpath: '',
-              }),
-            )
-          : props.type === 'onepic' && props.from === 'cover'
-          ? dispatch(
-              updateImagePath({
-                path: '',
-                Profilepath: '',
-                Coverpath: image.path,
-              }),
-            )
-          : dispatch(
-              updateImagePath({
-                path: image.path,
-                Profilepath: image.path,
-                Coverpath: image.path,
-              }),
-            );
-      }
-      {
-        props.type === 'onepic' && props.from === 'profile'
-          ? props.onpress()
-          : props.type === 'onepic' && props.from === 'cover'
-          ? props.onpress()
-          : props.refRBSheet.current.close();
-      }
+      props.onImageSelected(image.path);
+      props.refRBSheet.current.close();
     });
   };
   return (
     <RBSheet
-      ref={props.refRBSheet}
-      closeOnDragDown={true}
-      closeOnPressMask={false}
-      animationType="fade"
-      minClosingHeight={0}
-      customStyles={{
-        wrapper: {
-          backgroundColor: 'rgba(52, 52, 52, 0.5)',
-        },
-        draggableIcon: {
-          backgroundColor: Colors.AppBckGround_color,
-        },
-        container: {
-          borderTopLeftRadius: wp(8),
-          borderTopRightRadius: wp(8),
-          height: hp(25),
-          backgroundColor: Colors.AppBckGround_color,
-        },
-      }}>
-      <View
+    //sstyle={{flex:1}}
+    ref={props.refRBSheet}
+    closeOnDragDown={true}
+    closeOnPressMask={false}
+    openDuration={50}
+    closeDuration={50}
+    animationType="fade"
+    //height={500}
+    customStyles={{
+      wrapper: {
+        backgroundColor: 'rgba(52, 52, 52, 0.5)',
+      },
+      draggableIcon: {
+        backgroundColor: 'white',
+      },
+      container: {
+        borderTopLeftRadius: 20,
+        borderTopRightRadius: 20,
+        height: hp(30),
+      },
+    }}>
+       <View
         style={{
           flexDirection: 'row',
           justifyContent: 'space-between',
@@ -155,7 +112,7 @@ const CamerBottomSheet = props => {
           <Ionicons
             name="close"
             size={22}
-            color={'white'}
+            color={'black'}
             onPress={() => props.refRBSheet.current.close()}
           />
         </TouchableOpacity>
@@ -164,8 +121,8 @@ const CamerBottomSheet = props => {
       <View
         style={{
           justifyContent: 'center',
+          alignItems:'center',
           marginTop: hp(3),
-          backgroundColor: Colors.AppBckGround_color,
         }}>
         <TouchableOpacity
           onPress={() => {
@@ -173,7 +130,7 @@ const CamerBottomSheet = props => {
             props.refRBSheet.current.close();
           }}
           style={styles.modaltextview}>
-          <Ionicons name="camera" size={25} color={'white'} />
+          <Ionicons name="camera" size={25} color={'black'} />
           <Text style={styles.optiontext}>Upload from Camera</Text>
         </TouchableOpacity>
         <View
@@ -190,11 +147,12 @@ const CamerBottomSheet = props => {
             choosePhotoFromLibrary(), props.refRBSheet.current.close();
           }}
           style={styles.modaltextview}>
-          <Ionicons name="image" size={25} color={'white'} />
+          <Ionicons name="image" size={25} color={'black'} />
           <Text style={styles.optiontext}>Upload from Gallery</Text>
         </TouchableOpacity>
       </View>
-    </RBSheet>
+  </RBSheet>
+
   );
 };
 

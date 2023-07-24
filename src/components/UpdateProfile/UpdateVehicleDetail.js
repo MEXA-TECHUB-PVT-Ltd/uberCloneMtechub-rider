@@ -7,6 +7,7 @@ import {useNavigation} from '@react-navigation/native';
 //////////////////////app components///////////////
 import CustomTextInput from '../TextInput/CustomTextInput';
 import CustomButtonhere from '../Button/CustomButton';
+import CamerBottomSheet from '../CameraBottomSheet/CameraBottomSheet';
 
 //////////////////height and width/////////////////////
 import {
@@ -34,6 +35,15 @@ const UpdateVehicleDetail = () => {
   /////////////data states/////////////
   const [vehicle_type, setVehicle_Type] = useState('John');
 
+   //camera and imagepicker
+   const refRBSheet = useRef();
+
+  const [image, setImage] = useState(null);
+
+  const handleImageSelected = uri => {
+    setImage(uri);
+  };
+
   return (
     <SafeAreaView style={[styles.container, {paddingHorizontal: wp(0)}]}>
       <CustomTextInput
@@ -48,15 +58,25 @@ const UpdateVehicleDetail = () => {
       />
       <View style={styles.uploadiew}>
         <View style={styles.imageview}>
-          <Image
-            source={require("../../assets/images/UpdateProfile/Driver's_license.png")}
-            style={styles.imagestyle}
-            resizeMode="contain"
-          />
+          {image === null ? (
+            <Image
+              source={require("../../assets/images/UpdateProfile/Driver's_license.png")}
+              style={styles.imagestyle}
+              resizeMode="contain"
+            />
+          ) : (
+            <Image
+              source={{uri: image}}
+              style={styles.imagestyle}
+              resizeMode="cover"
+            />
+          )}
         </View>
-        <View style={styles.changebtn}>
+        <TouchableOpacity
+          style={styles.changebtn}
+          onPress={() => refRBSheet.current.open()}>
           <Text style={styles.changebtntext}>Change</Text>
-        </View>
+        </TouchableOpacity>
       </View>
       <View style={styles.textview}>
         <Text style={styles.uploadviewtext}>
@@ -74,6 +94,13 @@ const UpdateVehicleDetail = () => {
           dispatch(setUpdateVehicleMenu(false)),
             dispatch(setUpdateCNICMenu(true));
         }}
+      />
+      <CamerBottomSheet
+        refRBSheet={refRBSheet}
+        onClose={() => refRBSheet.current.close()}
+        title={'From Gallery'}
+        type={'onepic'}
+        onImageSelected={handleImageSelected}
       />
     </SafeAreaView>
   );

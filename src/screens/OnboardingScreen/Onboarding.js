@@ -3,6 +3,7 @@ import {
   SafeAreaView,
   StyleSheet,
   StatusBar,
+  PermissionsAndroid
 } from 'react-native';
 
 //////////////screens//////
@@ -38,6 +39,29 @@ const OnboardingScreen = ({navigation}) => {
   const handleIndexChange = (index) => {
     setCurrentIndex(index);
   };
+
+  useEffect(() => {
+    requestPermission()
+  }, [])
+
+  const requestPermission = async () => {
+    try {
+      console.log('asking for permission')
+      const granted = await PermissionsAndroid.requestMultiple(
+        [PermissionsAndroid.PERMISSIONS.CAMERA,
+        PermissionsAndroid.PERMISSIONS.WRITE_EXTERNAL_STORAGE,
+        PermissionsAndroid.PERMISSIONS.READ_EXTERNAL_STORAGE,
+      ]
+      )
+      if (granted['android.permission.CAMERA'] && granted['android.permission.WRITE_EXTERNAL_STORAGE'] && granted['android.permission.READ_EXTERNAL_STORAGE']) {
+        console.log("You can use the camera");
+      } else {
+        console.log("Camera permission denied");
+      }
+    } catch (error) {
+      console.log('permission error', error)
+    }
+  }
   return (
     <SafeAreaView style={styles.container}>
       <StatusBar backgroundColor={'white'} barStyle="dark-content" />

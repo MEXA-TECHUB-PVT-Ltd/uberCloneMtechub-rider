@@ -5,7 +5,7 @@ import {
   View,
   Text,
   TouchableOpacity,
-  Image
+  Image,
 } from 'react-native';
 
 ///navigation variable
@@ -14,6 +14,7 @@ import {useNavigation} from '@react-navigation/native';
 //////////////////////app components///////////////
 import CustomTextInput from '../TextInput/CustomTextInput';
 import CustomButtonhere from '../Button/CustomButton';
+import CamerBottomSheet from '../CameraBottomSheet/CameraBottomSheet';
 
 //////////////////height and width/////////////////////
 import {
@@ -27,7 +28,6 @@ import styles from './styles';
 ////////////redux states//////////
 import {useSelector, useDispatch} from 'react-redux';
 import {setUpdateVehicleMenu} from '../../redux/UpdateProfileSlice';
-
 
 const UpdateVehicleDocs = () => {
   ////////////////redux/////////////////
@@ -44,6 +44,28 @@ const UpdateVehicleDocs = () => {
   //Modal States
   const [modalVisible, setModalVisible] = useState(false);
 
+  //camera and imagepicker
+  const refRBSheet = useRef();
+
+  const [image, setImage] = useState(null);
+  const [image1, setImage1] = useState(null);
+  const [image2, setImage2] = useState(null);
+  const [image3, setImage3] = useState(null);
+
+  const handleImageSelected = uri => {
+    if (image === null && image1 === null && image2 === null) {
+      setImage(uri);
+    }
+    else if (image1 === null&& image2 === null) {
+      setImage1(uri);
+    }
+    else if (image2 === null) {
+      setImage2(uri);
+    } else {
+      setImage3(uri);
+    }
+  };
+
   return (
     <SafeAreaView style={[styles.container]}>
       <ScrollView
@@ -58,8 +80,8 @@ const UpdateVehicleDocs = () => {
           view_widthset={84}
           textinput_widthset={65}
           term={vehicle_brand}
-        //   editable={false}
-        //   disable={false}
+          //   editable={false}
+          //   disable={false}
           onTermChange={text => setVehicle_Brand(text)}
           PlaceholderText={'Select Brand'}
         />
@@ -69,8 +91,8 @@ const UpdateVehicleDocs = () => {
           view_widthset={84}
           textinput_widthset={65}
           term={vehicle_model}
-        //   editable={false}
-        //   disable={false}
+          //   editable={false}
+          //   disable={false}
           onTermChange={text => setVehicle_Model(text)}
           PlaceholderText={'Select Model'}
         />
@@ -84,73 +106,105 @@ const UpdateVehicleDocs = () => {
           PlaceholderText={'Color'}
         />
         <View style={styles.uploadiew}>
-        <View style={styles.imageview}>
-          <Image
-            source={require("../../assets/images/UpdateProfile/Driver's_license.png")}
-            style={styles.imagestyle}
-            resizeMode="contain"
-          />
+          <View style={styles.imageview}>
+            {image == null ? (
+              <Image
+                source={require("../../assets/images/UpdateProfile/Driver's_license.png")}
+                style={styles.imagestyle}
+                resizeMode="contain"
+              />
+            ) : (
+              <Image
+                source={{uri: image}}
+                style={styles.imagestyle}
+                resizeMode="cover"
+              />
+            )}
+          </View>
+          <TouchableOpacity
+            style={styles.changebtn}
+            onPress={() => refRBSheet.current.open()}>
+            <Text style={styles.changebtntext}>Change</Text>
+          </TouchableOpacity>
         </View>
-        <View style={styles.changebtn}>
-          <Text style={styles.changebtntext}>Change</Text>
+        <View style={styles.textview}>
+          <Text style={styles.uploadviewtext}>
+            Driving license Image (Front Side)
+          </Text>
         </View>
-      </View>
-      <View style={styles.textview}>
-        <Text style={styles.uploadviewtext}>
-        Driving license Image (Front Side)
-        </Text>
-      </View>
-      <View style={styles.uploadiew}>
-        <View style={styles.imageview}>
-          <Image
-            source={require("../../assets/images/UpdateProfile/VehicleImage.png")}
-            style={styles.imagestyle}
-            resizeMode="contain"
-          />
-        </View>
-        {/* <View style={styles.changebtn}>
-          <Text style={styles.changebtntext}>Change</Text>
-        </View> */}
-      </View>
-      <View style={styles.textview}>
-        <Text style={styles.uploadviewtext}>
-        Vehicle Image 
-        </Text>
-      </View>
-      <View style={styles.uploadiew}>
-        <View style={styles.imageview}>
-          <Image
-            source={require("../../assets/images/UpdateProfile/VehicleRegistration(Front).png")}
-            style={styles.imagestyle}
-            resizeMode="contain"
-          />
-        </View>
-        {/* <View style={styles.changebtn}>
-          <Text style={styles.changebtntext}>Change</Text>
-        </View> */}
-      </View>
-      <View style={styles.textview}>
-        <Text style={styles.uploadviewtext}>
-        Vehicle Registration (Front Side)
-        </Text>
-      </View>
-      <View style={styles.uploadiew}>
-        <View style={styles.imageview}>
-          <Image
-            source={require("../../assets/images/UpdateProfile/VehicleRegistration(Back).png")}
-            style={styles.imagestyle}
-            resizeMode="contain"
-          />
-        </View>
-        {/* <View style={styles.changebtn}>
+        <View style={styles.uploadiew}>
+          <View style={styles.imageview}>
+            {image1 === null ? (
+              <Image
+                source={require('../../assets/images/UpdateProfile/VehicleImage.png')}
+                style={styles.imagestyle}
+                resizeMode="contain"
+              />
+            ) : (
+              <Image
+                source={{uri: image1}}
+                style={styles.imagestyle}
+                resizeMode="cover"
+              />
+            )}
+          </View>
+          {/* <View style={styles.changebtn}>
           <Text style={styles.changebtntext}>Change</Text>
         </View> */}
-      </View>
-      <View style={styles.textview}>
-        <Text style={styles.uploadviewtext}>
-        Vehicle Registration (Back Side)
-        </Text>
-      </View>
+        </View>
+        <View style={styles.textview}>
+          <Text style={styles.uploadviewtext}>Vehicle Image</Text>
+        </View>
+        <View style={styles.uploadiew}>
+          <View style={styles.imageview}>
+            {image2 === null ? (
+              <Image
+                source={require('../../assets/images/UpdateProfile/VehicleRegistration(Front).png')}
+                style={styles.imagestyle}
+                resizeMode="contain"
+              />
+            ) : (
+              <Image
+                source={{uri: image2}}
+                style={styles.imagestyle}
+                resizeMode="cover"
+              />
+            )}
+          </View>
+          {/* <View style={styles.changebtn}>
+          <Text style={styles.changebtntext}>Change</Text>
+        </View> */}
+        </View>
+        <View style={styles.textview}>
+          <Text style={styles.uploadviewtext}>
+            Vehicle Registration (Front Side)
+          </Text>
+        </View>
+        <View style={styles.uploadiew}>
+          <View style={styles.imageview}>
+            {image3 === null ? (
+              <Image
+                source={require('../../assets/images/UpdateProfile/VehicleRegistration(Back).png')}
+                style={styles.imagestyle}
+                resizeMode="contain"
+              />
+            ) : (
+              <Image
+                source={{uri: image3}}
+                style={styles.imagestyle}
+                resizeMode="cover"
+              />
+            )}
+          </View>
+          {/* <View style={styles.changebtn}>
+          <Text style={styles.changebtntext}>Change</Text>
+        </View> */}
+        </View>
+        <View style={styles.textview}>
+          <Text style={styles.uploadviewtext}>
+            Vehicle Registration (Back Side)
+          </Text>
+        </View>
 
         <View style={{marginBottom: hp(12)}}>
           <CustomButtonhere
@@ -161,12 +215,18 @@ const UpdateVehicleDocs = () => {
             // disabled={disable}
             onPress={() => {
               dispatch(setUpdateVehicleMenu(false)),
-              //setModalVisible(true);
-              navigation.navigate('Home');
+                //setModalVisible(true);
+                navigation.navigate('Home');
             }}
           />
-
         </View>
+        <CamerBottomSheet
+          refRBSheet={refRBSheet}
+          onClose={() => refRBSheet.current.close()}
+          title={'From Gallery'}
+          type={'onepic'}
+          onImageSelected={handleImageSelected}
+        />
       </ScrollView>
     </SafeAreaView>
   );
