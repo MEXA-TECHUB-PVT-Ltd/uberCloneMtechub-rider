@@ -7,6 +7,7 @@ import {
   View,
   Text,
   TouchableOpacity,
+  Image,
 } from 'react-native';
 
 ///navigation variable
@@ -15,6 +16,7 @@ import {useNavigation} from '@react-navigation/native';
 //////////////////////app components///////////////
 import CustomTextInput from '../TextInput/CustomTextInput';
 import CustomButtonhere from '../Button/CustomButton';
+import CamerBottomSheet from '../CameraBottomSheet/CameraBottomSheet';
 
 //////////////////ICONS/////////////////
 import Icon from 'react-native-vector-icons/Ionicons';
@@ -33,7 +35,7 @@ import Colors from '../../utils/Colors';
 
 ////////////redux states//////////
 import {useSelector, useDispatch} from 'react-redux';
-import {setCNICMenu,setPersonalDocMenu} from '../../redux/CreateProfileSlice';
+import {setCNICMenu, setPersonalDocMenu} from '../../redux/CreateProfileSlice';
 
 ////////////////svgs////////////
 import UploadIcon from '../../assets/svgs/CreateProfile/documentupload.svg';
@@ -50,6 +52,21 @@ const CNICDetail = () => {
   const [phoneNo, setPhoneNo] = useState('');
   const [email, setEmail] = useState('');
 
+  //camera and imagepicker
+  const refRBSheet = useRef();
+
+  const [image, setImage] = useState(null);
+  const [image1, setImage1] = useState(null);
+
+  const handleImageSelected = uri => {
+    console.log('here image', uri);
+    if (image === null) {
+      setImage(uri);
+    } else {
+      setImage1(uri);
+    }
+  };
+
   return (
     <SafeAreaView style={[styles.container, {paddingHorizontal: wp(0)}]}>
       <CustomTextInput
@@ -62,19 +79,37 @@ const CNICDetail = () => {
         PlaceholderText={'CNIC Number*'}
         focus={'true'}
       />
-      <View
-        style={styles.uploadiew}>
-        <UploadIcon width={wp(15)} height={hp(6)} />
-        <Text style={styles.uploadviewtext}>
-        CNIC Image (Front Side)
-        </Text>
+      <View style={styles.uploadiew}>
+        {image === null ? (
+          <TouchableOpacity onPress={() => refRBSheet.current.open()}>
+            <UploadIcon width={wp(15)} height={hp(6)} />
+          </TouchableOpacity>
+        ) : (
+          <Image
+            source={{uri: image}}
+            style={styles.imagestyle}
+            resizeMode="cover"
+          />
+        )}
+        {image === null ? (
+          <Text style={styles.uploadviewtext}>CNIC Image (Front Side)</Text>
+        ) : null}
       </View>
-      <View
-        style={styles.uploadiew}>
-        <UploadIcon width={wp(15)} height={hp(6)} />
-        <Text style={styles.uploadviewtext}>
-        CNIC Image (Back Side)
-        </Text>
+      <View style={styles.uploadiew}>
+      {image1 === null ? (
+          <TouchableOpacity onPress={() => refRBSheet.current.open()}>
+            <UploadIcon width={wp(15)} height={hp(6)} />
+          </TouchableOpacity>
+        ) : (
+          <Image
+            source={{uri: image1}}
+            style={styles.imagestyle}
+            resizeMode="cover"
+          />
+        )}
+        {image1 === null ? (
+        <Text style={styles.uploadviewtext}>CNIC Image (Back Side)</Text>
+        ):null}
       </View>
       <CustomButtonhere
         title={'Continue'}
@@ -83,8 +118,15 @@ const CNICDetail = () => {
         // loading={loading}
         // disabled={disable}
         onPress={() => {
-          dispatch(setCNICMenu(false)), dispatch(setPersonalDocMenu(true))
+          dispatch(setCNICMenu(false)), dispatch(setPersonalDocMenu(true));
         }}
+      />
+      <CamerBottomSheet
+        refRBSheet={refRBSheet}
+        onClose={() => refRBSheet.current.close()}
+        title={'From Gallery'}
+        type={'onepic'}
+        onImageSelected={handleImageSelected}
       />
     </SafeAreaView>
   );

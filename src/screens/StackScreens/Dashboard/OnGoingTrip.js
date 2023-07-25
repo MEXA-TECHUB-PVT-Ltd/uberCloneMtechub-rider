@@ -69,6 +69,7 @@ import LocationIcon from '../../../assets/svgs/Location_icon.svg';
 import Call from '../../../assets/svgs/ColorCall_icon.svg';
 import Chat from '../../../assets/svgs/ColorChat_icon.svg';
 import Clock from '../../../assets/svgs/Color_clock.svg';
+import { fontFamily } from '../../../constants/fonts';
 
 const pinsdata=[
     {      latitude: 33.6493,
@@ -303,7 +304,7 @@ toggleviewbutton=()=>{
    <Avatar.Icon size={hp(6)}  color={'#DFDCD4'} style={{backgroundColor:'#DFDCD4'}}/>
    <View style={{width:wp(50),marginLeft:wp(3)}}>
    <Text style={styles.username}>Norman Gordon</Text>
-   <Text style={styles.numberplate}>Arrival Time: 16 mins</Text>
+   <Text style={styles.numberplate}>Arrival Time:   <Text style={[styles.numberplate,{fontFamily:fontFamily.Nunito_Bold}]}>16 mins</Text></Text>
    </View>
 
     </View>

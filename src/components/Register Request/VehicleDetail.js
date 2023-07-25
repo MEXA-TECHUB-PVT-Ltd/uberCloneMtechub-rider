@@ -1,10 +1,5 @@
 import React, {useEffect, useState, useRef} from 'react';
-import {
-  SafeAreaView,
-  View,
-  Text,
-  TouchableOpacity,
-} from 'react-native';
+import {SafeAreaView, View, Text, TouchableOpacity, Image} from 'react-native';
 
 ///navigation variable
 import {useNavigation} from '@react-navigation/native';
@@ -12,6 +7,7 @@ import {useNavigation} from '@react-navigation/native';
 //////////////////////app components///////////////
 import CustomTextInput from '../TextInput/CustomTextInput';
 import CustomButtonhere from '../Button/CustomButton';
+import CamerBottomSheet from '../CameraBottomSheet/CameraBottomSheet';
 
 //////////////////height and width/////////////////////
 import {
@@ -24,7 +20,7 @@ import styles from './styles';
 
 ////////////redux states//////////
 import {useSelector, useDispatch} from 'react-redux';
-import {setVehicleMenu,setCNICMenu} from '../../redux/CreateProfileSlice';
+import {setVehicleMenu, setCNICMenu} from '../../redux/CreateProfileSlice';
 
 ////////////////svgs////////////
 import UploadIcon from '../../assets/svgs/CreateProfile/documentupload.svg';
@@ -41,6 +37,15 @@ const VehicleDetail = () => {
   const [phoneNo, setPhoneNo] = useState('');
   const [email, setEmail] = useState('');
 
+  //camera and imagepicker
+  const refRBSheet = useRef();
+
+  const [image, setImage] = useState(null);
+
+  const handleImageSelected = uri => {
+    setImage(uri);
+  };
+
   return (
     <SafeAreaView style={[styles.container, {paddingHorizontal: wp(0)}]}>
       <CustomTextInput
@@ -53,12 +58,23 @@ const VehicleDetail = () => {
         PlaceholderText={'Type of Vehicle*'}
         focus={'true'}
       />
-      <View
-        style={styles.uploadiew}>
-        <UploadIcon width={wp(15)} height={hp(6)} />
-        <Text style={styles.uploadviewtext}>
-          Add the driving license image along with your face
-        </Text>
+      <View style={styles.uploadiew}>
+        {image === null ? (
+          <TouchableOpacity onPress={() => refRBSheet.current.open()}>
+            <UploadIcon width={wp(15)} height={hp(6)} />
+          </TouchableOpacity>
+        ) : (
+          <Image
+            source={{uri: image}}
+            style={styles.imagestyle}
+            resizeMode="cover"
+          />
+        )}
+        {image === null ? (
+          <Text style={styles.uploadviewtext}>
+            Add the driving license image along with your face
+          </Text>
+        ) : null}
       </View>
       <CustomButtonhere
         title={'Continue'}
@@ -67,8 +83,15 @@ const VehicleDetail = () => {
         // loading={loading}
         // disabled={disable}
         onPress={() => {
-        dispatch(setVehicleMenu(false)),dispatch(setCNICMenu(true))
+          dispatch(setVehicleMenu(false)), dispatch(setCNICMenu(true));
         }}
+      />
+      <CamerBottomSheet
+        refRBSheet={refRBSheet}
+        onClose={() => refRBSheet.current.close()}
+        title={'From Gallery'}
+        type={'onepic'}
+        onImageSelected={handleImageSelected}
       />
     </SafeAreaView>
   );

@@ -75,11 +75,11 @@ const RidesDetail = ({navigation, route}) => {
       <View style={{paddingHorizontal:wp(7)}}>
         <View style={{flexDirection: 'row'}}>
           <Avatar.Icon
-            size={hp(6)}
+            size={hp(5.5)}
             style={{backgroundColor: '#E7E7E7'}}
             //source={appImages.GoogleLogo}
           />
-          <View style={{marginLeft: wp(2)}}>
+          <View style={{marginLeft: wp(3)}}>
             <Text style={styles.usernametext}>Username</Text>
             {predata.navplace === 'completed' ? 
             <View style={{flexDirection: 'row'}}>
@@ -99,7 +99,7 @@ const RidesDetail = ({navigation, route}) => {
           </View>
         </View>
         {predata.navplace === 'completed' ?
-        <Text style={styles.reviewtext}>
+        <Text style={styles.reviewtext} >
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ultrices
           sagittis arcu a malesuada. Maecenas fringilla enim eu nibh bibendum,
           id semper lectus vulputate. Quisque malesuada metus at diam congue,
@@ -115,7 +115,7 @@ const RidesDetail = ({navigation, route}) => {
       {predata.navplace === 'completed' ? null : (
         <View
           style={{
-            marginHorizontal: wp(6),
+            marginHorizontal: wp(8),
             marginTop: hp(0),
           }}>
              <Text style={styles.reviewtext}>
@@ -227,7 +227,7 @@ const styles = StyleSheet.create({
   usernametext: {
     color: '#121420',
     fontSize: hp(1.7),
-    fontFamily: fontFamily.Nunito_SemiBold,
+    fontFamily: fontFamily.Nunito_Bold,
     marginBottom: hp(0.5),
   },
   reviewtext: {
@@ -236,6 +236,6 @@ const styles = StyleSheet.create({
     fontFamily: fontFamily.Nunito_Medium,
     //paddingHorizontal: wp(5),
     marginTop: hp(1),
-    letterSpacing:0.5
+    letterSpacing:0.1,lineHeight:hp(2.5)
   },
 });

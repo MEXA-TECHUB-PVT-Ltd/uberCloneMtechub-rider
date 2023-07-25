@@ -104,7 +104,7 @@ const UpdatePassword = ({navigation}) => {
         // loading={loading}
         // disabled={disable}
         onPress={() => {
-          navigation.navigate('WelcomeScreen');
+          navigation.navigate('Home');
         }}
       />
     </SafeAreaView>

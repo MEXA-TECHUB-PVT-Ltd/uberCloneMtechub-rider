@@ -7,6 +7,7 @@ import {
   View,
   Text,
   TouchableOpacity,
+  Image
 } from 'react-native';
 
 ///navigation variable
@@ -15,6 +16,7 @@ import {useNavigation} from '@react-navigation/native';
 //////////////////////app components///////////////
 import CustomTextInput from '../TextInput/CustomTextInput';
 import CustomButtonhere from '../Button/CustomButton';
+import CamerBottomSheet from '../CameraBottomSheet/CameraBottomSheet';
 
 //////////////////ICONS/////////////////
 import Icon from 'react-native-vector-icons/Ionicons';
@@ -47,6 +49,15 @@ const PersonalDetail = () => {
   const [phoneNo, setPhoneNo] = useState('');
   const [email, setEmail] = useState('');
 
+    //camera and imagepicker
+    const refRBSheet = useRef();
+
+  const [profileImage, setProfileImage] = useState(null);
+
+  const handleImageSelected = uri => {
+    setProfileImage(uri);
+  };
+
   return (
     <SafeAreaView style={[styles.container, {paddingHorizontal: wp(0)}]}>
       <View
@@ -60,9 +71,22 @@ const PersonalDetail = () => {
           justifyContent: 'center',
           alignSelf: 'center',
         }}>
-        <Icon name={'person'} size={30} color={'#E2E9EC'} onPress={() => {}} />
+               {profileImage != null ? (
+            <Image
+              source={{uri: profileImage}}
+              style={{width: wp(24), height: hp(11), borderRadius: wp(3)}}
+              resizeMode="contain"
+            />
+          ) : (
+            <Icon
+              name={'person'}
+              size={30}
+              color={'#E2E9EC'}
+              onPress={() => {}}
+            />
+          )}
       </View>
-      <View
+      <TouchableOpacity
         style={{
           backgroundColor: Colors.Appthemecolor,
           alignItems: 'center',
@@ -72,9 +96,10 @@ const PersonalDetail = () => {
           height: hp(4),
           borderRadius: wp(2),
           marginTop: hp(2),
-        }}>
-        <Text style={{color: 'black'}}>Add Image</Text>
-      </View>
+        }}
+        onPress={() => refRBSheet.current.open()}>
+        <Text style={{color: 'black'}}>{profileImage === null ?"Add Image":"Update Image"}</Text>
+      </TouchableOpacity>
       <CustomTextInput
         type={'withouticoninput'}
         term={username}
@@ -124,6 +149,13 @@ const PersonalDetail = () => {
             navplace: 'RegistrationRequest',
           });
         }}
+      />
+            <CamerBottomSheet
+        refRBSheet={refRBSheet}
+        onClose={() => refRBSheet.current.close()}
+        title={'From Gallery'}
+        type={'onepic'}
+        onImageSelected={handleImageSelected}
       />
     </SafeAreaView>
   );

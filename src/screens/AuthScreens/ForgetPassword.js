@@ -22,7 +22,7 @@ import {fontFamily} from '../../constants/fonts';
 
 const ForgetPassword = ({navigation}) => {
   ///////////////data states////////////////////
-  const [email, setEmail] = React.useState('exampl...');
+  const [email, setEmail] = React.useState('');
 
   return (
     <SafeAreaView style={styles.container}>
@@ -31,7 +31,7 @@ const ForgetPassword = ({navigation}) => {
           name="chevron-back"
           color={'#000'}
           size={hp(3.5)}
-          onPress={{}}
+          onPress={()=>navigation.goBack()}
         />
       </View>
       <View

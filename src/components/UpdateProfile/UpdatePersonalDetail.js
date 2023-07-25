@@ -41,7 +41,6 @@ import {
   setUpdateVehicleMenu,
 } from '../../redux/UpdateProfileSlice';
 
-import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 
 const UpdatePersonalDetail = () => {
   ////////////////redux/////////////////
