@@ -29,6 +29,9 @@ import {fontFamily} from '../../../constants/fonts';
 ////////////////////progress////
 import * as Progress from 'react-native-progress';
 
+/////////reviews dta/////////////
+import { Reviews_data } from '../../../App_dummy_App/data/Reviews_list';
+
 ////////////////dataa//////////////////
 const DATA = [
   {
@@ -101,12 +104,12 @@ const MyRattings = ({navigation}) => {
         <View style={styles.itemview}>
           <View style={{flexDirection: 'row'}}>
             <Image
-              source={require('../../../assets/images/google.png')}
+              source={item.user_image}
               style={{width: wp(10), height: hp(5), borderRadius: wp(5)}}
               resizeMode="contain"
             />
             <View style={{marginLeft: wp(2)}}>
-              <Text style={styles.usernametext}>{item.title}</Text>
+              <Text style={styles.usernametext}>{item.user_name}</Text>
               <View style={{flexDirection: 'row'}}>
                 <Rating
                   ratingCount={5}
@@ -152,6 +155,9 @@ const MyRattings = ({navigation}) => {
 
   return (
     <SafeAreaView style={styles.container}>
+            <ScrollView 
+     showsVerticalScrollIndicator={false}
+     showsHorizontalScrollIndicator={false}>
       <CustomHeader
         headerlabel={'My Rattings'}
         iconPress={() => {
@@ -180,11 +186,13 @@ const MyRattings = ({navigation}) => {
       </View>
       <View style={{paddingHorizontal: wp(4), marginTop: hp(3)}}>
         <FlatList
-          data={DATA}
+          data={Reviews_data}
           renderItem={renderItem}
+          scrollEnabled={false}
           keyExtractor={item => item.id}
         />
       </View>
+      </ScrollView>
     </SafeAreaView>
   );
 };
@@ -229,6 +237,8 @@ const styles = StyleSheet.create({
     fontFamily: fontFamily.Nunito_Medium,
     //paddingHorizontal: wp(5),
     marginTop: hp(1),
+    lineHeight:hp(3),
+    width:wp(89)
   },
   progressview: {
     flexDirection: 'row',

@@ -41,7 +41,7 @@ const MyWalletCard = ({
             width: wp(65),
             alignItems:'center'
           }}>
-            <Avatar.Icon size={hp(8)} style={{backgroundColor:"#E7E7E7"}} 
+            <Avatar.Icon size={hp(5.5)} style={{backgroundColor:"#E7E7E7"}} 
              //source={appImages.GoogleLogo}
              />
           <View style={{marginLeft: wp(3), justifyContent: 'center'}}>

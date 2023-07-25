@@ -119,7 +119,7 @@ const ChatList = ({navigation}) => {
             <View style={{}}>
               <Image
                 source={item.user_image}
-                style={{width: wp(16), height: hp(8)}}
+                style={{width: wp(14), height: hp(8)}}
                 resizeMode="contain"
               />
             </View>

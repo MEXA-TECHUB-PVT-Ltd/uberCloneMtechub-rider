@@ -95,7 +95,7 @@ const HistoryRidesCard = ({
                     alignItems: 'center',
                   }}>
                   <Avatar.Icon
-                    size={hp(7)}
+                    size={hp(5.5)}
                     style={{backgroundColor: '#E7E7E7'}}
                     //source={appImages.GoogleLogo}
                   />

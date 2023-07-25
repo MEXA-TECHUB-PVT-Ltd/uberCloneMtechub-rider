@@ -83,7 +83,6 @@ const Login = ({navigation}) => {
         term={email}
         view_widthset={85}
         textinput_widthset={75}
-        placeholder="exampl..."
         onTermChange={newPassword => setPassword(newPassword)}
         secureTextEntry={data.secureTextEntry ? true : false}
         onclick={() => updateSecureTextEntry()}
@@ -137,16 +136,23 @@ const Login = ({navigation}) => {
           navigation.navigate('Drawerroute');
         }}
       />
-      <TouchableOpacity
-        style={{alignSelf: 'center', marginTop: hp(28)}}
+      <View
+        style={{alignSelf: 'center', marginTop: hp(28),alignItems:"center",justifyContent:'center',flexDirection:'row'}}
         onPress={() => {
           navigation.navigate('RegistrationRequest');
         }}>
         <Text style={Authstyles.blacktext}>
           Don’t have an account?{' '}
-          <Text style={Authstyles.themecolortext}>Send Request</Text>
+ 
         </Text>
-      </TouchableOpacity>
+        <TouchableOpacity
+          style={{}}
+        onPress={() => {
+          navigation.navigate('RegistrationRequest');
+        }}>
+          <Text style={Authstyles.themecolortext} >Send Request</Text>
+          </TouchableOpacity>
+      </View>
     </SafeAreaView>
   );
 };

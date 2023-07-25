@@ -90,7 +90,7 @@ const MyWallet = ({navigation}) => {
         }}>
         <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
           <View style={{flexDirection: 'row', alignItems: 'center'}}>
-            <Wallet width={wp(18)} height={hp(8)} />
+            <Wallet width={wp(15)} height={hp(8)} />
             <View style={{marginLeft: wp(3)}}>
               <Text style={styles.balancetext}>Total Amount</Text>
               <Text style={styles.pricetext}>$ 2,555</Text>
@@ -107,12 +107,13 @@ const MyWallet = ({navigation}) => {
             justifyContent: 'space-between',
             alignItems: 'center',
             marginTop: hp(5),
+            paddingHorizontal:wp(2)
           }}>
           <View
             style={{
               backgroundColor: Colors.Appthemecolor,
               width: wp(35),
-              height: hp(5),
+              height: hp(4.5),
               borderRadius: wp(3),
               alignItems: 'center',
               justifyContent: 'center',
@@ -123,7 +124,7 @@ const MyWallet = ({navigation}) => {
             style={{
               backgroundColor: Colors.Appthemecolor,
               width: wp(35),
-              height: hp(5),
+              height: hp(4.5),
               borderRadius: wp(3),
               alignItems: 'center',
               justifyContent: 'center',
@@ -132,7 +133,7 @@ const MyWallet = ({navigation}) => {
           </View>
         </View>
       </View>
-      <View
+      {/* <View
         style={{
           paddingHorizontal: wp(5),
           flexDirection: 'row',
@@ -164,8 +165,8 @@ const MyWallet = ({navigation}) => {
             state={recieved}
           />
         </TouchableOpacity>
-      </View>
-      <View style={{height: hp(40)}}>
+      </View> */}
+      <View style={{marginTop:hp(3)}}>
         <FlatList
           data={DATA}
           renderItem={renderItem}

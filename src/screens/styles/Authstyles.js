@@ -80,7 +80,8 @@ const Authstyles = StyleSheet.create({
       {
         color:Colors.Appthemecolor,
         fontSize:hp(1.8),
-        fontFamily:fontFamily.Nunito_Bold
+        fontFamily:fontFamily.Nunito_Bold,
+    
       }
 });
 export default Authstyles;

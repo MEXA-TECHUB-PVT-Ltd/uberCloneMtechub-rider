@@ -5,6 +5,7 @@ import {
   View,
   Text,
   TouchableOpacity,
+  Image
 } from 'react-native';
 
 ///navigation variable
@@ -14,6 +15,7 @@ import {useNavigation} from '@react-navigation/native';
 import CustomTextInput from '../TextInput/CustomTextInput';
 import CustomButtonhere from '../Button/CustomButton';
 import CustomModal from '../Modal/CustomModal';
+import CamerBottomSheet from '../CameraBottomSheet/CameraBottomSheet';
 
 //////////////////height and width/////////////////////
 import {
@@ -49,6 +51,28 @@ const VehicleDocs = () => {
   //Modal States
   const [modalVisible, setModalVisible] = useState(false);
   const [modalVisible1, setModalVisible1] = useState(false);
+
+    //camera and imagepicker
+    const refRBSheet = useRef();
+
+    const [image, setImage] = useState(null);
+    const [image1, setImage1] = useState(null);
+    const [image2, setImage2] = useState(null);
+    const [image3, setImage3] = useState(null);
+  
+    const handleImageSelected = uri => {
+      if (image === null && image1 === null && image2 === null) {
+        setImage(uri);
+      }
+      else if (image1 === null&& image2 === null) {
+        setImage1(uri);
+      }
+      else if (image2 === null) {
+        setImage2(uri);
+      } else {
+        setImage3(uri);
+      }
+    };
 
   return (
     <SafeAreaView style={[styles.container]}>
@@ -90,26 +114,70 @@ const VehicleDocs = () => {
           PlaceholderText={'Color'}
         />
         <View style={styles.uploadiew}>
-          <UploadIcon width={wp(15)} height={hp(6)} />
+        {image === null ? (
+          <TouchableOpacity onPress={() => refRBSheet.current.open()}>
+            <UploadIcon width={wp(15)} height={hp(6)} />
+          </TouchableOpacity>
+        ) : (
+          <Image
+            source={{uri: image}}
+            style={styles.imagestyle}
+            resizeMode="cover"
+          />
+        )}
+        {image === null ? (
           <Text style={styles.uploadviewtext}>
             Driver’s License (Front Side)
-          </Text>
+          </Text>):null}
         </View>
         <View style={styles.uploadiew}>
-          <UploadIcon width={wp(15)} height={hp(6)} />
-          <Text style={styles.uploadviewtext}>Vehicle Image</Text>
+        {image1 === null ? (
+          <TouchableOpacity onPress={() => refRBSheet.current.open()}>
+            <UploadIcon width={wp(15)} height={hp(6)} />
+          </TouchableOpacity>
+        ) : (
+          <Image
+            source={{uri: image1}}
+            style={styles.imagestyle}
+            resizeMode="cover"
+          />
+        )}
+        {image1 === null ? (
+          <Text style={styles.uploadviewtext}>Vehicle Image</Text>):null}
         </View>
         <View style={styles.uploadiew}>
-          <UploadIcon width={wp(15)} height={hp(6)} />
+        {image2 === null ? (
+          <TouchableOpacity onPress={() => refRBSheet.current.open()}>
+            <UploadIcon width={wp(15)} height={hp(6)} />
+          </TouchableOpacity>
+        ) : (
+          <Image
+            source={{uri: image2}}
+            style={styles.imagestyle}
+            resizeMode="cover"
+          />
+        )}
+        {image2 === null ? (
           <Text style={styles.uploadviewtext}>
             Vehicle Registration (front side)
-          </Text>
+          </Text>):null}
         </View>
         <View style={styles.uploadiew}>
-          <UploadIcon width={wp(15)} height={hp(6)} />
+        {image3 === null ? (
+          <TouchableOpacity onPress={() => refRBSheet.current.open()}>
+            <UploadIcon width={wp(15)} height={hp(6)} />
+          </TouchableOpacity>
+        ) : (
+          <Image
+            source={{uri: image3}}
+            style={styles.imagestyle}
+            resizeMode="cover"
+          />
+        )}
+        {image3 === null ? (
           <Text style={styles.uploadviewtext}>
             Vehicle Registration (back side)
-          </Text>
+          </Text>):null}
         </View>
         <View style={{marginBottom: hp(12)}}>
           <CustomButtonhere
@@ -140,6 +208,13 @@ const VehicleDocs = () => {
             }}
           />
         </View>
+        <CamerBottomSheet
+          refRBSheet={refRBSheet}
+          onClose={() => refRBSheet.current.close()}
+          title={'From Gallery'}
+          type={'onepic'}
+          onImageSelected={handleImageSelected}
+        />
       </ScrollView>
     </SafeAreaView>
   );

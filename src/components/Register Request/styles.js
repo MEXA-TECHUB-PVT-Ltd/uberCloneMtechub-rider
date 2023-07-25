@@ -53,5 +53,11 @@ const styles = StyleSheet.create({
     fontSize:hp(1.6),
     marginTop:hp(1)
   },
+  imagestyle: {
+    height: hp(21.5),
+    width: wp(84.6),
+    borderRadius:wp(2),
+    alignItems: 'center',
+  },
 });
 export default styles;

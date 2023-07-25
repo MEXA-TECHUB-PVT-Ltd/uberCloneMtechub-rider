@@ -61,7 +61,7 @@ const Home = ({navigation}) => {
     return (
       <HistoryRidesCard
         notitext={' William Edward'}
-        notisubtext={'12/06/03:00 PM, 12/06/2023'}
+        notisubtext={'03:00 PM, 12/06/2023'}
         notitime={'$24,00'}
         km={'24 km'}
         cardPress={() => {
@@ -82,7 +82,7 @@ const Home = ({navigation}) => {
         }}
         icon={'menu'}
         searchicon={ 
-        <Bell width={wp(15)} height={hp(6)} />
+        <Bell width={wp(15)} height={hp(7)} />
        }
         onpresseacrh={() => {
           navigation.navigate('Notification')
