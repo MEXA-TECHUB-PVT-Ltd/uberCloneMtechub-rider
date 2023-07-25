@@ -121,7 +121,7 @@ const ChangeLanguage = ({navigation}) => {
           />
         </View>
       )}
-      <View style={{paddingHorizontal: wp(4), marginTop: hp(3)}}>
+      <View style={{paddingHorizontal: wp(7)}}>
         <FlatList
           data={DATA}
           renderItem={renderItem}

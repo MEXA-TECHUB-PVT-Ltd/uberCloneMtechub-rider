@@ -136,21 +136,9 @@ const VehicleDocs = () => {
             type={'single_btn'}
             onPress={() => {
               setModalVisible(false);
-             // setModalVisible1(false);
+              navigation.navigate('Login')
             }}
           />
-                {/* <CustomModal
-            modalVisible={modalVisible}
-            text={'Success'}
-            btn_text={'Ok'}
-            subtext={
-              'Thank you for submitting your information We are currently reviewing them to ensure the accuracy and security of our platform. Please wait patiently while our team verifies your information.'
-            }
-            type={'single_btn'}
-            onPress={() => {
-              setModalVisible(false);
-            }}
-          /> */}
         </View>
       </ScrollView>
     </SafeAreaView>

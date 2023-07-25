@@ -37,7 +37,7 @@ const styles = StyleSheet.create({
   righticonview: {
     justifyContent: 'center',
     marginRight: wp(0),
-    width:wp(10),
+    width:wp(20),
     //backgroundColor:'yellow'
   },
   labelView: {
@@ -57,7 +57,7 @@ const styles = StyleSheet.create({
 
   label: {
     color: 'black',
-    fontSize: hp(2.5),
+    fontSize: hp(2.3),
     fontFamily: fontFamily.Nunito_Bold,
     textAlign: 'center',
   },

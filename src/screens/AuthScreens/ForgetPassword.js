@@ -1,10 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import {
-  SafeAreaView,
-  StyleSheet,
-  View,
-  Text,
-} from 'react-native';
+import {SafeAreaView, StyleSheet, View, Text} from 'react-native';
 
 /////////////components//////////
 import CustomButtonhere from '../../components/Button/CustomButton';
@@ -27,8 +22,7 @@ import {fontFamily} from '../../constants/fonts';
 
 const ForgetPassword = ({navigation}) => {
   ///////////////data states////////////////////
-  const [email, setEmail] = React.useState('');
-  const [password, setPassword] = React.useState('');
+  const [email, setEmail] = React.useState('exampl...');
 
   return (
     <SafeAreaView style={styles.container}>
@@ -46,25 +40,25 @@ const ForgetPassword = ({navigation}) => {
           marginTop: hp(5),
         }}>
         <Text style={[Authstyles.maintext, {textAlign: 'left'}]}>
-          Welcome to Uber Replica
+          Forget Password
         </Text>
       </View>
       <View style={{justifyContent: 'center', marginBottom: hp(8)}}>
         <Text style={[Authstyles.subtext, {textAlign: 'left', width: wp(80)}]}>
-          Please sign in to access your account and continue your seamless Uber
-          experience.
+          Enter the email address associated with your Uber account. This allows
+          us to verify your identity and send you a Verification Code
         </Text>
       </View>
       <CustomTextInput
         type={'withouticoninput'}
-        term={password}
+        term={email}
         view_widthset={85}
         textinput_widthset={75}
-        placeholder="Password"
-        onTermChange={newPassword => setPassword(newPassword)}
+        placeholder="exampl..."
+        onTermChange={newPassword => setEmail(newPassword)}
         PlaceholderText={'Email Address*'}
       />
- 
+
       <CustomButtonhere
         title={'Send Code'}
         widthset={80}
@@ -72,10 +66,9 @@ const ForgetPassword = ({navigation}) => {
         // loading={loading}
         // disabled={disable}
         onPress={() => {
-          navigation.navigate('Verification',{navplace:'ForgetPassword'});
+          navigation.navigate('Verification', {navplace: 'ForgetPassword'});
         }}
       />
-   
     </SafeAreaView>
   );
 };
@@ -91,16 +84,16 @@ const styles = StyleSheet.create({
   forgettextview: {
     justifyContent: 'flex-end',
     alignSelf: 'flex-end',
-    alignItems:'flex-end',
+    alignItems: 'flex-end',
     marginTop: hp(0),
     width: wp(40),
   },
   forgettext: {
-    color:"#000",
+    color: '#000',
     fontSize: hp(1.7),
     marginBottom: wp('8%'),
     marginRight: wp(0),
     fontFamily: fontFamily.Nunito_Bold,
-    fontWeight:'700'
+    fontWeight: '700',
   },
 });

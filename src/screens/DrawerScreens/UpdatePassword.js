@@ -64,13 +64,12 @@ const UpdatePassword = ({navigation}) => {
         term={oldpassword}
         view_widthset={85}
         textinput_widthset={67}
-        placeholder="Password"
         onTermChange={newPassword => setOldPassword(newPassword)}
         mode={'password'}
         secureTextEntry={data.secureTextEntry ? true : false}
         onclick={() => updateSecureTextEntry()}
         PlaceholderText={'Old Password'}
-        focus={"true"}
+        focus={'true'}
       />
 
       <CustomTextInput
@@ -78,30 +77,28 @@ const UpdatePassword = ({navigation}) => {
         term={newpassword}
         view_widthset={85}
         textinput_widthset={67}
-        placeholder="Password"
         onTermChange={newPassword => setNewPassword(newPassword)}
         mode={'password'}
         secureTextEntry={data.secureTextEntry ? true : false}
         onclick={() => updateSecureTextEntry()}
         PlaceholderText={'New Password'}
-        focus={"true"}
+        focus={'true'}
       />
       <CustomTextInput
         type={'withouticoninput'}
         term={confirmpassword}
         view_widthset={85}
         textinput_widthset={67}
-        placeholder="Password"
         onTermChange={newPassword => setConfirmPassword(newPassword)}
         mode={'password'}
         secureTextEntry={data.secureTextEntry ? true : false}
         onclick={() => updateSecureTextEntry()}
         PlaceholderText={'Confirm Password'}
-        focus={"true"}
+        focus={'true'}
       />
 
-<CustomButtonhere
-        title={'Sign In'}
+      <CustomButtonhere
+        title={'Update'}
         widthset={80}
         topDistance={25}
         // loading={loading}

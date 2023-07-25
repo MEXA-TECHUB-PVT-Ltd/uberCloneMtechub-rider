@@ -160,13 +160,23 @@ const OnGoingTrip = ({navigation, route}) => {
     }
   };
 
+toggleviewbutton=()=>{
+  if(confirm_ride === true)
+  {
+    setConfirmRide(false)
+  }
+  else{
+    setConfirmRide(true)
+  }
+}
+
   return (
     <SafeAreaView style={styles.container1}>
     <ScrollView
       showsVerticalScrollIndicator={false}
       showsHorizontalScrollIndicator={false}
    >
-           <View style={{backgroundColor:'white',height:hp(25),width:wp(100)}}>
+           <View style={{backgroundColor:'white',height:hp(24),width:wp(100)}}>
     <Text>here</Text>
     <CustomHeader
         headerlabel={'Ride Request'}
@@ -309,41 +319,22 @@ const OnGoingTrip = ({navigation, route}) => {
             // loading={loading}
             // disabled={disable}
             onPress={() => {
-                setConfirmRide(true)
+              toggleviewbutton()
               //navigation.navigate('WelcomeScreen');
             }}
           />
           :
-          <View
-          style={{
-            flexDirection: 'row',
-            justifyContent: 'space-between',
-            alignItems: 'center',
-            marginTop: hp(5),
-          }}>
-          <View
-            style={{
-              backgroundColor: Colors.Appthemecolor,
-              width: wp(40),
-              height: hp(6),
-              borderRadius: wp(3),
-              alignItems: 'center',
-              justifyContent: 'center',
-            }}>
-            <Text style={styles.btntext}>Set as pickup Location</Text>
-          </View>
-          <View
-            style={{
-              backgroundColor: Colors.Appthemecolor,
-              width: wp(40),
-              height: hp(6),
-              borderRadius: wp(3),
-              alignItems: 'center',
-              justifyContent: 'center',
-            }}>
-            <Text style={styles.btntext}>Set as dropoff Location</Text>
-          </View>
-        </View>
+          <CustomButtonhere
+          title={'Reached'}
+          widthset={80}
+          topDistance={5}
+          // loading={loading}
+          // disabled={disable}
+          onPress={() => {
+            toggleviewbutton()
+            //navigation.navigate('WelcomeScreen');
+          }}
+        />
 }
 
        

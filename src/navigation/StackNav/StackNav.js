@@ -24,6 +24,9 @@ import PolicyPrivacy from '../../screens/StackScreens/Profile/PolicyPrivacy';
 import MyRattings from '../../screens/StackScreens/Profile/MyRattings';
 import MyProfile from '../../screens/StackScreens/Profile/MyProfile';
 
+////////////////Drawer////////////
+import ChatScreen from '../../screens/DrawerScreens/Chat/ChatScreen';
+
 function StackNav() {
   return (
     <Stack.Navigator>
@@ -87,6 +90,13 @@ function StackNav() {
       <Stack.Screen
         name="RidesDetail"
         component={RidesDetail}
+        options={{
+          headerShown: false,
+        }}
+      />
+      <Stack.Screen
+        name="ChatScreen"
+        component={ChatScreen}
         options={{
           headerShown: false,
         }}

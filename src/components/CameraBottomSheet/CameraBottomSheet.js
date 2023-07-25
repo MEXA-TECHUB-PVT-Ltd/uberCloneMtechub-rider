@@ -17,13 +17,9 @@ import {
 
 ////////////////////redux////////////
 import {useSelector, useDispatch} from 'react-redux';
-import {updateImagePath} from '../../redux/ImagePathSlice';
 
 //////////////app pakages//////////////////
 import ImagePicker from 'react-native-image-crop-picker';
-
-///////colors///////
-import Colors from '../../utils/Colors';
 
 const CamerBottomSheet = props => {
   const navigation = useNavigation();
