@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 import {
   View,
   Text,
@@ -6,28 +6,36 @@ import {
   TouchableOpacity,
   Image,
   Dimensions,
-} from "react-native";
+  StatusBar
+} from 'react-native';
+
+//////////////paper///////
+import {Avatar} from 'react-native-paper';
 
 ///////////////app icons///////////////
-import Icon from "react-native-vector-icons/Ionicons";
-import Octicons from "react-native-vector-icons/Octicons";
+import Icon from 'react-native-vector-icons/Ionicons';
+import Octicons from 'react-native-vector-icons/Octicons';
 
 ////////////////navigation///////////////
-import { useNavigation } from "@react-navigation/native";
+import {useNavigation} from '@react-navigation/native';
 
 ////////////////////Heigth and width//////////////////
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
-} from "react-native-responsive-screen";
-const Width = Dimensions.get("screen").width;
-const Height = Dimensions.get("screen").height;
+} from 'react-native-responsive-screen';
+const Width = Dimensions.get('screen').width;
+const Height = Dimensions.get('screen').height;
 
 ////////////////Colors/////////////////
-import Colors from "../../utils/Colors";
+import Colors from '../../utils/Colors';
 
 ////////////app fonts//////////
-import { fontFamily } from "../../constants/fonts";
+import {fontFamily} from '../../constants/fonts';
+
+//////////////svg/////////////
+import ActiveDot from '../../assets/svgs/Chat/GreenDot.svg';
+import Call from '../../assets/svgs/Chat/call.svg';
 
 const ChatHeader = ({
   username,
@@ -42,64 +50,62 @@ const ChatHeader = ({
     <View style={styles.container}>
       <TouchableOpacity
         style={styles.backButton}
-        onPress={() => navigation.goBack()}
-      >
+        onPress={() => navigation.goBack()}>
         <Icon
-       name={"chevron-back"}
-       size={25}
-       color={"white"}
+          name={'chevron-back'}
+          size={25}
+          color={'#000000'}
           onPress={() => navigation.goBack()}
-          style={{ marginLeft: wp(0) }}
+          style={{marginLeft: wp(0)}}
         />
       </TouchableOpacity>
       <View style={styles.profileOptions}>
         <TouchableOpacity style={styles.profile}>
           <View>
-            <Image source={{uri:picture}} style={styles.image} resizeMode="contain" />
-            <View style={{ position: "absolute", right: wp(1), bottom: hp(0.) }}>
-            <Octicons
-       name={"dot-fill"}
-       size={23}
-       color={Colors.Appthemecolor}
-          onPress={() => navigation.goBack()}
-          style={{ marginLeft: wp(0) }}
-        />
-            </View>
+            <Avatar.Icon
+              size={hp(9)}
+              style={{backgroundColor: '#E7E7E7'}}
+              //source={appImages.GoogleLogo}
+            />
           </View>
           <View style={styles.usernameAndOnlineStatus}>
             <Text style={styles.username}>{username}</Text>
-            <Text style={styles.onlineStatus}>{onlineStatus}</Text>
+            <View style={{flexDirection: 'row',alignItems:"center"}}>
+              <ActiveDot width={wp(4)} height={hp(6)} />
+              <Text style={styles.onlineStatus}>{"Active Now"}</Text>
+            </View>
           </View>
         </TouchableOpacity>
       </View>
+      <Call width={wp(8)} height={hp(6)} />
     </View>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
-    flexDirection: "row",
-    backgroundColor: Colors.AppBckGround_color,
-    height: Height * 0.1,
+    flexDirection: 'row',
+    backgroundColor: Colors.Appthemecolor,
+    height: Height * 0.18,
     width: wp(100),
-    borderBottomWidth:hp(0.2),
-    borderBottomColor: '#B1B1B1',
-  },
+    alignItems:'center',
+    paddingTop:hp(5)
+    },
   backButton: {
-    alignSelf: "center",
-    paddingHorizontal: wp(2.5),
-  },
-  profileOptions: {
-    flex: 1,
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
+    alignSelf: 'center',
     paddingHorizontal: wp(2),
   },
+  profileOptions: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    paddingHorizontal: wp(0),
+    width:wp(75)
+  },
   profile: {
-    flexDirection: "row",
-    alignItems: "center",
-    borderColor: "#fff",
+    flexDirection: 'row',
+    alignItems: 'center',
+    borderColor: '#fff',
     flex: 4,
   },
   image: {
@@ -112,19 +118,20 @@ const styles = StyleSheet.create({
     width: wp(4),
   },
   usernameAndOnlineStatus: {
-    flexDirection: "column",
-    justifyContent: "center",
+    flexDirection: 'column',
+    justifyContent: 'center',
     paddingHorizontal: wp(2),
   },
   username: {
-    color: "white",
-    fontSize: hp(2),
-    fontFamily: fontFamily.Poppins_Regular,
+    color: '#000000',
+    fontSize: hp(2.2),
+    fontFamily: fontFamily.Nunito_Bold,
   },
   onlineStatus: {
-    color: '#B1B1B1',
+    color: '#343937',
     fontSize: hp(1.8),
-    fontFamily: fontFamily.Poppins_Regular,
+    fontFamily: fontFamily.Nunito_SemiBold,
+    marginLeft:wp(2)
   },
 });
 

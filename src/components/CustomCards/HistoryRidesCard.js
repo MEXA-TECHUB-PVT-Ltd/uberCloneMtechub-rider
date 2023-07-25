@@ -94,11 +94,6 @@ const HistoryRidesCard = ({
                     width: wp(70),
                     alignItems: 'center',
                   }}>
-                  {/* <Image
-                  source={appImages.GoogleLogo}
-                  style={styles.logo}
-                  resizeMode="contain"
-                /> */}
                   <Avatar.Icon
                     size={hp(7)}
                     style={{backgroundColor: '#E7E7E7'}}

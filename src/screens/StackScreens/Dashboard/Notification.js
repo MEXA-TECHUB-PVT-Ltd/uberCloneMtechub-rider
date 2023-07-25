@@ -17,6 +17,9 @@ import styles from './styles';
 /////////////////app images///////////
 import {appImages} from '../../../constants/images';
 
+///////////////notification data/////////////
+import {notification_data} from '../../../App_dummy_App/data/Notification_list';
+
 ////////////////dataa//////////////////
 const DATA = [
   {
@@ -41,9 +44,10 @@ const Notification = ({navigation}) => {
   const renderItem = ({item}) => {
     return (
       <NotificationView
-        notitext={'Driver accepted the ride'}
-        notisubtext={'Lorem ipsum lorem ipsum lorem'}
-        notitime={'03:00 PM'}
+        noti_image={item.noti_icon}
+        notitext={item.noti_maintext}
+        notisubtext={item.noti_subtext}
+        notitime={item.noti_time}
         notiicon={
           item.type === 'completed'
             ? appImages.NotiCheck
@@ -58,22 +62,23 @@ const Notification = ({navigation}) => {
   };
   return (
     <SafeAreaView style={styles.container1}>
-      {/* <ScrollView 
-     showsVerticalScrollIndicator={false}
-     showsHorizontalScrollIndicator={false}> */}
-      <CustomHeader
-        headerlabel={'Notifications'}
-        iconPress={() => {
-          navigation.goBack();
-        }}
-        icon={'chevron-back'}
-      />
-      <FlatList
-        data={DATA}
-        renderItem={renderItem}
-        keyExtractor={item => item.id}
-      />
-      {/* </ScrollView> */}
+      <ScrollView
+        showsVerticalScrollIndicator={false}
+        showsHorizontalScrollIndicator={false}>
+        <CustomHeader
+          headerlabel={'Notifications'}
+          iconPress={() => {
+            navigation.goBack();
+          }}
+          icon={'chevron-back'}
+        />
+        <FlatList
+          data={notification_data}
+          renderItem={renderItem}
+          scrollEnabled={false}
+          keyExtractor={item => item.id}
+        />
+      </ScrollView>
     </SafeAreaView>
   );
 };

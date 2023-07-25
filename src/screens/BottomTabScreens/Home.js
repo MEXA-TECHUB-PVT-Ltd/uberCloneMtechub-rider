@@ -30,6 +30,7 @@ import Colors from '../../utils/Colors';
 ///////////////////svgs//////////////
 import Menu_Icon from '../../assets/svgs/Menu_icon.svg';
 import Bell from '../../assets/svgs/DashboardBell.svg';
+import { fontFamily } from '../../constants/fonts';
 
 ////////////////dataa//////////////////
 const DATA = [
@@ -87,6 +88,11 @@ const Home = ({navigation}) => {
           navigation.navigate('Notification')
         }}
       />
+      <View style={{backgroundColor:Colors.Appthemecolor,width:wp(100),height:hp(6),justifyContent:'center'}}>
+        <Text style={{color:'black',marginLeft:wp(5),fontFamily:fontFamily.Nunito_SemiBold,fontSize:hp(1.7)}}>
+        You have 10 new requests.
+        </Text>
+      </View>
       <View style={{}}>
         <FlatList
           data={DATA}

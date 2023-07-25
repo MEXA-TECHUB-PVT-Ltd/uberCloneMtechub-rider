@@ -5,6 +5,7 @@ import {
   Image,
   PermissionsAndroid,
   Text,
+  StatusBar,
 } from 'react-native';
 
 ///////////////import app components/////////////
@@ -38,7 +39,7 @@ import firestore from '@react-native-firebase/firestore';
 //////////////////////////app api/////////////////////////
 //import axios from 'axios';
 //import {BASE_URL, IMAGE_URL} from '../../../utills/ApiRootUrl';
-i//mport AsyncStorage from '@react-native-async-storage/async-storage';
+//import AsyncStorage from '@react-native-async-storage/async-storage';
 
 /////////////////app images//////////////
 import Colors from '../../../utils/Colors';
@@ -47,16 +48,11 @@ import Colors from '../../../utils/Colors';
 import {useIsFocused} from '@react-navigation/native';
 
 //////////////sens button svg////////////
-import SendBtn from '../../../assets/svgs/Send_icon.svg';
-
-////////////app fonts////////
+import SendBtn from '../../../assets/svgs/Chat/Send_icon.svg';
+import Smily_Icon from '../../../assets/svgs/Chat/Smily_icon.svg';
 import {fontFamily} from '../../../constants/fonts';
 
-/////////app redux///////
-import {useSelector} from 'react-redux';
-
 const ChatScreen = ({route, navigation}) => {
-
   //////////navigation//////////
   const isFocused = useIsFocused();
 
@@ -79,53 +75,14 @@ const ChatScreen = ({route, navigation}) => {
 
   /////////////Get Notification/////////////
   const [profileImage, setProfileImage] = useState('');
-  const [username, setUsername] = useState('');
-
-  // const GetProfileData = async () => {
-  //   var user_id = await AsyncStorage.getItem('User_id');
-  //   axios({
-  //     method: 'GET',
-  //     url: BASE_URL + 'auth/specific_user/' + user_id,
-  //   })
-  //     .then(async function (response) {
-  //       console.log('list data here ', response.data.result);
-  //       setProfileImage(response.data.result[0].image);
-  //       setUsername(response.data.result[0].username);
-  //     })
-  //     .catch(function (error) {
-  //       console.log('error', error);
-  //     });
-  // };
-  // useEffect(() => {
-  //   GetProfileData();
-  // }, []);
+  const [username, setUsername] = useState('')
 
   /////////get login user//////////
   // const getUserMessages = async () => {
   //   var user = await AsyncStorage.getItem('Userid');
   //   setLoginUser(user);
   // };
-  const requestCameraPermission = async () => {
-    try {
-      const granted = await PermissionsAndroid.request(
-        PermissionsAndroid.PERMISSIONS.CAMERA,
-        {
-          title: 'App Camera Permission',
-          message: 'App needs access to your camera ',
-          buttonNeutral: 'Ask Me Later',
-          buttonNegative: 'Cancel',
-          buttonPositive: 'OK',
-        },
-      );
-      if (granted === PermissionsAndroid.RESULTS.GRANTED) {
-        console.log('Camera permission given');
-      } else {
-        console.log('Camera permission denied');
-      }
-    } catch (err) {
-      console.warn(err);
-    }
-  };
+
   const AllMessages = async () => {
     var user = '1';
     const doc_id =
@@ -159,10 +116,10 @@ const ChatScreen = ({route, navigation}) => {
   };
   const ref = useRef();
 
-  useEffect(() => {
-    requestCameraPermission();
-  }, [isFocused]);
-  const onSend = useCallback((messages = []) => {
+  // useEffect(() => {
+  //   requestCameraPermission();
+  // }, [isFocused]);
+  const onSend1 = useCallback((messages = []) => {
     handleSend(messages);
   }, []);
   const handleSend = async messageArray => {
@@ -200,75 +157,54 @@ const ChatScreen = ({route, navigation}) => {
     messages.forEach(message => {});
     AllMessages();
   };
-
-  const handleImageUpload = useCallback(async (fileName, filePath) => {
-    try {
-      if (!fileName) return;
-      // let fileName = file?.path?.split('/').pop();
-
-      const uploadTask = storage().ref().child(fileName).putFile(filePath);
-      uploadTask.on(
-        'state_changed',
-        snapshot => {
-          // const progress = Math.round(
-          //   (snapshot.bytesTransferred / snapshot.totalBytes) * 100,
-          // );
+  useEffect(() => {
+    setMessages([
+      {
+        _id: 1,
+        text: 'Hello developer',
+        createdAt: new Date(),
+        user: {
+          _id: 2,
+          name: 'React Native',
+          avatar: 'https://placeimg.com/140/140/any',
         },
-        error => {
-          // alert(error);
-        },
-        async () => {
-          const url = await storage().ref(fileName).getDownloadURL();
+      },
+    ])
+  }, [])
 
-          setImageUrl(url);
-          //onSend(message)
-          //handleSend(message, url, );
-        },
-      );
-    } catch (error) {
-      setLoading(false);
-    }
-  }, []);
-
+  const onSend = useCallback((messages = []) => {
+    setMessages(previousMessages =>
+      GiftedChat.append(previousMessages, messages),
+    )
+  }, [])
   const CustomInputToolbar = props => {
     return (
       <View
         style={{
-          bottom: hp(1),
+          bottom: hp(0),
           height: hp(7),
           width: wp(100),
           alignItems: 'center',
           justifyContent: 'center',
           position: 'absolute',
+          backgroundColor: '#F4F8FC',
           //bottom: hp(1),
         }}>
         <InputToolbar
           {...props}
           containerStyle={{
-            backgroundColor: '#E6E6E6',
-            borderRadius: wp(4),
+           backgroundColor: '#F4F8FC',
             paddingLeft: wp(10),
             paddingRight: wp(9),
             width: wp(80),
             left: wp(3),
+            bottom: hp(2),
+            borderColor:'#F4F8FC',
+            borderWidth:1
           }}
         />
-        <View style={{position: 'absolute', top: hp(2.5), left: wp(6)}}>
-          <FontAwesome5
-            name={'smile'}
-            size={22}
-            color={'#444444'}
-            onPress={() => setEmojivisible(true)}
-          />
-        </View>
-        <View style={{position: 'absolute', top: hp(2.5), right: wp(20)}}>
-          <MaterialCommunityIcons
-            name={'camera'}
-            size={22}
-            color={'#444444'}
-            onPress={() => refRBSheet.current.open()}
-            //onPress={() => handleImageUpload()}
-          />
+        <View style={{position: 'absolute', top: hp(2.5), left: wp(4)}}>
+          <Smily_Icon width={wp(7)} height={hp(5)} />
         </View>
       </View>
     );
@@ -286,12 +222,11 @@ const ChatScreen = ({route, navigation}) => {
             alignItems: 'center',
             height: hp(5),
             width: wp(12),
-            borderRadius: wp(10),
             position: 'absolute',
             bottom: hp(0),
             left: wp(12),
           }}>
-          <SendBtn width={wp(16)} height={hp(10)} />
+          <SendBtn width={wp(12)} height={hp(10)} />
         </View>
       </Send>
     );
@@ -307,6 +242,7 @@ const ChatScreen = ({route, navigation}) => {
               color: 'black',
               paddingHorizontal: wp(1),
               paddingVertical: 0,
+              fontFamily: fontFamily.Nunito_Medium,
               //fontWeight: "bold",
             }}>
             {props.currentMessage.text}
@@ -317,6 +253,10 @@ const ChatScreen = ({route, navigation}) => {
   };
   return (
     <SafeAreaView style={styles.container}>
+      <StatusBar
+        backgroundColor={Colors.Appthemecolor}
+        barStyle="dark-content"
+      />
       <ChatHeader
         title={'Chat'}
         left_icon={'chevron-back-sharp'}
@@ -324,7 +264,7 @@ const ChatScreen = ({route, navigation}) => {
         left_iconPress={() => {
           navigation.goBack();
         }}
-        username={username}
+        username={'Mark Hailey'}
         userimage={profileImage}
       />
       {/* <View style={{height:hp(79.6),marginTop:hp(4.5)}}>
@@ -337,23 +277,23 @@ const ChatScreen = ({route, navigation}) => {
         // /inverted={true}
         multiline={true}
         //minInputToolbarHeight={hp(80)}
-        placeholderTextColor="#707070"
         textInputStyle={{
           fontSize: hp(1.8),
           color: 'black',
-          backgroundColor: '#E6E6E6',
+          //backgroundColor: '#F4F8FC',
           // height: hp(3),
         }}
         textInputProps={{
-          placeholder: 'Type Something',
-          placeholderTextColor: '#999',
+          placeholder: 'Write text here',
+          placeholderTextColor: '#7A7C87',
           autoFocus: false,
           autoCorrect: false,
           style: {
-            backgroundColor: '#E6E6E6',
+            //backgroundColor: '#F4F8FC',
             width: wp(60),
             height: hp(6),
             color: 'black',
+            fontSize: hp(2),
             // bottom: 0,
           },
         }}

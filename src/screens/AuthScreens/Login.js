@@ -60,7 +60,7 @@ const Login = ({navigation}) => {
           name="chevron-back"
           color={'#000'}
           size={hp(3.5)}
-          onPress={()=>navigation.goBack()}
+          onPress={() => navigation.goBack()}
         />
       </View>
       <View
@@ -113,8 +113,7 @@ const Login = ({navigation}) => {
               flexDirection: 'row',
               justifyContent: 'space-between',
               alignItems: 'center',
-            }}>
-          </View>
+            }}></View>
           <TouchableOpacity
             activeOpacity={0.4}
             onPress={() => navigation.navigate('ForgetPassword')}
@@ -140,10 +139,9 @@ const Login = ({navigation}) => {
       />
       <TouchableOpacity
         style={{alignSelf: 'center', marginTop: hp(28)}}
-        onPress={() =>
-          {}
-        }
-         >
+        onPress={() => {
+          navigation.navigate('RegistrationRequest');
+        }}>
         <Text style={Authstyles.blacktext}>
           Don’t have an account?{' '}
           <Text style={Authstyles.themecolortext}>Send Request</Text>

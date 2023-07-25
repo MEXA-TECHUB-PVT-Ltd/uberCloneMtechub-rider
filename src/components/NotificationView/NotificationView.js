@@ -32,6 +32,7 @@ const NotificationView = ({
   icon,
   notiicon,
   notisubtext,
+  noti_image
 }) => {
   return (
     <View>
@@ -43,7 +44,7 @@ const NotificationView = ({
             width: wp(70),
           }}>
           <Image
-            source={appImages.GoogleLogo}
+            source={noti_image}
             style={styles.logo}
             resizeMode="contain"
           />

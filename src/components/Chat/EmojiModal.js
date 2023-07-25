@@ -8,15 +8,6 @@ import EmojiPicker from 'react-native-emoji-picker-staltz';
 import {useDispatch} from 'react-redux';
 import {updateEmoji} from '../../redux/EmojiSlice';
 
-//////////////app colors////////
-import Colors from '../../utills/Colors';
-
-///////////height and width//////
-import {
-  heightPercentageToDP as hp,
-  widthPercentageToDP as wp,
-} from 'react-native-responsive-screen';
-
 const EmojiSelector = props => {
   /////////redux variable////
   const dispatch = useDispatch();

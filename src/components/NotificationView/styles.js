@@ -16,7 +16,7 @@ import {fontFamily} from '../../constants/fonts';
 const styles = StyleSheet.create({
   mainview: {
     flexDirection: 'row',
-    marginTop: wp(5),
+    marginTop: wp(3),
     marginBottom: wp(2),
     width: wp(88),
     //height: wp(18),
@@ -29,7 +29,7 @@ const styles = StyleSheet.create({
   },
   logo: {
     height: wp(16),
-    width: wp(13),
+    width: wp(14),
   },
 
   notimaintext: {
