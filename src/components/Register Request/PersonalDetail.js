@@ -37,6 +37,9 @@ import Colors from '../../utils/Colors';
 import {useSelector, useDispatch} from 'react-redux';
 import {setPersonalMenu, setVehicleMenu} from '../../redux/CreateProfileSlice';
 
+//////////////////firebase////////////////
+import firestore from '@react-native-firebase/firestore';
+
 const PersonalDetail = () => {
   ////////////////redux/////////////////
   const dispatch = useDispatch();
@@ -58,6 +61,21 @@ const PersonalDetail = () => {
     setProfileImage(uri);
   };
 
+  
+  ////////////firebase store function/////////////////
+  const firebase_store_user = async(props) => {
+    try {
+      await firestore().collection('users').doc("driver_doc").set({
+        id: "driver_1",
+        phoneNo: "00000000",
+        //country_code: predata.country_code,
+        friends: [],
+      });
+      console.log('User created successfully!');
+    } catch (error) {
+      console.error('Error creating user:', error);
+    }
+  };
   return (
     <SafeAreaView style={[styles.container, {paddingHorizontal: wp(0)}]}>
       <View
@@ -144,10 +162,12 @@ const PersonalDetail = () => {
         // loading={loading}
         // disabled={disable}
         onPress={() => {
-          dispatch(setPersonalMenu(false)), dispatch(setVehicleMenu(true));
-          navigation.navigate('Verification', {
-            navplace: 'RegistrationRequest',
-          });
+          firebase_store_user()
+          navigation.navigate('Drawerroute');
+          // dispatch(setPersonalMenu(false)), dispatch(setVehicleMenu(true));
+          // navigation.navigate('Verification', {
+          //   navplace: 'RegistrationRequest',
+          // });
         }}
       />
             <CamerBottomSheet

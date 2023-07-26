@@ -112,5 +112,24 @@ const styles = StyleSheet.create({
     marginLeft:wp(23)
     //alignSelf:'flex-end'
   },
+
+  /////////////////chat bubble/////////
+bubblecontainer: {
+  flexDirection: 'row',
+  alignItems: 'flex-start',
+  marginHorizontal:wp(0.5),
+  marginVertical:hp(0.1),
+},
+containerCurrentUser: {
+  justifyContent: 'flex-end',
+},
+avatar: {
+  width: 40,
+  height: 40,
+  borderRadius: 20,
+  marginRight: 8,
+},
+
+
 });
 export default styles;
