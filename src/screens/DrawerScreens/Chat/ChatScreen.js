@@ -133,12 +133,24 @@ const ChatScreen = ({route, navigation}) => {
     let myMsg = null;
     const msg = messageArray[0];
     console.log('here chat message value', msg);
+    {msg.text?
     myMsg = {
       ...msg,
       text:msg.text,
-      emoji:msg.emoji,
       type: 'image_text',
-      //image: path,
+      senderId: '2',
+      receiverId: '1',
+      user: {
+        _id: user,
+        name: 'usman',
+        avatar: image,
+      },
+    }
+    :
+    myMsg = {
+      ...msg,
+      text:msg.emoji,
+      type: 'image_text',
       senderId: '2',
       receiverId: '1',
       user: {
@@ -147,6 +159,8 @@ const ChatScreen = ({route, navigation}) => {
         avatar: image,
       },
     };
+  }
+
     setMessages(previousMessages => GiftedChat.append(previousMessages, myMsg));
     firestore()
       .collection('chats')
