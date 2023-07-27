@@ -6,16 +6,15 @@ import {
   PermissionsAndroid,
   Text,
   StatusBar,
+  TouchableOpacity,
 } from 'react-native';
 
 ///////////////import app components/////////////
 import CamerBottomSheet from '../../../components/CameraBottomSheet/CameraBottomSheet';
 import ChatHeader from '../../../components/Chat/ChatHeader';
-import EmojiSelector from '../../../components/Chat/EmojiModal';
 
-//////////////////app icons////////////////
-import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
+////////emoji picker/////////////
+import EmojiPicker from 'rn-emoji-keyboard';
 
 ////////////////app styles/////////////////////
 import styles from './styles';
@@ -31,6 +30,7 @@ import {
   InputToolbar,
   Send,
   Composer,
+  Avatar,
 } from 'react-native-gifted-chat';
 
 //////////////furestore/////////////
@@ -51,6 +51,10 @@ import {useIsFocused} from '@react-navigation/native';
 import SendBtn from '../../../assets/svgs/Chat/Send_icon.svg';
 import Smily_Icon from '../../../assets/svgs/Chat/Smily_icon.svg';
 import {fontFamily} from '../../../constants/fonts';
+import {appImages} from '../../../constants/images';
+
+const image =
+  'https://images.unsplash.com/photo-1471879832106-c7ab9e0cee23?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=1080&fit=max';
 
 const ChatScreen = ({route, navigation}) => {
   //////////navigation//////////
@@ -75,19 +79,13 @@ const ChatScreen = ({route, navigation}) => {
 
   /////////////Get Notification/////////////
   const [profileImage, setProfileImage] = useState('');
-  const [username, setUsername] = useState('')
-
-  /////////get login user//////////
-  // const getUserMessages = async () => {
-  //   var user = await AsyncStorage.getItem('Userid');
-  //   setLoginUser(user);
-  // };
+  const [username, setUsername] = useState('');
 
   const AllMessages = async () => {
-    var user = '1';
+    var user = 'driver_1';
     const doc_id =
-      route.params.userid > '1'
-        ? '1' + '-' + route.params.userid
+      route.params.userid > user
+        ? user + '-' + route.params.userid
         : route.params.userid + '-' + user;
 
     const messageRef = firestore()
@@ -116,33 +114,37 @@ const ChatScreen = ({route, navigation}) => {
   };
   const ref = useRef();
 
-  // useEffect(() => {
-  //   requestCameraPermission();
-  // }, [isFocused]);
-  const onSend1 = useCallback((messages = []) => {
+  useEffect(() => {
+    AllMessages();
+    //   requestCameraPermission();
+  }, [isFocused]);
+  const onSend = useCallback((messages = []) => {
     handleSend(messages);
   }, []);
   const handleSend = async messageArray => {
-    console.log('here chat message value array', messageArray);
-    var user = await AsyncStorage.getItem('Userid');
+    console.log('here message content', messageArray);
+    var user = 'driver_1';
+    //var user = await AsyncStorage.getItem('Userid');
     const docid =
       route.params.userid > user
-        ? '1' + '-' + route.params.userid
-        : route.params.userid + '-' + '1';
+        ? user + '-' + route.params.userid
+        : route.params.userid + '-' + user;
 
     let myMsg = null;
     const msg = messageArray[0];
     console.log('here chat message value', msg);
     myMsg = {
       ...msg,
-      text: emoji_name,
-      //type: "image_text",
+      text:msg.text,
+      emoji:msg.emoji,
+      type: 'image_text',
       //image: path,
       senderId: '2',
       receiverId: '1',
       user: {
         _id: user,
-        name: 'ali',
+        name: 'usman',
+        avatar: image,
       },
     };
     setMessages(previousMessages => GiftedChat.append(previousMessages, myMsg));
@@ -157,26 +159,30 @@ const ChatScreen = ({route, navigation}) => {
     messages.forEach(message => {});
     AllMessages();
   };
-  useEffect(() => {
-    setMessages([
-      {
-        _id: 1,
-        text: 'Hello developer',
-        createdAt: new Date(),
-        user: {
-          _id: 2,
-          name: 'React Native',
-          avatar: 'https://placeimg.com/140/140/any',
-        },
-      },
-    ])
-  }, [])
 
-  const onSend = useCallback((messages = []) => {
-    setMessages(previousMessages =>
-      GiftedChat.append(previousMessages, messages),
-    )
-  }, [])
+  ///////////////emoji////////
+  const [isOpen, setIsOpen] = useState(false);
+  const handlePick = emojiObject => {
+    const imageMessage = {
+      _id: Math.round(Math.random() * 1000000),
+      emoji: emojiObject.emoji,
+      createdAt: new Date(),
+      user: {
+        _id: predata.userid, // Provide a unique user ID
+      },
+    };
+    handleSend([imageMessage]);
+  };
+
+  const toggle_emoji = () => {
+    console.log('here status', isOpen);
+    if (isOpen === true) {
+      setIsOpen(false);
+    } else {
+      setIsOpen(true);
+    }
+  };
+
   const CustomInputToolbar = props => {
     return (
       <View
@@ -193,19 +199,21 @@ const ChatScreen = ({route, navigation}) => {
         <InputToolbar
           {...props}
           containerStyle={{
-           backgroundColor: '#F4F8FC',
+            backgroundColor: '#F4F8FC',
             paddingLeft: wp(10),
             paddingRight: wp(9),
             width: wp(80),
             left: wp(3),
-            bottom: hp(2),
-            borderColor:'#F4F8FC',
-            borderWidth:1
+            bottom: hp(0.5),
+            borderColor: '#F4F8FC',
+            borderWidth: 1,
           }}
         />
-        <View style={{position: 'absolute', top: hp(2.5), left: wp(4)}}>
+        <TouchableOpacity
+          style={{position: 'absolute', top: hp(1), left: wp(4)}}
+          onPress={() => toggle_emoji()}>
           <Smily_Icon width={wp(7)} height={hp(5)} />
-        </View>
+        </TouchableOpacity>
       </View>
     );
   };
@@ -232,10 +240,20 @@ const ChatScreen = ({route, navigation}) => {
     );
   };
   const CustomBubbleText = props => {
+    console.log("heree text and emoj",props.currentMessage)
     return (
       <View>
-        {props.currentMessage.image ? (
-          <Image source={{uri: props.currentMessage.image}} />
+        {props.currentMessage.emoji ? (
+                <Text
+                style={{
+                  color: 'black',
+                  paddingHorizontal: wp(1),
+                  paddingVertical: 0,
+                  fontFamily: fontFamily.Nunito_Medium,
+                  //fontWeight: "bold",
+                }}>
+                {props.currentMessage.emoji}
+              </Text>
         ) : (
           <Text
             style={{
@@ -249,6 +267,107 @@ const ChatScreen = ({route, navigation}) => {
           </Text>
         )}
       </View>
+    );
+  };
+
+  const CustomChatBubble = props => {
+    const {user, currentMessage} = props;
+    const isCurrentUser = currentMessage.user._id === user._id;
+
+    return (
+      <View
+        style={[
+          styles.bubblecontainer,
+          isCurrentUser && styles.containerCurrentUser,
+        ]}>
+        <Bubble
+          {...props}
+          wrapperStyle={{
+            right: {
+              backgroundColor: Colors.Appthemecolor,
+              borderBottomRightRadius: 3,
+              borderBottomLeftRadius: 10,
+              borderTopRightRadius: 10,
+              borderTopLeftRadius: 10,
+              marginBottom: hp(3),
+              marginRight: 0,
+              alignItems: 'flex-end', // Align the content to the right
+              paddingTop: 10,
+              paddingBottom: 5,
+              paddingHorizontal: 5,
+            },
+            left: {
+              backgroundColor: '#F4F8FC',
+              borderBottomRightRadius: 10,
+              borderBottomLeftRadius: 5,
+              borderTopRightRadius: 10,
+              borderTopLeftRadius: 10,
+              marginBottom: hp(3),
+              marginLeft: 0,
+              alignItems: 'flex-start', // Align the content to the left
+              paddingTop: 10,
+              paddingBottom: 5,
+              paddingHorizontal: 5,
+            },
+          }}
+          containerStyle={{
+            backgroundColor: 'red',
+          }}
+          timeTextStyle={{
+            left: {
+              color: '#AFB3BC',
+              fontFamily: fontFamily.Nunito_Medium,
+              fontSize: hp(1.4),
+              marginBottom: -35,
+              top: 18,
+              position: 'relative',
+            },
+            right: {
+              color: '#AFB3BC',
+              fontFamily: fontFamily.Nunito_Medium,
+              fontSize: hp(1.4),
+              marginBottom: -35,
+              top: 18,
+              position: 'relative',
+            },
+          }}
+          messageTextStyle={{
+            left: {
+              color: '#1E263C', // Color for text in the left bubble (from other users)
+              fontSize: hp(1.8), // Customize font size
+              lineHeight: 20, // Customize line height
+              fontFamily: fontFamily.Nunito_Medium,
+            },
+            right: {
+              color: '#1E263C', // Color for text in the left bubble (from other users)
+              fontSize: hp(2), // Customize font size
+              lineHeight: 20, // Customize line height
+              fontFamily: fontFamily.Nunito_Medium,
+            },
+          }}
+          //showUserAvatar
+          renderUsernameOnMessage
+          renderAvatarOnTop
+          //renderAvatar={renderAvatar}
+          // renderAvatar={avatarProps => (
+          //   <Image
+          //     source={appImages.BookRide} // Replace with your own avatar source
+          //     style={styles.avatar}
+          //   />
+          // )}
+        />
+      </View>
+    );
+  };
+
+  const renderAvatar = props => {
+    const {currentMessage} = props;
+    // console.log("here avatar:",currentMessage.user.avatar)
+    return (
+      <Avatar
+        source={{uri: currentMessage.user.avatar}}
+        style={{backgroundColor: 'red'}}
+      />
     );
   };
   return (
@@ -267,12 +386,21 @@ const ChatScreen = ({route, navigation}) => {
         username={'Mark Hailey'}
         userimage={profileImage}
       />
-      {/* <View style={{height:hp(79.6),marginTop:hp(4.5)}}>
-</View> */}
+      {/* <View style={{backgroundColor: 'red'}}>
+        <Image
+          source={appImages.BookRide} // Replace with your own avatar source
+          style={styles.avatar}
+          resizeMode="cover"
+        />
+      </View> */}
+
       <GiftedChat
         alwaysShowSend
+        showUserAvatar={true}
+        //showAvatarForEveryMessage={true}
         isTyping={true}
-        renderAvatar={() => null}
+        renderAvatar={renderAvatar}
+        //renderAvatar={() => null}
         bottomOffset={8}
         // /inverted={true}
         multiline={true}
@@ -308,43 +436,15 @@ const ChatScreen = ({route, navigation}) => {
           onSend(text);
         }}
         user={{
-          _id: predata.userid,
+          _id: 'driver_1',
+          avatar: image,
         }}
         custontext={{}}
-        renderBubble={props => {
-          return (
-            <Bubble
-              {...props}
-              wrapperStyle={{
-                right: {
-                  color: Colors.Appthemecolor,
-                  backgroundColor:
-                    props.currentMessage.text != ''
-                      ? Colors.Appthemecolor
-                      : 'orange',
-                  width: props.currentMessage.text != '' ? wp(80) : wp(70),
-                  marginBottom: hp(1.5),
-                  paddingTop: hp(2),
-                  paddingHorizontal: wp(3),
-                },
-                left: {
-                  color: Colors.Appthemecolor,
-                  backgroundColor:
-                    props.currentMessage.text != ''
-                      ? Colors.inactivetextinput
-                      : 'orange',
-                  //width: props.currentMessage.text != "" ? wp(80) : wp(70),
-                  marginBottom: hp(1.2),
-                  paddingTop: hp(1),
-                  paddingHorizontal: wp(2),
-                },
-              }}
-            />
-          );
-        }}
+        renderBubble={props => <CustomChatBubble {...props} />}
         renderMessageText={props => {
           return <CustomBubbleText {...props} />;
         }}
+        // Render the user's avatar
       />
 
       <CamerBottomSheet
@@ -353,9 +453,11 @@ const ChatScreen = ({route, navigation}) => {
         title={'From Gallery'}
         type={'Chat_image'}
       />
-      <EmojiSelector
-        modal_open={emoji_visible}
-        modal_close={() => setEmojivisible(false)}
+
+      <EmojiPicker
+        onEmojiSelected={handlePick}
+        open={isOpen}
+        onClose={() => setIsOpen(false)}
       />
     </SafeAreaView>
   );

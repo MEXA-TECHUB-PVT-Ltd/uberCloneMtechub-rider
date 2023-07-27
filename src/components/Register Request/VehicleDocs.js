@@ -190,7 +190,7 @@ const VehicleDocs = () => {
               //dispatch(setVehicleDocMenu(true)),
               setModalVisible(true);
               // navigation.navigate('Verification', {
-              //   navplace: 'CreateAccount',
+              //   navplace: 'Registation',
               // });
             }}
           />

@@ -29,6 +29,9 @@ import {fontFamily} from '../../constants/fonts';
 ////////////////////redux////////////
 import {useSelector, useDispatch} from 'react-redux';
 
+//////////////////firebase////////////////
+import firestore from '@react-native-firebase/firestore';
+
 const RegistrationRequest = ({navigation}) => {
   ////////////////redux/////////////////
   const dispatch = useDispatch();

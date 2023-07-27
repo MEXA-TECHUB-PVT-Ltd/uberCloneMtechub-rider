@@ -7,7 +7,6 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import OnboardingScreen from '../../screens/OnboardingScreen/Onboarding';
 import WelcomeScreen from '../../screens/AuthScreens/Welcome';
 import Login from '../../screens/AuthScreens/Login';
-import CreateAccount from '../../screens/AuthScreens/CreateAccount';
 import ForgetPassword from '../../screens/AuthScreens/ForgetPassword';
 import ResetPassword from '../../screens/AuthScreens/Resetpassword';
 import Verification from '../../screens/AuthScreens/Verification';
@@ -45,13 +44,6 @@ function AuthNav() {
       <Stack.Screen
         name="RegistrationRequest"
         component={RegistrationRequest}
-        options={{
-          headerShown: false,
-        }}
-      />
-      <Stack.Screen
-        name="CreateAccount"
-        component={CreateAccount}
         options={{
           headerShown: false,
         }}
