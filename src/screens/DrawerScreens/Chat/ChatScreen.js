@@ -196,6 +196,14 @@ const ChatScreen = ({route, navigation}) => {
       setIsOpen(true);
     }
   };
+  const toggle_emoji11 = () => {
+    console.log('here status', isOpen);
+    if (isOpen === true) {
+      setIsOpen(false);
+    } else {
+      setIsOpen(true);
+    }
+  };
 
   const CustomInputToolbar = props => {
     return (
