@@ -42,7 +42,7 @@ import {
 } from '../../redux/UpdateProfileSlice';
 
 
-const UpdatePersonalDetail = () => {
+const UpdatePersonalDetail = ({onpress}) => {
   ////////////////redux/////////////////
   const dispatch = useDispatch();
 
@@ -161,13 +161,7 @@ const UpdatePersonalDetail = () => {
             topDistance={2}
             // loading={loading}
             // disabled={disable}
-            onPress={() => {
-              dispatch(setUpdatePersonalMenu(false)),
-                dispatch(setUpdateVehicleMenu(true));
-              //   navigation.navigate('Verification', {
-              //     navplace: 'RegistrationRequest',
-              //   });
-            }}
+            onPress={onpress}
           />
         </View>
       </ScrollView>

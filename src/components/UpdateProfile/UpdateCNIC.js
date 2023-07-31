@@ -25,7 +25,7 @@ import {
   setUpdatePersonalDocMenu,
 } from '../../redux/UpdateProfileSlice';
 
-const UpdateCNICDetail = () => {
+const UpdateCNICDetail = ({onpress}) => {
   ////////////////redux/////////////////
   const dispatch = useDispatch();
 
@@ -118,10 +118,7 @@ const UpdateCNICDetail = () => {
         topDistance={4.5}
         // loading={loading}
         // disabled={disable}
-        onPress={() => {
-          dispatch(setUpdateCNICMenu(false)),
-            dispatch(setUpdatePersonalDocMenu(true));
-        }}
+        onPress={onpress}
       />
 
       <CamerBottomSheet

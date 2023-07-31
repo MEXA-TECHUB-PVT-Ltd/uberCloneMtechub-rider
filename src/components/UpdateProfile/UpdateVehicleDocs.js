@@ -30,7 +30,7 @@ import styles from './styles';
 import {useSelector, useDispatch} from 'react-redux';
 import {setUpdateVehicleMenu} from '../../redux/UpdateProfileSlice';
 
-const UpdateVehicleDocs = () => {
+const UpdateVehicleDocs = ({onpress}) => {
   ////////////////redux/////////////////
   const dispatch = useDispatch();
 
@@ -237,8 +237,8 @@ const UpdateVehicleDocs = () => {
         }
         type={'single_btn'}
         onPress={() => {
+          onpress()
           setModalVisible(false);
-          dispatch(setUpdateVehicleMenu(false)),
           navigation.navigate('Home');
         }}
       />
