@@ -25,7 +25,7 @@ import {setVehicleMenu, setCNICMenu} from '../../redux/CreateProfileSlice';
 ////////////////svgs////////////
 import UploadIcon from '../../assets/svgs/CreateProfile/documentupload.svg';
 
-const VehicleDetail = () => {
+const VehicleDetail = ({onpress}) => {
   ////////////////redux/////////////////
   const dispatch = useDispatch();
 
@@ -60,8 +60,13 @@ const VehicleDetail = () => {
       />
       <View style={styles.uploadiew}>
         {image === null ? (
-          <TouchableOpacity onPress={() => refRBSheet.current.open()}>
+          <TouchableOpacity
+            onPress={() => refRBSheet.current.open()}
+            style={styles.clickuploadiew}>
             <UploadIcon width={wp(15)} height={hp(6)} />
+            <Text style={styles.uploadviewtext}>
+              Add the driving license image along with your face
+            </Text>
           </TouchableOpacity>
         ) : (
           <Image
@@ -70,11 +75,6 @@ const VehicleDetail = () => {
             resizeMode="cover"
           />
         )}
-        {image === null ? (
-          <Text style={styles.uploadviewtext}>
-            Add the driving license image along with your face
-          </Text>
-        ) : null}
       </View>
       <CustomButtonhere
         title={'Continue'}
@@ -82,9 +82,10 @@ const VehicleDetail = () => {
         topDistance={10}
         // loading={loading}
         // disabled={disable}
-        onPress={() => {
-          dispatch(setVehicleMenu(false)), dispatch(setCNICMenu(true));
-        }}
+        onPress={onpress}
+        // onPress={() => {
+        //   dispatch(setVehicleMenu(false)), dispatch(setCNICMenu(true));
+        // }}
       />
       <CamerBottomSheet
         refRBSheet={refRBSheet}

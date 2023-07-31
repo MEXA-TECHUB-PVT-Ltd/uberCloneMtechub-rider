@@ -1,9 +1,6 @@
 import React, {useEffect, useState, useRef} from 'react';
 import {
   SafeAreaView,
-  FlatList,
-  StatusBar,
-  ScrollView,
   View,
   Text,
   TouchableOpacity,
@@ -18,9 +15,6 @@ import CustomTextInput from '../TextInput/CustomTextInput';
 import CustomButtonhere from '../Button/CustomButton';
 import CamerBottomSheet from '../CameraBottomSheet/CameraBottomSheet';
 
-//////////////////ICONS/////////////////
-import Icon from 'react-native-vector-icons/Ionicons';
-
 //////////////////height and width/////////////////////
 import {
   heightPercentageToDP as hp,
@@ -30,27 +24,16 @@ import {
 /////////////////////app styles////////////
 import styles from './styles';
 
-/////////////////colors/////////////
-import Colors from '../../utils/Colors';
-
-////////////redux states//////////
-import {useSelector, useDispatch} from 'react-redux';
-import {setCNICMenu, setPersonalDocMenu} from '../../redux/CreateProfileSlice';
-
 ////////////////svgs////////////
 import UploadIcon from '../../assets/svgs/CreateProfile/documentupload.svg';
 
-const CNICDetail = () => {
-  ////////////////redux/////////////////
-  const dispatch = useDispatch();
+const CNICDetail = ({onpress}) => {
 
   ////////////////navigation state////////////
   const navigation = useNavigation();
 
   /////////////data states/////////////
-  const [username, setUsername] = useState('');
-  const [phoneNo, setPhoneNo] = useState('');
-  const [email, setEmail] = useState('');
+  const [cnic_number, setCNICNumber] = useState('');
 
   //camera and imagepicker
   const refRBSheet = useRef();
@@ -59,7 +42,6 @@ const CNICDetail = () => {
   const [image1, setImage1] = useState(null);
 
   const handleImageSelected = uri => {
-    console.log('here image', uri);
     if (image === null) {
       setImage(uri);
     } else {
@@ -71,18 +53,19 @@ const CNICDetail = () => {
     <SafeAreaView style={[styles.container, {paddingHorizontal: wp(0)}]}>
       <CustomTextInput
         type={'withouticoninput'}
-        term={username}
+        term={cnic_number}
         view_widthset={85}
         textinput_widthset={67}
-        //placeholder="Password"
-        onTermChange={text => setUsername(text)}
+        onTermChange={text => setCNICNumber(text)}
         PlaceholderText={'CNIC Number*'}
         focus={'true'}
       />
       <View style={styles.uploadiew}>
         {image === null ? (
-          <TouchableOpacity onPress={() => refRBSheet.current.open()}>
+          <TouchableOpacity onPress={() => refRBSheet.current.open()}
+          style={styles.clickuploadiew}>
             <UploadIcon width={wp(15)} height={hp(6)} />
+            <Text style={styles.uploadviewtext}>CNIC Image (Front Side)</Text>
           </TouchableOpacity>
         ) : (
           <Image
@@ -91,14 +74,14 @@ const CNICDetail = () => {
             resizeMode="cover"
           />
         )}
-        {image === null ? (
-          <Text style={styles.uploadviewtext}>CNIC Image (Front Side)</Text>
-        ) : null}
       </View>
       <View style={styles.uploadiew}>
       {image1 === null ? (
-          <TouchableOpacity onPress={() => refRBSheet.current.open()}>
+          <TouchableOpacity onPress={() => refRBSheet.current.open()}
+          style={styles.clickuploadiew}
+          >
             <UploadIcon width={wp(15)} height={hp(6)} />
+            <Text style={styles.uploadviewtext}>CNIC Image (Back Side)</Text>
           </TouchableOpacity>
         ) : (
           <Image
@@ -107,9 +90,7 @@ const CNICDetail = () => {
             resizeMode="cover"
           />
         )}
-        {image1 === null ? (
-        <Text style={styles.uploadviewtext}>CNIC Image (Back Side)</Text>
-        ):null}
+
       </View>
       <CustomButtonhere
         title={'Continue'}
@@ -117,9 +98,7 @@ const CNICDetail = () => {
         topDistance={10}
         // loading={loading}
         // disabled={disable}
-        onPress={() => {
-          dispatch(setCNICMenu(false)), dispatch(setPersonalDocMenu(true));
-        }}
+        onPress={onpress}
       />
       <CamerBottomSheet
         refRBSheet={refRBSheet}
