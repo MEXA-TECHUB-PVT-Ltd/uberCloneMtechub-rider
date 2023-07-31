@@ -50,7 +50,7 @@ const OnboardingScreen = ({navigation}) => {
   };
 
   useEffect(() => {
-    requestPermission();
+    // requestPermission();
   }, []);
 
   const requestPermission = async () => {
@@ -78,7 +78,7 @@ const OnboardingScreen = ({navigation}) => {
     <SafeAreaView style={styles.container}>
       <StatusBar backgroundColor={'white'} barStyle="dark-content" />
 
-      <View style={{height: hp(55), marginTop: hp(10)}}>
+      <View style={{height: hp(57), marginTop: hp(6)}}>
         <Swiper
           loop={false}
           showsPagination={false}
@@ -105,32 +105,6 @@ const OnboardingScreen = ({navigation}) => {
               'Looking to make some extra cash? Join Uber and start earning money on your own schedule.'
             }
           />
-          {/* <OnboardingScreen1
-          index={currentIndex}
-            image={appImages.BookRide}
-            maintext={'Accept a Job'}
-            subtext={
-              'Welcome to Uber, where you have the flexibility to choose when and where you want to drive.'
-            }
-          />
-          <OnboardingScreen1
-           index={currentIndex}
-            image={appImages.DestinationRide}
-            maintext={'Realtime Tracking'}
-            subtext={
-              'With Uber' +
-              's' +
-              ' real-time tracking feature, you can stay informed and in control throughout your entire ride.'
-            }
-          /> */}
-          {/* <OnboardingScreen1
-            index={currentIndex}
-            image={appImages.EarnMoney}
-            maintext={'Earn Money'}
-            subtext={
-              'Looking to make some extra cash? Join Uber and start earning money on your own schedule.'
-            }
-          /> */}
         </Swiper>
       </View>
       {currentIndex === 0 ? (

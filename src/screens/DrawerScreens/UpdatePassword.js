@@ -13,6 +13,7 @@ import {
 import CustomHeader from '../../components/Header/CustomHeader';
 import CustomTextInput from '../../components/TextInput/CustomTextInput';
 import CustomButtonhere from '../../components/Button/CustomButton';
+import CustomModal from '../../components/Modal/CustomModal';
 
 //////////////////height and width/////////////////////
 import {
@@ -27,6 +28,9 @@ import styles from './styles';
 import Colors from '../../utils/Colors';
 
 const UpdatePassword = ({navigation}) => {
+  //Modal States
+  const [modalVisible, setModalVisible] = useState(false);
+
   /////////////data states/////////////
   const [oldpassword, setOldPassword] = useState('');
   const [newpassword, setNewPassword] = useState('');
@@ -104,6 +108,19 @@ const UpdatePassword = ({navigation}) => {
         // loading={loading}
         // disabled={disable}
         onPress={() => {
+          setModalVisible(true);
+        }}
+      />
+      <CustomModal
+        modalVisible={modalVisible}
+        text={'Success'}
+        btn_text={'Ok'}
+        subtext={
+          'Password updated sucessfully'
+        }
+        type={'single_btn'}
+        onPress={() => {
+          setModalVisible(false);
           navigation.navigate('Home');
         }}
       />

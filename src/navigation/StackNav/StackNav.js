@@ -26,6 +26,7 @@ import MyProfile from '../../screens/StackScreens/Profile/MyProfile';
 
 ////////////////Drawer////////////
 import ChatScreen from '../../screens/DrawerScreens/Chat/ChatScreen';
+import AccountInforamtion from '../../screens/DrawerScreens/AcountInformation';
 
 function StackNav() {
   return (
@@ -97,6 +98,13 @@ function StackNav() {
       <Stack.Screen
         name="ChatScreen"
         component={ChatScreen}
+        options={{
+          headerShown: false,
+        }}
+      />
+      <Stack.Screen
+        name="AccountInforamtion"
+        component={AccountInforamtion}
         options={{
           headerShown: false,
         }}

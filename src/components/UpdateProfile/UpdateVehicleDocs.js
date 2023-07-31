@@ -15,6 +15,7 @@ import {useNavigation} from '@react-navigation/native';
 import CustomTextInput from '../TextInput/CustomTextInput';
 import CustomButtonhere from '../Button/CustomButton';
 import CamerBottomSheet from '../CameraBottomSheet/CameraBottomSheet';
+import CustomModal from '../Modal/CustomModal';
 
 //////////////////height and width/////////////////////
 import {
@@ -214,9 +215,9 @@ const UpdateVehicleDocs = () => {
             // loading={loading}
             // disabled={disable}
             onPress={() => {
-              dispatch(setUpdateVehicleMenu(false)),
-                //setModalVisible(true);
-                navigation.navigate('Home');
+              //dispatch(setUpdateVehicleMenu(false)),
+                setModalVisible(true);
+                //navigation.navigate('Home');
             }}
           />
         </View>
@@ -227,6 +228,20 @@ const UpdateVehicleDocs = () => {
           type={'onepic'}
           onImageSelected={handleImageSelected}
         />
+              <CustomModal
+        modalVisible={modalVisible}
+        text={'Success'}
+        btn_text={'Ok'}
+        subtext={
+          'Profile updated sucessfully'
+        }
+        type={'single_btn'}
+        onPress={() => {
+          setModalVisible(false);
+          dispatch(setUpdateVehicleMenu(false)),
+          navigation.navigate('Home');
+        }}
+      />
       </ScrollView>
     </SafeAreaView>
   );

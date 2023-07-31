@@ -10,6 +10,7 @@ import {
 //////////////////////app components///////////////
 import CustomHeader from '../../components/Header/CustomHeader';
 import SettingsMenu from '../../components/SettingsView/SettingsMenu';
+import LogoutModal from '../../components/Modal/LogoutModal';
 
 //////////////////height and width/////////////////////
 import {
@@ -36,6 +37,10 @@ import Terms from '../../assets/svgs/Profile/Document_icon.svg';
 import Logout from '../../assets/svgs/Profile/logout_icon.svg';
 
 const Profile = ({navigation}) => {
+
+    //Modal States
+    const [modalVisible, setModalVisible] = useState(false);
+    
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView
@@ -54,7 +59,7 @@ const Profile = ({navigation}) => {
             flexDirection: 'row',
             alignItems: 'center',
             justifyContent: 'space-between',
-            paddingHorizontal: wp(6),
+            paddingHorizontal: wp(8),
             marginTop: hp(1),
           }}
           onPress={() => {
@@ -65,7 +70,7 @@ const Profile = ({navigation}) => {
               style={{
                 width: wp(21.2),
                 height: hp(10),
-                borderColor: '#DADADA',
+                borderColor: '#E2E9EC',
                 borderWidth: wp(0.5),
                 borderRadius: wp(4),
                 marginLeft: wp(0),
@@ -105,16 +110,15 @@ const Profile = ({navigation}) => {
           <Ionicons
             name="chevron-forward"
             color={'#242A37'}
-            size={hp(3)}
+            size={hp(2.5)}
             onPress={() => {}}
           />
         </TouchableOpacity>
-        <View style={{marginLeft: wp(6), marginTop: hp(4)}}>
+        <View style={{marginLeft: wp(8), marginTop: hp(4)}}>
           <Text
             style={{
               color: 'black',
               fontFamily: fontFamily.Nunito_Bold,
-              fontWeight: '700',
               fontSize: hp(2),
             }}>
             Settings
@@ -122,9 +126,9 @@ const Profile = ({navigation}) => {
         </View>
         <View
           style={{
-            marginTop: hp(3),
+            marginTop: hp(2),
             marginBottom: hp(2),
-            marginHorizontal: wp(4),
+            marginHorizontal: wp(5),
           }}>
           <SettingsMenu
             icon={<Star width={wp(5)} height={hp(3)} />}
@@ -164,10 +168,24 @@ const Profile = ({navigation}) => {
           <SettingsMenu
             icon={<Logout width={wp(5)} height={hp(3)} />}
             label={'Logout'}
-            labelPress={() => navigation.navigate('Login')}
+            labelPress={() => setModalVisible(true) }
           />
         </View>
       </ScrollView>
+      <LogoutModal
+            modalVisible={modalVisible}
+            text={'Logout'}
+            btn_text={'Go to Create Profile'}
+            subtext={'Are you sure you want to Logout?'}
+            type={'single_btn'}
+            onPress={() => {
+              setModalVisible(false);
+            }}
+            onPress1={() => {
+              setModalVisible(false);
+              navigation.navigate('Login')
+            }}
+          />
     </SafeAreaView>
   );
 };

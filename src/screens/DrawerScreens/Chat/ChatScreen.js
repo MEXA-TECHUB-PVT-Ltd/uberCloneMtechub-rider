@@ -143,7 +143,7 @@ const ChatScreen = ({route, navigation}) => {
       user: {
         _id: user,
         name: 'usman',
-        avatar: image,
+        //avatar: image,
       },
     }
     :
@@ -156,7 +156,7 @@ const ChatScreen = ({route, navigation}) => {
       user: {
         _id: user,
         name: 'usman',
-        avatar: image,
+        //avatar: image,
       },
     };
   }
@@ -254,7 +254,6 @@ const ChatScreen = ({route, navigation}) => {
     );
   };
   const CustomBubbleText = props => {
-    console.log("heree text and emoj",props.currentMessage)
     return (
       <View>
         {props.currentMessage.emoji ? (
@@ -360,8 +359,8 @@ const ChatScreen = ({route, navigation}) => {
             },
           }}
           //showUserAvatar
-          renderUsernameOnMessage
-          renderAvatarOnTop
+          //renderUsernameOnMessage
+          //renderAvatarOnTop
           //renderAvatar={renderAvatar}
           // renderAvatar={avatarProps => (
           //   <Image
@@ -413,8 +412,8 @@ const ChatScreen = ({route, navigation}) => {
         showUserAvatar={true}
         //showAvatarForEveryMessage={true}
         isTyping={true}
-        renderAvatar={renderAvatar}
-        //renderAvatar={() => null}
+        //renderAvatar={renderAvatar}
+        renderAvatar={() => null}
         bottomOffset={8}
         // /inverted={true}
         multiline={true}
@@ -451,7 +450,7 @@ const ChatScreen = ({route, navigation}) => {
         }}
         user={{
           _id: 'driver_1',
-          avatar: image,
+          // avatar: image,
         }}
         custontext={{}}
         renderBubble={props => <CustomChatBubble {...props} />}

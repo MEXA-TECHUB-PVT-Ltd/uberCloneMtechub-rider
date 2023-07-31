@@ -19,7 +19,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent:'space-between',
     backgroundColor:"white",
-    width: wp(93),
+    width: wp(88),
     height: wp(12),
     alignSelf: 'center',
     alignItems: 'center',

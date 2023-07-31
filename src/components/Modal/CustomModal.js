@@ -22,7 +22,7 @@ const CustomModal = props => {
             style={{
               justifyContent: 'center',
               alignItems: 'center',
-              marginBottom: hp(2),
+              marginBottom: hp(4),
               marginTop: hp(2),
               alignSelf: 'center',
             }}>
@@ -34,7 +34,7 @@ const CustomModal = props => {
             style={{
               justifyContent: 'center',
               alignItems: 'center',
-              marginBottom: hp(2),
+              marginBottom: hp(2.5),
               alignSelf: 'center',
             }}>
             <Text style={styles.modalsubtext}>
@@ -42,7 +42,7 @@ const CustomModal = props => {
             </Text>
           </View>
           <TouchableOpacity 
-          style={{backgroundColor:Colors.Appthemecolor,width:wp(60),height:hp(6),borderRadius:wp(3),marginTop:hp(2),marginBottom:hp(4),alignItems:'center',justifyContent:'center'}}
+          style={{backgroundColor:Colors.Appthemecolor,width:wp(60),height:hp(5),borderRadius:wp(3),marginTop:hp(2),marginBottom:hp(4),alignItems:'center',justifyContent:'center'}}
           onPress={props.onPress}>
               <Text style={styles.leftbtntext}>{props.btn_text}</Text>
             </TouchableOpacity>

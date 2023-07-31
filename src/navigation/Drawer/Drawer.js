@@ -9,7 +9,6 @@ import MyWallet from '../../screens/DrawerScreens/MyWallet';
 import UpdateProfile from '../../screens/DrawerScreens/UpdateProfile';
 import UpdatePassword from '../../screens/DrawerScreens/UpdatePassword';
 import ChatList from '../../screens/DrawerScreens/Chat/ChatList';
-import AccountInforamtion from '../../screens/DrawerScreens/AcountInformation';
 
 /////////stack navigations///////////
 import StackNav from '../StackNav/StackNav';
@@ -54,13 +53,7 @@ export default function Drawerroute() {
         name="ChatList"
         component={ChatList}
       />
-      <Drawer.Screen
-        options={{
-          headerShown: false,
-        }}
-        name="AccountInforamtion"
-        component={AccountInforamtion}
-      />
+
     </Drawer.Navigator>
   );
 }
