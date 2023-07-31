@@ -83,9 +83,7 @@ const Login = ({navigation}) => {
         term={email}
         view_widthset={85}
         textinput_widthset={75}
-        onTermChange={newPassword => setPassword(newPassword)}
-        secureTextEntry={data.secureTextEntry ? true : false}
-        onclick={() => updateSecureTextEntry()}
+        onTermChange={newPassword => setEmail(newPassword)}
         PlaceholderText={'Driver Id*'}
       />
       <CustomTextInput

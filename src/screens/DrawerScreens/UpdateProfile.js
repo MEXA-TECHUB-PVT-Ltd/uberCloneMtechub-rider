@@ -34,25 +34,35 @@ const UpdateProfile = ({navigation}) => {
   const dispatch = useDispatch();
   const {update_personal, update_vehicle, update_CNIC, update_personalDoc} =
     useSelector(state => state.updateProfile);
+
+      //////////////menu counter/////////////
+  const [count, setCount] = useState(0);
+
+  const handleForwardCount = () => {
+    console.log('count here', count);
+    count === 3 ? setCount(0) : setCount(count + 1);
+  };
+
+  const handleBackwardCount = () => {
+    count === 0 ? navigation.goBack() : setCount(count - 1);
+  };
+
   return (
     <SafeAreaView style={[styles.container, {paddingHorizontal: wp(8)}]}>
       <CustomHeader
         headerlabel={'Update Profile'}
         iconPress={() => {
-          navigation.goBack();
+          handleBackwardCount();
         }}
         icon={'chevron-back'}
       />
-      <View style={{flexDirection: 'row', alignItems: 'center'}}>
+           <View style={{flexDirection: 'row', alignItems: 'center'}}>
         <View
           style={[
             styles.circleview,
             {
               backgroundColor:
-                update_personal === true ||
-                update_vehicle === true ||
-                update_CNIC === true ||
-                update_personalDoc === true
+                count === 0 || count === 1 || count === 2 || count === 3
                   ? Colors.Appthemecolor
                   : '#EFEFF4',
             },
@@ -62,9 +72,7 @@ const UpdateProfile = ({navigation}) => {
             styles.lineview,
             {
               backgroundColor:
-                update_vehicle === true ||
-                update_CNIC === true ||
-                update_personalDoc === true
+                count === 1 || count === 2 || count === 3
                   ? Colors.Appthemecolor
                   : '#EFEFF4',
             },
@@ -74,9 +82,7 @@ const UpdateProfile = ({navigation}) => {
             styles.circleview,
             {
               backgroundColor:
-                update_vehicle === true ||
-                update_CNIC === true ||
-                update_personalDoc === true
+                count === 1 || count === 2 || count === 3
                   ? Colors.Appthemecolor
                   : '#EFEFF4',
             },
@@ -86,9 +92,7 @@ const UpdateProfile = ({navigation}) => {
             styles.lineview,
             {
               backgroundColor:
-                update_CNIC === true || update_personalDoc === true
-                  ? Colors.Appthemecolor
-                  : '#EFEFF4',
+                count === 2 || count === 3 ? Colors.Appthemecolor : '#EFEFF4',
             },
           ]}></View>
         <View
@@ -96,37 +100,35 @@ const UpdateProfile = ({navigation}) => {
             styles.circleview,
             {
               backgroundColor:
-                update_CNIC === true || update_personalDoc === true
-                  ? Colors.Appthemecolor
-                  : '#EFEFF4',
+                count === 2 || count === 3 ? Colors.Appthemecolor : '#EFEFF4',
             },
           ]}></View>
         <View
           style={[
             styles.lineview,
             {
-              backgroundColor:
-                update_personalDoc === true ? Colors.Appthemecolor : '#EFEFF4',
+              backgroundColor: count === 3 ? Colors.Appthemecolor : '#EFEFF4',
             },
           ]}></View>
         <View
           style={[
             styles.circleview,
             {
-              backgroundColor:
-                update_personalDoc === true ? Colors.Appthemecolor : '#EFEFF4',
+              backgroundColor: count === 3 ? Colors.Appthemecolor : '#EFEFF4',
             },
           ]}></View>
       </View>
 
-      {update_personal === true ? (
-        <UpdatePersonalDetail />
-      ) : update_vehicle === true ? (
-        <UpdateVehicleDetail />
-      ) : update_CNIC == true ? (
-        <UpdateCNICDetail />
-      ) : update_personalDoc === true ? (
-        <UpdateVehicleDocs />
+      {count === 0 ? (
+        <UpdatePersonalDetail 
+        onpress={() => handleForwardCount()}
+        />
+      ) : count === 1 ? (
+        <UpdateVehicleDetail onpress={() => handleForwardCount()} />
+      ) : count === 2 ? (
+        <UpdateCNICDetail  onpress={() => handleForwardCount()} />
+      ) :count ===  3 ? (
+        <UpdateVehicleDocs  onpress={handleForwardCount} />
       ) : null}
     </SafeAreaView>
   );

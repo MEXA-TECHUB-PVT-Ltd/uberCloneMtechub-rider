@@ -25,7 +25,7 @@ import {
   setUpdateCNICMenu,
 } from '../../redux/UpdateProfileSlice';
 
-const UpdateVehicleDetail = () => {
+const UpdateVehicleDetail = ({onpress}) => {
   ////////////////redux/////////////////
   const dispatch = useDispatch();
 
@@ -90,10 +90,9 @@ const UpdateVehicleDetail = () => {
         topDistance={22}
         // loading={loading}
         // disabled={disable}
-        onPress={() => {
-          dispatch(setUpdateVehicleMenu(false)),
-            dispatch(setUpdateCNICMenu(true));
-        }}
+        onPress={
+          onpress
+        }
       />
       <CamerBottomSheet
         refRBSheet={refRBSheet}
