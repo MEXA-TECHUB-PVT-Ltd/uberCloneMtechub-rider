@@ -26,24 +26,30 @@ import Colors from '../../utils/Colors';
 //////////app fonts///////
 import {fontFamily} from '../../constants/fonts';
 
-////////////////////redux////////////
-import {useSelector, useDispatch} from 'react-redux';
-
 //////////////////firebase////////////////
 import firestore from '@react-native-firebase/firestore';
 
 const RegistrationRequest = ({navigation}) => {
-  ////////////////redux/////////////////
-  const dispatch = useDispatch();
-  const {personal, vehicle, CNIC, personalDoc} = useSelector(
-    state => state.createProfile,
-  );
+  const [count, setCount] = useState(0);
+  // useEffect(() => {
+  //   handleForwardCount
+  // });
+
+  const handleForwardCount = () => {
+    console.log('count here', count);
+    count === 3 ? setCount(0) : setCount(count + 1);
+  };
+
+  const handleBackwardCount = () => {
+    count === 0 ? navigation.goBack() : setCount(count - 1);
+  };
+
   return (
     <SafeAreaView style={[styles.container, {paddingHorizontal: wp(8)}]}>
       <CustomHeader
         headerlabel={'Registration Request'}
         iconPress={() => {
-          navigation.goBack();
+          handleBackwardCount();
         }}
         icon={'chevron-back'}
       />
@@ -53,10 +59,7 @@ const RegistrationRequest = ({navigation}) => {
             styles.circleview,
             {
               backgroundColor:
-                personal === true ||
-                vehicle === true ||
-                CNIC === true ||
-                personalDoc === true
+                count === 0 || count === 1 || count === 2 || count === 3
                   ? Colors.Appthemecolor
                   : '#EFEFF4',
             },
@@ -66,7 +69,7 @@ const RegistrationRequest = ({navigation}) => {
             styles.lineview,
             {
               backgroundColor:
-                vehicle === true || CNIC === true || personalDoc === true
+                count === 1 || count === 2 || count === 3
                   ? Colors.Appthemecolor
                   : '#EFEFF4',
             },
@@ -76,7 +79,7 @@ const RegistrationRequest = ({navigation}) => {
             styles.circleview,
             {
               backgroundColor:
-                vehicle === true || CNIC === true || personalDoc === true
+                count === 1 || count === 2 || count === 3
                   ? Colors.Appthemecolor
                   : '#EFEFF4',
             },
@@ -86,9 +89,7 @@ const RegistrationRequest = ({navigation}) => {
             styles.lineview,
             {
               backgroundColor:
-                CNIC === true || personalDoc === true
-                  ? Colors.Appthemecolor
-                  : '#EFEFF4',
+                count === 2 || count === 3 ? Colors.Appthemecolor : '#EFEFF4',
             },
           ]}></View>
         <View
@@ -96,37 +97,33 @@ const RegistrationRequest = ({navigation}) => {
             styles.circleview,
             {
               backgroundColor:
-                CNIC === true || personalDoc === true
-                  ? Colors.Appthemecolor
-                  : '#EFEFF4',
+                count === 2 || count === 3 ? Colors.Appthemecolor : '#EFEFF4',
             },
           ]}></View>
         <View
           style={[
             styles.lineview,
             {
-              backgroundColor:
-                personalDoc === true ? Colors.Appthemecolor : '#EFEFF4',
+              backgroundColor: count === 3 ? Colors.Appthemecolor : '#EFEFF4',
             },
           ]}></View>
         <View
           style={[
             styles.circleview,
             {
-              backgroundColor:
-                personalDoc === true ? Colors.Appthemecolor : '#EFEFF4',
+              backgroundColor: count === 3 ? Colors.Appthemecolor : '#EFEFF4',
             },
           ]}></View>
       </View>
 
-      {personal === true ? (
-        <PersonalDetail />
-      ) : vehicle === true ? (
-        <VehicleDetail />
-      ) : CNIC == true ? (
-        <CNICDetail />
-      ) : personalDoc === true ? (
-        <VehicleDocs />
+      {count === 0 ? (
+        <PersonalDetail onpress={() => handleForwardCount()} />
+      ) : count === 1 ? (
+        <VehicleDetail onpress={() => handleForwardCount()} />
+      ) : count === 2 ? (
+        <CNICDetail onpress={() => handleForwardCount()} />
+      ) : count === 3 ? (
+        <VehicleDocs onpress={handleForwardCount} />
       ) : null}
     </SafeAreaView>
   );

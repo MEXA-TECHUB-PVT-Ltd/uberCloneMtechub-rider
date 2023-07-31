@@ -40,7 +40,7 @@ import {setPersonalMenu, setVehicleMenu} from '../../redux/CreateProfileSlice';
 //////////////////firebase////////////////
 import firestore from '@react-native-firebase/firestore';
 
-const PersonalDetail = () => {
+const PersonalDetail = ({onpress}) => {
   ////////////////redux/////////////////
   const dispatch = useDispatch();
 
@@ -48,7 +48,8 @@ const PersonalDetail = () => {
   const navigation = useNavigation();
 
   /////////////data states/////////////
-  const [username, setUsername] = useState('');
+  const [fname, setFname] = useState('');
+  const [lname, setLname] = useState('');
   const [phoneNo, setPhoneNo] = useState('');
   const [email, setEmail] = useState('');
 
@@ -120,20 +121,20 @@ const PersonalDetail = () => {
       </TouchableOpacity>
       <CustomTextInput
         type={'withouticoninput'}
-        term={username}
+        term={fname}
         view_widthset={85}
         textinput_widthset={67}
         //placeholder="Password"
-        onTermChange={text => setUsername(text)}
+        onTermChange={text => setFname(text)}
         PlaceholderText={'First Name*'}
       />
       <CustomTextInput
         type={'withouticoninput'}
-        term={username}
+        term={lname}
         view_widthset={85}
         textinput_widthset={67}
         //placeholder="Password"
-        onTermChange={text => setUsername(text)}
+        onTermChange={text => setLname(text)}
         PlaceholderText={'Last Name*'}
       />
       <CustomTextInput
@@ -161,14 +162,16 @@ const PersonalDetail = () => {
         topDistance={10}
         // loading={loading}
         // disabled={disable}
-        onPress={() => {
-          firebase_store_user()
+        onPress={onpress}
+        //onPress={() => 
+      //{
+          //firebase_store_user()
           //navigation.navigate('Drawerroute');
-          dispatch(setPersonalMenu(false)), dispatch(setVehicleMenu(true));
+          //dispatch(setPersonalMenu(false)), dispatch(setVehicleMenu(true));
           // navigation.navigate('Verification', {
           //   navplace: 'RegistrationRequest',
           // });
-        }}
+        //}}
       />
             <CamerBottomSheet
         refRBSheet={refRBSheet}

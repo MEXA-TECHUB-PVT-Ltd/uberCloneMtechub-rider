@@ -45,18 +45,25 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     borderRadius: wp(3),
   },
+  clickuploadiew: {
+    width: wp(84),
+    height: hp(18),
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderRadius: wp(3),
+  },
   uploadviewtext: {
     color: '#A7A9AC',
     width: wp(50),
     textAlign: 'center',
-    fontFamily:fontFamily.Nunito_Medium,
-    fontSize:hp(1.6),
-    marginTop:hp(1)
+    fontFamily: fontFamily.Nunito_Medium,
+    fontSize: hp(1.6),
+    marginTop: hp(1),
   },
   imagestyle: {
     height: hp(21.5),
     width: wp(84.6),
-    borderRadius:wp(2),
+    borderRadius: wp(2),
     alignItems: 'center',
   },
 });
