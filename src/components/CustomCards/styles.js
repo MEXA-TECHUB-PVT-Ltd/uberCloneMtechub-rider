@@ -50,14 +50,14 @@ const styles = StyleSheet.create({
     color: 'black',
     fontFamily: fontFamily.Nunito_Bold,
     fontSize: hp(1.8),
-    //fontWeight: '700',
+    marginBottom:hp(0.5)
   },
 
   notisubtext: {
     color: '#7A7C87',
     fontFamily: fontFamily.Nunito_Regular,
     fontSize: hp(1.5),
-    //fontWeight: '400',
+    marginLeft:wp(1)
   },
   notitimetext: {
     color: '#979797',
@@ -91,7 +91,8 @@ const styles = StyleSheet.create({
     color: Colors.Appthemecolor,
     fontFamily: fontFamily.Nunito_Bold,
     fontSize: hp(2),
-    textAlign:'right'
+    textAlign:'right',
+    marginBottom:hp(0.5)
   },
 kmtext: {
     color: '#AAAAAA',

@@ -33,8 +33,8 @@ import {fontFamily} from '../../constants/fonts';
 
 const ResetPassword = ({navigation}) => {
   ///////////////data states////////////////////
-  const [email, setEmail] = React.useState('');
-  const [password, setPassword] = React.useState('');
+  const [newpassword, setNewPassword] = React.useState('');
+  const [confirmpassword, setConfirmPassword] = React.useState('');
 
   //password eye function and states
   const [data, setData] = React.useState({
@@ -75,26 +75,23 @@ const ResetPassword = ({navigation}) => {
       </View>
 
       <CustomTextInput
-        icon={appImages.lock}
         type={'withouticoninput'}
-        term={password}
+        term={newpassword}
         view_widthset={85}
         textinput_widthset={67}
-        //placeholder="Password"
-        onTermChange={newPassword => setPassword(newPassword)}
+        onTermChange={text => setNewPassword(text)}
         mode={'password'}
         secureTextEntry={data.secureTextEntry ? true : false}
         onclick={() => updateSecureTextEntry()}
         PlaceholderText={'New Password*'}
       />
      <CustomTextInput
-        icon={appImages.lock}
         type={'withouticoninput'}
-        term={password}
+        term={confirmpassword}
         view_widthset={85}
         textinput_widthset={67}                    
         //placeholder="Password"
-        onTermChange={newPassword => setPassword(newPassword)}
+        onTermChange={text => setConfirmPassword(text)}
         mode={'password'}
         secureTextEntry={data.secureTextEntry ? true : false}
         onclick={() => updateSecureTextEntry()}
@@ -107,7 +104,7 @@ const ResetPassword = ({navigation}) => {
         // loading={loading}
         // disabled={disable}
         onPress={() => {
-          navigation.navigate('WelcomeScreen');
+          navigation.navigate('Login');
         }}
       />
 

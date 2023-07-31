@@ -109,7 +109,8 @@ const MyWallet = ({navigation}) => {
             marginTop: hp(5),
             paddingHorizontal:wp(2)
           }}>
-          <View
+          <TouchableOpacity
+          onPress={()=> navigation.navigate("AccountInforamtion")}
             style={{
               backgroundColor: Colors.Appthemecolor,
               width: wp(35),
@@ -119,7 +120,7 @@ const MyWallet = ({navigation}) => {
               justifyContent: 'center',
             }}>
             <Text style={styles.btntext}>Withdrawal</Text>
-          </View>
+          </TouchableOpacity>
           <View
             style={{
               backgroundColor: Colors.Appthemecolor,

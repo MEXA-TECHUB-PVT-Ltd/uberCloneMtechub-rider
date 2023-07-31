@@ -91,7 +91,7 @@ const AccountInforamtion = ({navigation}) => {
         // loading={loading}
         // disabled={disable}
         onPress={() => {
-          navigation.navigate('WelcomeScreen');
+          navigation.navigate('MyWallet');
         }}
       />
     </SafeAreaView>

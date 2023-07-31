@@ -22,11 +22,11 @@ const OnboardingComponents = (props) => {
       <View>
         <Image
           source={props.image}
-          style={{width: wp(80), height: hp(40)}}
+          style={{width: wp(65), height: hp(40)}}
           resizeMode="contain"
         />
       </View>
-      <View style={{alignItems: 'center', justifyContent: 'center'}}>
+      <View style={{alignItems: 'center', justifyContent: 'center',marginTop:hp(3)}}>
         <Text style={styles.maintext}>{props.maintext}</Text>
       </View>
       <View style={{alignItems: 'center', justifyContent: 'center'}}>

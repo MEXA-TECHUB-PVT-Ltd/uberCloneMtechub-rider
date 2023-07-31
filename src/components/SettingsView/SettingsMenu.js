@@ -31,12 +31,6 @@ const SettingsMenu = ({navigation, label, labelPress, icon, type}) => {
       activeOpacity={type === 'switch' ? 1 : 0}>
       <View style={{flexDirection: 'row'}}>
         {icon}
-        {/* <Ionicons
-          name={icon}
-          color={'#242A37'}
-          size={22}
-          onPress={labelPress}
-        /> */}
         <Text style={styles.labeltext}>{label}</Text>
       </View>
       {type === 'switch' ? (

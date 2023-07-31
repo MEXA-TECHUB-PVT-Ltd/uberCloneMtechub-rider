@@ -91,7 +91,7 @@ const HistoryRidesCard = ({
                   style={{
                     flexDirection: 'row',
                     marginTop: hp(0),
-                    width: wp(70),
+                    width: wp(55),
                     alignItems: 'center',
                   }}>
                   <Avatar.Icon
@@ -110,7 +110,7 @@ const HistoryRidesCard = ({
                 <Text style={styles.notisubtext}>03:00 PM, 12/06/2023</Text>
               </View>
               }
-                <View>
+                <View style={{}}>
                   <Text style={[styles.pricetext]}>{notitime}</Text>
                   <Text style={[styles.kmtext]}>{km}</Text>
                 </View>

@@ -50,7 +50,6 @@ const VehicleDocs = () => {
 
   //Modal States
   const [modalVisible, setModalVisible] = useState(false);
-  const [modalVisible1, setModalVisible1] = useState(false);
 
     //camera and imagepicker
     const refRBSheet = useRef();

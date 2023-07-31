@@ -163,8 +163,8 @@ const PersonalDetail = () => {
         // disabled={disable}
         onPress={() => {
           firebase_store_user()
-          navigation.navigate('Drawerroute');
-          // dispatch(setPersonalMenu(false)), dispatch(setVehicleMenu(true));
+          //navigation.navigate('Drawerroute');
+          dispatch(setPersonalMenu(false)), dispatch(setVehicleMenu(true));
           // navigation.navigate('Verification', {
           //   navplace: 'RegistrationRequest',
           // });
